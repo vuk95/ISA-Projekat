@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<title>Reservations</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="HomePage.html" class="w3-bar-item w3-button">HOME</a>
+    <a href="Theatres.html" class="w3-bar-item w3-button"><span class="glyphicon glyphicon-facetime-video"></span> THEATRES</a>
+    <a href="Cinemas.html" class="w3-bar-item w3-button"><span class="glyphicon glyphicon-film"></span> CINEMAS</a>	
+    <a href="Friends.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> FRIENDS</a>
+    <a href="Reservations.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> RESERVATIONS</a>
+    <a href="Contact.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <i class="fa fa-search"></i>
+    </a>
+  </div>
+
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#theatres" class="w3-bar-item w3-button" onclick="toggleFunction()">THEATRES</a>
+    <a href="#reservations" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+  </div>
+</div>
+
+
+<!-- Container (Reservations Section) -->
+<div class="w3-content w3-container w3-padding-64" id="reservations">
+  <h3 class="w3-center">RESERVATIONS</h3>
+  <p class="w3-center"><em>Here you can reserve card for cinema/theatre event.<br> Click on the button to reserve your event.</em></p><br>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <img  style="width:100%" class="w3-hover-opacity" alt="Cinema">
+    </div>
+
+    <div class="w3-col m3">
+      <img style="width:100%" class="w3-hover-opacity" alt="Address">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Film">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Reservation">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img style="width:100%" class="w3-hover-opacity" alt="Arena Cineplex">
+    </div>
+
+    <div class="w3-col m3">
+      <img style="width:100%" class="w3-hover-opacity" alt="Bulevar Mihajla Pupina 3">
+    </div>
+
+    <div class="w3-col m3">
+     <a href="https://en.wikipedia.org/wiki/Taken_3" style="width:100%" class="w3-hover-opacity">Taken3</a>
+    </div>
+
+    <div class="w3-col m3">
+      <button  class="w3-hover-opacity"><span class="glyphicon glyphicon-pencil"></span> Reserve</button>
+    </div>
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+  </div>
+</div>
+
+<p></p>
+<p></p>
+
+<div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <img  style="width:100%" class="w3-hover-opacity" alt="Theatre">
+    </div>
+
+    <div class="w3-col m3">
+      <img style="width:100%" class="w3-hover-opacity" alt="Address">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Performance">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Reservation">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img style="width:100%" class="w3-hover-opacity" alt="Srpsko narodno pozorište">
+    </div>
+
+    <div class="w3-col m3">
+      <img style="width:100%" class="w3-hover-opacity" alt="Pozorišni trg 1">
+    </div>
+
+    <div class="w3-col m3">
+      <a href="https://sr.wikipedia.org/sr-el/%D0%9F%D0%B5%D0%B2%D0%B0%D1%98,_%D0%B1%D1%80%D0%B0%D1%82%D0%B5" style="width:100%" class="w3-hover-opacity">Pevaj brate</a>
+    </div>
+
+    <div class="w3-col m3">
+      <button  class="w3-hover-opacity"><span class="glyphicon glyphicon-pencil"></span> Reserve</button>
+    </div>
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+  </div>
+</div>
+
+<p></p>
+<div class="w3-row w3-center w3-dark-grey w3-padding-16">
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">14+</span><br>
+    Partners
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">65+</span><br>
+    Successful performances
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">89+</span><br>
+    Happy Clients
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">150+</span><br>
+    Meetings
+  </div>
+</div>
+
+<script>
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+
+
+</body>
+</html>
