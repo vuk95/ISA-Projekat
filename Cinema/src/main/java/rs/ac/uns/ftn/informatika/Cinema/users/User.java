@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-
-
 @Entity(name ="Korisnici")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
