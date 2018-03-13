@@ -13,5 +13,5 @@ public class CinemaApplicationTests {
 	public void contextLoads() {
 	}
 
-	//probni komit
+	
 }
