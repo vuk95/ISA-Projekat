@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.informatika.Cinema.users;
+package rs.ac.uns.ftn.informatika.Cinema.model.users;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -10,7 +10,10 @@ public class Administrator extends User{
 	@Enumerated(EnumType.ORDINAL)
 	private AdministratorType type;
 	
-	
 	private boolean firstLogin;
+	
+	public Administrator() {
+		
+	}
 	
 }

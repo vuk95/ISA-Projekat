@@ -1,4 +1,4 @@
-package rs.ac.uns.ftn.informatika.Cinema.users;
+package rs.ac.uns.ftn.informatika.Cinema.model.users;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
