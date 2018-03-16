@@ -43,6 +43,9 @@ public class MoviePerformance {
 	@Column(name = "Reditelj", nullable = false)
 	private String director;
 	
+	@Column(name = "Ocena")
+	private Rating rating;
+	
 	@ManyToMany
 	@JoinTable(name = "glumi",
     			joinColumns = @JoinColumn(name="MoviePerformance_id", referencedColumnName="Id"),

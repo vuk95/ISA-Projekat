@@ -1,20 +1,25 @@
 package rs.ac.uns.ftn.informatika.Cinema.service;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
-import rs.ac.uns.ftn.informatika.Cinema.repository.AdministratorRepository;
 
-@Service
-public class AdministratorService {
+public interface AdministratorService {
 	
-	@Autowired
-	public AdministratorRepository administratorRepository;
+		//Implementacija osnovnih CRUD operacija
 	
-	public List<Administrator> findAll() {
-		return administratorRepository.findAll();
-	}
+		public Administrator findOne(Long Id);
+		
+		public List<Administrator> findAll();
+
+		public Administrator save(Administrator admin);
+
+		public List<Administrator> save(List<Administrator> admins);
+			
+		public Administrator delete(Long Id);
+			
+		public void delete(List<Long> ids);
+	
+	
 }
+
+
