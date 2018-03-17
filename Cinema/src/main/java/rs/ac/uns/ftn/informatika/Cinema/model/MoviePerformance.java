@@ -43,8 +43,8 @@ public class MoviePerformance {
 	@Column(name = "Reditelj", nullable = false)
 	private String director;
 	
-	@Column(name = "Ocena")
-	private Rating rating;
+	//@Column(name = "Ocena")
+	//private Rating rating;
 	
 	@ManyToMany
 	@JoinTable(name = "glumi",
