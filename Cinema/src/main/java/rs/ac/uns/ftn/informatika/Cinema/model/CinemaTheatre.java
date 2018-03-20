@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,6 +29,9 @@ public class CinemaTheatre {
 	
 	@Column(name = "Opis")
 	private String description;
+	
+	//@Column(name = "Repertoar")
+	//private List<MoviePerformance> repertoire; 
 	
 	//TO DO: repertoar, spisak karata sa popustima, konfiguracija segmenata i mesta u salama
 	
