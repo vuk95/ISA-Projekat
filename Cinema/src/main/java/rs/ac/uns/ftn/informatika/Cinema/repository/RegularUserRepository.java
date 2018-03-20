@@ -6,4 +6,8 @@ import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
 public interface RegularUserRepository extends JpaRepository<RegularUser, Long> {
 	
+	public RegularUser findByEmailAndPassword(String email, String password);
+	
+	public RegularUser findByEmail(String email);
+	
 }

@@ -2,6 +2,8 @@ package rs.ac.uns.ftn.informatika.Cinema.model.users;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
+	
+	@Column(name = "Role", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	@Column(name="Ime",columnDefinition="VARCHAR(40)")
 	private String name;
@@ -105,7 +111,14 @@ public class User {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	} 
-	
 	
 }
