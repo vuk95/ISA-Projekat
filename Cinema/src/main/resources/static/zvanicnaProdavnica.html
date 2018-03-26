@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<script>
+	$(document).ready(
+			function() {
+				$.ajax({
+					url : "http://localhost:8082/fanZone/getRekviziti"
+				}).then(
+						function(data) {
+							for (i = 0; i < data.length; i++) {
+								newRow = 
+									"<tr>"
+										+ "<td class=\"picture\">" + data[i].slika + "</td>"
+										+ "<td class=\"name\">" + data[i].ime + "</td>"
+										+ "<td class=\"price\">" + data[i].cena + "</td>"
+										+ "<td class=\"description\">" + data[i].opis + "</td>"
+										+ "<td><a class=\"reserve\" href='#" + data[i].id + "'>" 
+										+ "Rezervisi</a></td>"
+									+ "</tr>"
+								$("#dataTable").append(newRow)
+							}
+						});
+					});
+				</script>
+		<title>Zvanicna prodavnica</title>
+	</head>
+	<body>
+		<h1>Zvanicna prodavnica</h1>
+		<table border = "1" id = "dataTable">
+			<tr>
+				<th>Slika</th>
+				<th>Ime</th>
+				<th>Cena</th>
+				<th>Opis artikla</th>
+				<th></th>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -15,4 +15,12 @@ public class LoginController {
 		return model;	
 	}
 	
+	//metoda koja redirektuje na pocetnu stranicu za ulogovane korisnike
+	//ukoliko je uspesan login
+	@RequestMapping(value = "/success", method = RequestMethod.GET)
+	public ModelAndView redirect(){
+			
+			ModelAndView model = new ModelAndView("pocetnaUlogovani");
+			return model;
+		}
 }
