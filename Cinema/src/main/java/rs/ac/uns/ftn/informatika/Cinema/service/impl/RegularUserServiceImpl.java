@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
 import rs.ac.uns.ftn.informatika.Cinema.repository.RegularUserRepository;
+import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 
 @Transactional
@@ -17,6 +20,9 @@ public class RegularUserServiceImpl implements RegularUserService {
 	@Autowired
 	public RegularUserRepository regUserRepository;
 	
+	@Autowired
+	public AllUsersService allUserService;
+	
 	@Override
 	public RegularUser findOne(Long Id) {
 		return regUserRepository.findOne(Id);
@@ -25,6 +31,20 @@ public class RegularUserServiceImpl implements RegularUserService {
 	@Override
 	public List<RegularUser> findAll() {
 		return regUserRepository.findAll();
+	}
+	
+	@Override
+	public RegularUser createNewRegularUser(NewUserForm newUser) {
+		RegularUser user = new RegularUser();
+		user.setRole(Role.REGULAR);
+		user.setEmail(newUser.getEmail());
+		user.setName(newUser.getName());
+		user.setLastname(newUser.getLastname());
+		user.setCity(newUser.getCity());
+		user.setPhone(newUser.getPhone());
+		user.setPassword(newUser.getPassword());
+		
+		return regUserRepository.save(user);
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class User {
 	@Column(name="Prezime",columnDefinition="VARCHAR(40)")
 	private String lastname;
 	
-	@Column(name="Email",columnDefinition="VARCHAR(50)")
+	@Column(name="Email",columnDefinition="VARCHAR(50)", unique = true)
 	private String email;
 	
 	@Column(name="Lozinka",columnDefinition="VARCHAR(30)")

@@ -31,14 +31,23 @@ public class AllUsersServiceImpl implements AllUsersService {
 	@Override
 	public User findUserByEmail(String email) {
 		if((regularUserRepository.findByEmail(email)) != null) {
-			System.out.println("Nasao sam regulara sa emailom " + email);
 			return regularUserRepository.findByEmail(email);
 		} else if ((administratorRepository.findByEmail(email)) != null) {
-			System.out.println("Nasao sam administratora sa emailom " + email);
 			return administratorRepository.findByEmail(email);
 		} else {
 			System.out.println("Nikog nisam nasao sa emailom " + email);
 			return null;
+		}
+	}
+	
+	@Override
+	public boolean emailExists(String email) {
+		if((regularUserRepository.findByEmail(email)) != null) {
+			return true;
+		} else if ((administratorRepository.findByEmail(email)) != null) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
