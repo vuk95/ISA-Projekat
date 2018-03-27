@@ -12,5 +12,9 @@ public interface RekvizitService {
 	ZvanicniRekvizit save(ZvanicniRekvizit rekvizit);
 	//Metoda koja brise konkretan rekvizit sa tim id-om
 	ZvanicniRekvizit delete(Long id);
+	
+	void update(Long id, ZvanicniRekvizit rekvizit);
+	
+	ZvanicniRekvizit findOne(Long id);
 
 }

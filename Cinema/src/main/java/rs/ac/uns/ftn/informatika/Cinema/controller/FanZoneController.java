@@ -50,4 +50,15 @@ public class FanZoneController {
 		return new ResponseEntity<>(obrisani, HttpStatus.OK);
 	}
 	
+	@RequestMapping(method = RequestMethod.PUT, value = "/rekviziti/{id}")
+	public void update(@PathVariable Long id, @RequestBody ZvanicniRekvizit rekvizit){
+		service.update(id, rekvizit);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/get/{id}",consumes="application/json")
+	public ResponseEntity<ZvanicniRekvizit> get(@PathVariable Long id){
+		ZvanicniRekvizit nadjeni = service.findOne(id);
+		return new ResponseEntity<>(nadjeni, HttpStatus.OK);
+	}
+	
 }

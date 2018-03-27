@@ -37,4 +37,15 @@ public class RekvizitServiceImpl implements RekvizitService{
 		repo.delete(rekvizit);
 		return rekvizit;
 	}
+
+	@Override
+	public void update(Long id, ZvanicniRekvizit rekvizit) {
+		repo.save(rekvizit);
+	}
+
+	@Override
+	public ZvanicniRekvizit findOne(Long id) {
+		ZvanicniRekvizit nadjeni = repo.findOne(id);
+		return nadjeni;
+	}
 }

@@ -18,6 +18,8 @@
 										+ "<td class=\"description\">" + data[i].opis + "</td>"
 										+ "<td><a class=\"remove\" href='/fanZone/" + data[i].id + "'>" 
 										+ "Obrisi</a></td>"
+										+ "<td><a class=\"edit\" href='/fanZone/get/" + data[i].id + "'>" 
+										+ "Izmeni</a></td>"
 									+ "</tr>"
 								$("#dataTable").append(newRow)
 							}
@@ -45,6 +47,8 @@
 										+ "<td class=\"description\">" + data.opis + "</td>"
 										+ "<td><a class=\"remove\" href='/fanZone/" + data.id + "'>" 
 										+ "Obrisi</a></td>"
+										+ "<td><a class=\"edit\" href='/fanZone/get/" + data.id + "'>" 
+										+ "Izmeni</a></td>"
 										+ "</tr>"
 							$("#dataTable").append(newRow)
 						  },
@@ -74,8 +78,40 @@
 						});
 					}
 				});
+				
+				$(document).on("click", ".edit", function(event){
+					
+					event.preventDefault(); 
+					var url = $(this).attr("href")
+					tr_parent = $(this).closest("tr")
+					
+					$.ajax({
+						url: url,
+						type: "GET",
+						contentType: "application/json",
+						datatype: 'json',
+						success: function(data){
+							index = $("tr").index(tr_parent)+1
+							item = $("tr:nth-child(" + index + ")");
+							sync(item);
+						}
+					});
+					
+				});
+				
 			});
-		</script>
+	//funkcija ciji je cilj da napuni sadrzaj edit polja
+	function sync(item){
+		slika = item.find(".picture").html()
+	    ime = item.find(".name").html()
+	    cena = item.find(".price").html()
+	    opis = item.find(".description").html()
+	    $("#slika").val(slika);
+	    $("#ime").val(ime);
+	    $("#cena").val(cena);
+	    $("#opis").val(opis);
+	}	
+</script>
 		<title>Zvanicna prodavnica</title>
 	</head>
 	<body>
