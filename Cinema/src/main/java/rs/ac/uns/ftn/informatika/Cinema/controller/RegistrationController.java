@@ -39,24 +39,23 @@ public class RegistrationController {
 	}
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public ModelAndView registerRegularUser(@ModelAttribute("user") @Valid NewUserForm newUser, BindingResult result) {
-		ModelAndView model = new ModelAndView();
-		if(allUsersService.emailExists(newUser.getEmail())) {
-			result.rejectValue("email", "error.user", "Vec postoji korisnik sa takvim email-om.");
+	public ModelAndView registerRegularUser(@ModelAttribute("user") @Valid NewUserForm newUser, BindingResult result,
+						WebRequest request, Errors errors) {
+		
+		RegularUser registered = new RegularUser();
+		if(!result.hasErrors()) {
+			registered = regularUserService.createNewRegularUser(newUser);
 		}
 		
-		//if(result.hasErrors()) {
-		//	model.setViewName("registration");
-		//	System.out.println("****** result.hasErrors - usao");
-	//	} else {
-			regularUserService.createNewRegularUser(newUser);
-			model.addObject("successMessage", "Korisnik je uspesno registrovan!");
-			model.addObject("user", new NewUserForm());
-			model.setViewName("registration");
-	//	}
+		if(registered == null) {
+			result.rejectValue("email", "message.regError");
+		}
 		
-		return model;
+		if(result.hasErrors()) {
+			return new ModelAndView("registration", "user", newUser);
+		} else {
+			return new ModelAndView("proba");
+		}
 	}
-	
 	
 }

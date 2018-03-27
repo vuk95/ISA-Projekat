@@ -35,16 +35,21 @@ public class RegularUserServiceImpl implements RegularUserService {
 	
 	@Override
 	public RegularUser createNewRegularUser(NewUserForm newUser) {
-		RegularUser user = new RegularUser();
-		user.setRole(Role.REGULAR);
-		user.setEmail(newUser.getEmail());
-		user.setName(newUser.getName());
-		user.setLastname(newUser.getLastname());
-		user.setCity(newUser.getCity());
-		user.setPhone(newUser.getPhone());
-		user.setPassword(newUser.getPassword());
+		if(allUserService.emailExists(newUser.getEmail())) {
+			return null;
+		} else {
 		
-		return regUserRepository.save(user);
+			RegularUser user = new RegularUser();
+			user.setRole(Role.REGULAR);
+			user.setEmail(newUser.getEmail());
+			user.setName(newUser.getName());
+			user.setLastname(newUser.getLastname());
+			user.setCity(newUser.getCity());
+			user.setPhone(newUser.getPhone());
+			user.setPassword(newUser.getPassword());
+			
+			return regUserRepository.save(user);
+		}
 	}
 
 	@Override

@@ -24,9 +24,6 @@ public class NewUserForm {
 	@NotEmpty
 	private String password;
 	
-	@NotEmpty
-	private String matchingPassword;
-	
 	public NewUserForm() {
 		
 	}
@@ -69,14 +66,6 @@ public class NewUserForm {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getMatchingPassword() {
-		return matchingPassword;
-	}
-
-	public void setMatchingPassword(String matchingPassword) {
-		this.matchingPassword = matchingPassword;
 	}
 
 	public String getPhone() {
