@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
-import java.util.List;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "BioskopPozoriste")
-public class CinemaTheatre {
+public class CinemaTheatre implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +30,7 @@ public class CinemaTheatre {
 	private String name;
 	
 	@Column(name = "Adresa", nullable = false)
-	private String adress;
+	private String address;
 	
 	@Column(name = "Opis")
 	private String description;
@@ -37,6 +42,14 @@ public class CinemaTheatre {
 	
 	public CinemaTheatre() {
 		
+	}
+	
+	public CinemaTheatre(String address,String description,String name,CinemaTheatreType type) {
+		
+		this.address = address;
+		this.description = description;
+		this.name = name;
+		this.type = type;
 	}
 
 	public Long getId() {
@@ -63,12 +76,12 @@ public class CinemaTheatre {
 		this.name = name;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getDescription() {

@@ -7,6 +7,34 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="scripts/jquery-3.2.1.min.js"></script>
+
+<script>
+	$(document).ready(
+			function() {
+				$.ajax({
+					url : "http://localhost:8082/cinema_theatre/getCinemaTheatre"
+				}).then(
+						function(data) {
+							for (i = 0; i < data.length; i++) {
+								
+								if(data[i].type == "CINEMA") {
+								newRow = 
+									"<tr>"
+										+ "<td class=\"name\">" + data[i].name + "</td>"
+										+ "<td class=\"address\">" + data[i].address + "</td>"
+										+"<th><button type=\"button\">" + "Pogledaj</button><th>"
+										
+									+ "</tr>"
+								$("#dataTable").append(newRow)
+								}
+							}
+						});
+					});
+				</script>
+
+
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -63,101 +91,18 @@ body, html {
 <div class="w3-content w3-container w3-padding-64" id="cinemas">
   <h3 class="w3-center">CINEMAS</h3>
   <p class="w3-center"><em>All available cinemas</em></p>
-  <p><table style="width:100%"><tbody>
+  
+  
+  
+  
+  
+  <p><table style="width:100%" id="dataTable" ><tbody>
   <tr>
   <th>Name</th>
   <th>Address</th>
-  <th>Avg Raiting</th>
   <th>Repertory</th>
+  <th>Avg Raiting</th>
   </tr>
-  <tr>
-  <th>Arena Cineplex</th>
-  <th>Bulevar Mihajla Pupina 3,Novi Sad</th>
-  <th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span> </th>
-  <th><button type="button">Pogledaj</button><th> 
-  </tr>
-
-  <tr>
-  <th>CineStar</th>
-  <th>Novosadski put bb,Zrenjanin</th>
-  <th><span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span> </th>
-  <th><button type="button">Pogledaj</button><th> 
-  </tr>
-
-  <tr>
-  <th>Cineplexx UŠĆE Shopping Center</th>
-  <th>Bulevar Mihajla Pupina 4,Beograd</th>
-<th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span> </th>  
-<th><button type="button">Pogledaj</button><th> 
-  </tr>
-
-  <tr>
-  <th>Dvorana Doma sindikata </th>
-  <th>Dečanska 14,Beograd</th>
-<th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span> </th>  
-<th><button type="button">Pogledaj</button><th> 
-  </tr>
-
-  <tr>
-  <th>Eurocinema</th>
-  <th>Trg Cara Jovana Nenada 15,Subotica</th>
-<th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span> </th>  
-<th><button type="button">Pogledaj</button><th> 
-  </tr>
-
-  <tr>
-  <th>Cineplexx Kragujevac Plaza </th>
-  <th>Bulevar kraljice Marije 56,Kragujevac</th>
-<th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span> </th>  
-<th><button type="button">Pogledaj</button><th> 
-  </tr>
-
-  <tr>
-  <th>Bioskop ART</th>
-  <th>Petra Ćelavića 4,Užice</th>
-<th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span> </th>  
-<th><button type="button">Pogledaj</button><th> 
-  </tr> 
-
-  <tr>
-  <th>Cineplexx Niš</th>
-  <th>Bulevar Medijana 21,Niš</th>
-<th><span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span> </th>  
-<th><button type="button">Pogledaj</button><th> 
-  </tr>
-
   </tbody></table></p>
   <div class="w3-row">
     <div class="w3-col m6 w3-center w3-padding-large">
