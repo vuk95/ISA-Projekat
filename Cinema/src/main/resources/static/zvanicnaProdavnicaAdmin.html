@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<script>
+	$(document).ready(
+			function() {
+				$.ajax({
+					url : "http://localhost:8082/fanZone/getRekviziti"
+				}).then(
+						function(data) {
+							for (i = 0; i < data.length; i++) {
+								newRow = 
+									"<tr>"
+										+ "<td class=\"picture\">" + data[i].slika + "</td>"
+										+ "<td class=\"name\">" + data[i].ime + "</td>"
+										+ "<td class=\"price\">" + data[i].cena + "</td>"
+										+ "<td class=\"description\">" + data[i].opis + "</td>"
+										+ "<td><a class=\"remove\" href='#" + data[i].id + "'>" 
+										+ "Obrisi</a></td>"
+										+ "<td><a class=\"update\" href='#" + data[i].id + "'>" 
+										+ "Izmeni</a></td>"
+									+ "</tr>"
+								$("#dataTable").append(newRow)
+							}
+						});
+				$("#add").click(function(){
+					//pripremamo JSON koji cemo poslati
+					formData = JSON.stringify({
+    	                slika:$("#inputForm [name='picture']").val(),
+    	                ime:$("#inputForm [name='name']").val(),
+    	                cena:$("#inputForm [name='price']").val(),
+    	               	opis:$("#inputForm [name='description']").val(),
+    	            });
+					$.ajax({
+						url: "http://localhost:8082/fanZone/dodaj",
+						type: "POST",
+						data: formData,
+						contentType: "application/json",
+						datatype: 'json',
+						success: function(data) {
+							newRow = 
+									"<tr>"
+										+ "<td class=\"picture\">" + data.slika + "</td>"
+										+ "<td class=\"name\">" + data.ime + "</td>"
+										+ "<td class=\"price\">" + data.cena + "</td>"
+										+ "<td class=\"description\">" + data.opis + "</td>"
+										+ "<td><a class=\"remove\" " + data.id + "'>" 
+										+ "Obrisi</a></td>"
+										+ "<td><a class=\"update\" " + data.id + "'>" 
+										+ "Izmeni</a></td>"
+									+ "</tr>"
+							$("#dataTable").append(newRow)
+						  },
+						  error: function(data){
+							  alert('Nevalidan unos')
+						  }
+						});
+					
+				});				
+				});
+			</script>
+		<title>Zvanicna prodavnica</title>
+	</head>
+	<body>
+		<h1>Zvanicna prodavnica</h1>
+		<table border = "1" id = "dataTable">
+			<tr>
+				<th>Slika</th>
+				<th>Ime</th>
+				<th>Cena</th>
+				<th>Opis artikla</th>
+				<th></th>
+			</tr>
+		</table>
+		      <form id="inputForm">
+					<input type="hidden" name="id" id="id" />
+				<p>
+					<label for="slika">Slika</label> <input type="text" name="picture"
+						id="slika" />
+				</p>
+				<p>
+					<label for="ime">Ime</label> <input type="text" name="name"
+						id="ime" />
+				</p>
+				<p>
+					<label for="cena">Cena</label> <input type="text" name="price"
+						id="cena" />
+				</p>
+				<p>
+					<label for="opis">Opis</label> <input type="text" name="description"
+						id="opis" />
+				</p>		
+		        <button type="button" class="btn btn-primary" id="add">Potvrda</button>
+		      </form>
+	</body>
+</html>
