@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,4 +43,11 @@ public class FanZoneController {
 		ZvanicniRekvizit noviRekvizit = service.save(rekvizit);
 		return new ResponseEntity<>(noviRekvizit, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<ZvanicniRekvizit> delete(@PathVariable Long id){
+		ZvanicniRekvizit obrisani = service.delete(id);
+		return new ResponseEntity<>(obrisani, HttpStatus.OK);
+	}
+	
 }

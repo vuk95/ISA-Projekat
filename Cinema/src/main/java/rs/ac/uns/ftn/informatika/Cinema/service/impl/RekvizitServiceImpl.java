@@ -26,5 +26,15 @@ public class RekvizitServiceImpl implements RekvizitService{
 	public ZvanicniRekvizit save(ZvanicniRekvizit rekvizit) {
 		return repo.save(rekvizit);
 	}
-
+	
+	@Override
+	public ZvanicniRekvizit delete(Long id) {
+		ZvanicniRekvizit rekvizit = repo.findOne(id);
+		if(rekvizit == null){
+			throw new IllegalArgumentException("Tried to delete"
+					+ "non-existant product");
+		}
+		repo.delete(rekvizit);
+		return rekvizit;
+	}
 }

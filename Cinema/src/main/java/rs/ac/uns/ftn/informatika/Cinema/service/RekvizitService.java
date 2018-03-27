@@ -10,5 +10,7 @@ public interface RekvizitService {
 	List<ZvanicniRekvizit> findAll();
 	//Metoda zaduzena za upis novog rekvizita u bazu
 	ZvanicniRekvizit save(ZvanicniRekvizit rekvizit);
+	//Metoda koja brise konkretan rekvizit sa tim id-om
+	ZvanicniRekvizit delete(Long id);
 
 }
