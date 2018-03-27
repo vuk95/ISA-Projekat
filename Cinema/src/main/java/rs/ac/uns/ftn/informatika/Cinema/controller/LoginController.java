@@ -15,5 +15,11 @@ public class LoginController {
 		return model;	
 	}
 	
+	@RequestMapping(value = "/success", method = RequestMethod.GET)
+	public ModelAndView redirect() {
+		ModelAndView model = new ModelAndView("pocetnaUlogovani");
+		
+		return model;	
+	}
 	
 }

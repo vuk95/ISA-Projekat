@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="Rekvizit")
 public class ZvanicniRekvizit {
@@ -15,15 +17,20 @@ public class ZvanicniRekvizit {
 	
 	//kasnije uraditi da bude bas slika
 	@Column(name="Slika", columnDefinition="VARCHAR(40)")
+	@NotNull
 	private String slika;
 	
 	@Column(name="Ime", columnDefinition="VARCHAR(40)")
+	@NotNull
 	private String ime;
 	
 	@Column(name="Cena", columnDefinition="INTEGER")
+	@NotNull
+	@Min(30)
 	private int cena;
 	
 	@Column(name="Opis", columnDefinition="VARCHAR(60)")
+	@NotNull
 	private String opis;
 	
 	public Long getId() {
