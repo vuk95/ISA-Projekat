@@ -22,5 +22,7 @@ public interface RegularUserService {
 		public void delete(List<Long> ids);
 		
 		public RegularUser createNewRegularUser(NewUserForm userForm);
+
+		public RegularUser findByConfirmationToken(String confirmationToken);
 	
 }

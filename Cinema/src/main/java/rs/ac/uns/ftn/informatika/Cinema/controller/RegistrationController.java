@@ -19,12 +19,16 @@ import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
+import rs.ac.uns.ftn.informatika.Cinema.service.impl.EmailService;
 
 @Controller
 public class RegistrationController {
 	
 	@Autowired
 	private RegularUserService regularUserService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public ModelAndView showRegistrationForm(WebRequest request, Model model) {
@@ -51,6 +55,13 @@ public class RegistrationController {
 		if(result.hasErrors()) {
 			return new ModelAndView("registration", "user", newUser);
 		} else {
+			
+			try {
+				emailService.sendMail(registered);
+				System.out.println("Mejl je poslat!");
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 			return new ModelAndView("proba");
 		}
 	}

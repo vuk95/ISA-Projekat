@@ -12,7 +12,7 @@ INSERT INTO korisnici
 (grad, email, prezime, ime, lozinka, telefon, role) VALUES 
 ('Vrbas' , 'stefanmilovic2@gmail.com', 'Milovic', 'Stefan', 'sm22', '1234567890', 'CINEMA_THEATRE');
 
-INSERT INTO obican_korisnik (id, test) VALUES ('1', 'nebitno');
+INSERT INTO obican_korisnik (id) VALUES ('1');
 
 INSERT INTO administrator (id, first_login) VALUES ('2', true);
 

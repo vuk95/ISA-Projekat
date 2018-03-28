@@ -10,4 +10,5 @@ public interface RegularUserRepository extends JpaRepository<RegularUser, Long> 
 	
 	public RegularUser findByEmail(String email);
 	
+	public RegularUser findByConfirmationToken(String confirmationToken);
 }

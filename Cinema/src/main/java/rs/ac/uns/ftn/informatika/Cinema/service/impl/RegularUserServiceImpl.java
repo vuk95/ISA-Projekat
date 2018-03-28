@@ -34,6 +34,11 @@ public class RegularUserServiceImpl implements RegularUserService {
 	}
 	
 	@Override
+	public RegularUser findByConfirmationToken(String confirmationToken) {
+		return regUserRepository.findByConfirmationToken(confirmationToken);
+	}
+	
+	@Override
 	public RegularUser createNewRegularUser(NewUserForm newUser) {
 		if(allUserService.emailExists(newUser.getEmail())) {
 			return null;
@@ -41,6 +46,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		
 			RegularUser user = new RegularUser();
 			user.setRole(Role.REGULAR);
+			user.setEnabled(false);
 			user.setEmail(newUser.getEmail());
 			user.setName(newUser.getName());
 			user.setLastname(newUser.getLastname());
