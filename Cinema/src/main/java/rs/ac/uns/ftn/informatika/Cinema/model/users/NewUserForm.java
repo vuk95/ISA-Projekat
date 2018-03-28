@@ -3,6 +3,9 @@ package rs.ac.uns.ftn.informatika.Cinema.model.users;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import rs.ac.uns.ftn.informatika.Cinema.validation.PasswordMatches;
+
+@PasswordMatches
 public class NewUserForm {
 	
 	@NotEmpty
@@ -23,6 +26,9 @@ public class NewUserForm {
 	
 	@NotEmpty
 	private String password;
+	
+	@NotEmpty
+	private String matchingPassword;
 	
 	public NewUserForm() {
 		
@@ -74,6 +80,14 @@ public class NewUserForm {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
 	}
 	
 }

@@ -24,9 +24,6 @@ import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 public class RegistrationController {
 	
 	@Autowired
-	private AllUsersService allUsersService;
-	
-	@Autowired
 	private RegularUserService regularUserService;
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
