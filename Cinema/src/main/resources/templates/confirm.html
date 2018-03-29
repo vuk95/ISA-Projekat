@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Aktivacija korisnickog naloga</title>
+</head>
+<body>
+	<h1>Aktivacija korisnickog naloga</h1>
+	<br>
+	
+	<div th:if="${successMessage}" th:text="${successMessage}"></div>
+	
+	<div th:if="${invalidToken}" th:text=${invalidToken}></div>
+	
+	<form th:if="!${invalidToken}" action="#" th:action="@{/confirm}" method="POST">
+		<input type="hidden" name="token" th:value="${confirmationToken}">
+		<button type="submit">Aktiviraj</button>
+	</form>
+	
+</body>
+</html>

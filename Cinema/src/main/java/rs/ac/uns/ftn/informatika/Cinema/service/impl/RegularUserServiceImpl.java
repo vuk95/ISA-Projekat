@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 			RegularUser user = new RegularUser();
 			user.setRole(Role.REGULAR);
 			user.setEnabled(false);
+			user.setConfirmationToken(UUID.randomUUID().toString());
 			user.setEmail(newUser.getEmail());
 			user.setName(newUser.getName());
 			user.setLastname(newUser.getLastname());
