@@ -40,6 +40,9 @@ public class User {
 	@Column(name="Telefon",columnDefinition="VARCHAR(15)")
 	private String phone;
 	
+	@Column
+	private boolean enabled;
+	
 	//Konstruktori
 	
 	public User() {
@@ -119,6 +122,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	} 
 	
 }

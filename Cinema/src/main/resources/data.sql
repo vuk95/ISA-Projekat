@@ -1,16 +1,16 @@
 --Korisnici
 
 INSERT INTO korisnici
-(grad, email, prezime, ime, lozinka, telefon, role) VALUES 
-('Zrenjanin' , 'email@gmail.com', 'Prezime', 'Ime', 'password', '8321093012', 'REGULAR');
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('Zrenjanin' , 'email@gmail.com', 'Prezime', 'Ime', 'password', '8321093012', 'REGULAR', true);
 
 INSERT INTO korisnici
-(grad, email, prezime, ime, lozinka, telefon, role) VALUES 
-('Beograd' , 'admin@gmail.com', 'Prezime', 'Ime', 'password', '453454', 'SYSTEM');
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('Beograd' , 'admin@gmail.com', 'Prezime', 'Ime', 'password', '453454', 'SYSTEM', true);
 
 INSERT INTO korisnici
-(grad, email, prezime, ime, lozinka, telefon, role) VALUES 
-('Vrbas' , 'stefanmilovic2@gmail.com', 'Milovic', 'Stefan', 'sm22', '1234567890', 'CINEMA_THEATRE');
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('Vrbas' , 'stefanmilovic2@gmail.com', 'Milovic', 'Stefan', 'sm22', '1234567890', 'CINEMA_THEATRE', true);
 
 INSERT INTO obican_korisnik (id) VALUES ('1');
 

@@ -18,7 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private AllUsersService allUsersService;
 	
-	
 	@Override
 	public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = allUsersService.findUserByEmail(email);

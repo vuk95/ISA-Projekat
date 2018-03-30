@@ -1,7 +1,5 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
