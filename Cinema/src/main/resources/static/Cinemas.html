@@ -8,6 +8,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="scripts/jquery-3.2.1.min.js"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
 	$(document).ready(
@@ -30,13 +39,16 @@
 										+ "<span class=\"fa fa-star\"></span>"
 										+ "<th><button type=\"button\">" + "Pogledaj</button><th>"
 										+ "<th><textarea>" + data[i].description + "</textarea></th>"
-										+ "<th><button class=\"izmeni\">Izmeni</button></th>"
+										+ "<th><a href=\"#inputModalP\" data-toggle=\"modal\" data-target=\"#inputModalP\">Izmeni</a></th>"
 									+ "</tr>"
 								$("#dataTable").append(newRow)
 								}
 							}
 						});
 					});
+	
+	
+
 	
 </script>
 
@@ -49,6 +61,22 @@ body, html {
     color: #777;
     line-height: 1.8;
 }
+
+.tf {
+
+margin-left: 50px;
+}
+
+.tf1 {
+
+margin-left: 32px;
+}
+
+.tf2 {
+
+margin-left: 4px;
+}
+
 .izmeni {
   background-color: #1161ed;
   color: #FFF;
@@ -106,6 +134,39 @@ margin-left: -110px;
 </style>
 <body>
 
+<div class="modal fade" id="inputModalP" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Changes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <input type="hidden" name="id" id="id" />
+				<p>
+					<label for="oznaka">Name</label> <input type="text" class="tf" name="code"
+						id="oznaka" />
+				</p>
+				<p>
+					<label for="naziv">Address</label> <input type="text" class="tf1" name="name"
+						id="naziv" />
+				</p>
+				
+				<p>
+					<label for="oznaka">Description</label> <input type="text" class="tf2" name="code"
+						id="oznaka" />
+				</p>		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
@@ -139,11 +200,7 @@ margin-left: -110px;
 <div class="w3-content w3-container w3-padding-64" id="cinemas">
   <h3 class="w3-center">CINEMAS</h3>
   <p class="w3-center"><em>All available cinemas</em></p>
-  
-  
-  
-  
-  
+    
   <p><table style="width:100%" id="dataTable" ><tbody>
   <tr>
   <th>Name</th>
@@ -192,6 +249,37 @@ margin-left: -110px;
     Meetings
   </div>
 </div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Nova država</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <form id="inputForm">
+		      <div class="modal-body">
+					<input type="hidden" name="id" id="id" />
+				<p>
+					<label for="oznaka">Oznaka</label> <input type="text" name="code"
+						id="oznaka" />
+				</p>
+				<p>
+					<label for="naziv">Naziv</label> <input type="text" name="name"
+						id="naziv" />
+				</p>		
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+		        <button type="button" class="btn btn-primary" id="add">Potvrda</button>
+		      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+
 
 <script>
 // Change style of navbar on scroll
