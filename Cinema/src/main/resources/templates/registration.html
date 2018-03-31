@@ -2,26 +2,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Registracija</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-	<h1>Registracija</h1>
-	<form action="#" th:action="@{/registration}" th:object="${user}" method="POST" enctype="utf8">
-			<input type="text" th:placeholder="Email" th:field="*{email}"/>
-			<br>
-			<input type="text" th:placeholder="Ime" th:field="*{name}"/>
-			<br>
-			<input type="text" th:placeholder="Prezime" th:field="*{lastname}"/>
-			<br>
-			<input type="text" th:placeholder="Grad" th:field="*{city}"/>
-			<br>
-			<input type="text" th:placeholder="Telefon" th:field="*{phone}"/>
-			<br>
-			<input type="password" th:placeholder="Lozinka" th:field="*{password}"/>
-			<br>
-			<input type="password" th:placeholder="Potvrda" th:field="*{matchingPassword}"/>
-			<br>
-			<input name="submit" type="submit" value="Potvrda"/>
-	</form>
+	<div class="container">
+		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			<h1>Registracija</h1>
+			
+			<div th:if="${confirmationMessage}" class="alert alert-success"
+          			role="alert" th:text=${confirmationMessage}></div>
+          			
+          	<div th:if="${emailExists}" class="alert alert-danger"
+          		role="alert" th:text=${emailExists}></div>
+			
+			<form action="#" th:action="@{/registration}" th:object="${user}" method="POST" enctype="utf8">
+					<input type="text" th:placeholder="Email" th:field="*{email}"
+							class="form-control input-lg" required="true" autofocus="true"/>
+					<br>
+					<input type="text" th:placeholder="Ime" th:field="*{name}"
+							class="form-control input-lg" required="true"/>
+					<br>
+					<input type="text" th:placeholder="Prezime" th:field="*{lastname}"
+							class="form-control input-lg" required="true"/>
+					<br>
+					<input type="text" th:placeholder="Grad" th:field="*{city}"
+							class="form-control input-lg" required="true"/>
+					<br>
+					<input type="text" th:placeholder="Telefon" th:field="*{phone}"
+							class="form-control input-lg" required="true"/>
+					<br>
+					<input type="password" th:placeholder="Lozinka" th:field="*{password}"
+							class="form-control input-lg" required="true"/>
+					<br>
+					<input type="password" th:placeholder="Potvrda" th:field="*{matchingPassword}"
+							class="form-control input-lg" required="true"/>
+					<br>
+					<input type="submit" value="Potvrda" class="btn btn-lg btn-primary btn-block"/>
+			</form>
+		</div>
+	</div>
+	
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 </body>
 </html>

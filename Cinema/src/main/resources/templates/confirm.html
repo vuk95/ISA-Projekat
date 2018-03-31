@@ -2,20 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Aktivacija korisnickog naloga</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aktivacija korisnickog naloga</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-	<h1>Aktivacija korisnickog naloga</h1>
-	<br>
+	<div class="container">
+		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			<h1>Aktivacija korisnickog naloga</h1>
+			<br>
+			
+			<div th:if="${successMessage}" th:text="${successMessage}" 
+					class="alert alert-success" role="alert"></div>
+			<div th:if="${successMessage}">
+				<p>Ukoliko zelite da se prijavite na sistem kliknite <a href="http://localhost:8082/login">ovde</a></p>
+			</div>
+			
+			<div th:if="${invalidToken}" th:text=${invalidToken}
+					class="alert alert-danger" role="alert"></div>
+			
+			<form th:if="!${invalidToken}" action="#" th:action="@{/confirm}" method="POST">
+				<input type="hidden" name="token" th:value="${confirmationToken}">
+				<div th:if="!${successMessage}">
+					<input type="submit" value="Aktiviraj" class="btn btn-lg btn-primary btn-block"/>
+				</div>
+			</form>
+		</div>
+	</div>
 	
-	<div th:if="${successMessage}" th:text="${successMessage}"></div>
-	
-	<div th:if="${invalidToken}" th:text=${invalidToken}></div>
-	
-	<form th:if="!${invalidToken}" action="#" th:action="@{/confirm}" method="POST">
-		<input type="hidden" name="token" th:value="${confirmationToken}">
-		<button type="submit">Aktiviraj</button>
-	</form>
-	
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 </body>
 </html>

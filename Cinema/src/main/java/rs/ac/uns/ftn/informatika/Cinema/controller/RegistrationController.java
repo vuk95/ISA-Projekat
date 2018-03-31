@@ -41,6 +41,7 @@ public class RegistrationController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView registerRegularUser(@ModelAttribute("user") @Valid NewUserForm newUser, BindingResult result,
 						HttpServletRequest request, Errors errors) {
+		ModelAndView modelAndView = new ModelAndView();
 		
 		RegularUser registered = new RegularUser();
 		if(!result.hasErrors()) {
@@ -48,21 +49,25 @@ public class RegistrationController {
 		}
 		
 		if(registered == null) {
-			result.rejectValue("email", "message.regError");
+			result.reject("email");
 		}
 		
 		if(result.hasErrors()) {
-			return new ModelAndView("registration", "user", newUser);
+			modelAndView.addObject("emailExists", "Postoji korisnik sa tom e-mail adresom!");
+			modelAndView.setViewName("registration");
+			return modelAndView;
 		} else {
 			
 			try {
 				String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getLocalPort();
 				emailService.sendRegistrationMail(registered, url);
 				System.out.println("Mejl je poslat!");
+				modelAndView.addObject("confirmationMessage", "E-mail za aktivaciju naloga je poslat na: " + registered.getEmail());
+				modelAndView.setViewName("registration");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			return new ModelAndView("proba");
+			return modelAndView;
 		}
 	}
 	
