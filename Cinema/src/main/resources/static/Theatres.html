@@ -23,7 +23,13 @@
 									"<tr>"
 										+ "<td class=\"name\">" + data[i].name + "</td>"
 										+ "<td class=\"address\">" + data[i].address + "</td>"
-										+"<th><button type=\"button\" onclick=\"location.href\=\'SNPRepertoar.html'\">" + "Pogledaj</button><th>"
+										+ "<th><span class=\"fa fa-star checked\"></span>"
+										+ "<span class=\"fa fa-star\"></span>"
+										+ "<span class=\"fa fa-star\"></span>"
+										+ "<span class=\"fa fa-star\"></span>"
+										+ "<span class=\"fa fa-star\"></span>"
+										+ "<th><button type=\"button\" onclick=\"location.href='Repertoar.html'\">" + "Pogledaj</button><th>"
+										+ "<th><textarea>" + data[i].description + "</textarea></th>"
 										
 									+ "</tr>"
 								$("#dataTable").append(newRow)
@@ -41,6 +47,14 @@ body, html {
     height: 100%;
     color: #777;
     line-height: 1.8;
+}
+
+textarea {
+
+height: 40px;
+width: 100px;
+margin-left:-110px; 
+
 }
 
 /* Create a Parallax Effect */
@@ -97,8 +111,9 @@ body, html {
   <tr>
   <th>Name</th>
   <th>Address</th>
-  <th>Repertory</th>
   <th>Avg Raiting</th>
+  <th>Repertory</th>
+  <th>Description</th>
   </tr>
   </tbody></table></p>
   <div class="w3-row">
