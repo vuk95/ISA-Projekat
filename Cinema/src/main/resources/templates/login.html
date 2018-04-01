@@ -18,6 +18,12 @@
 		    			<h4>Proverite da li ste aktivirali svoj nalog.</h4>
 		    		</div>
 		    	</div>
+		    	
+		    	<div th:if="${param.logout}">
+		    		<div class="alert alert-info">
+		    			<h4>Uspesno ste se izlogovali.</h4>
+		    		</div>
+		    	</div>
 		    
 		        <input type="text" id="email" name="email"  th:placeholder="Email" class="form-control input-lg"
 		        		required="true" autofocus="true"/> <br/> 
@@ -25,7 +31,7 @@
 		        		class="form-control input-lg" required="true"/> <br/>
 		        <input type="submit" value="Prijava" class="btn btn-lg btn-primary btn-block"/>
 		    </form>
-		    <h5 align="center">Nemate nalog?<a href="http://localhost:8082/registration">  Pridruzite nam se</a></h5>
+		    <h5 align="center">Nemate nalog?<a href="/registration">  Pridruzite nam se</a></h5>
 		</div>
 	</div>
 	<script src="/scripts/jquery-3.2.1.min.js"></script>
