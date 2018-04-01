@@ -1,0 +1,37 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Izmeni rekvizit</title>
+	</head>
+	<body>
+		<h3>Izmeni Rekvizit:</h3>
+		<form th:action="@{/fanzone/update}" th:object="${rekvizit}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Slika:</td>
+					<td><input type = "text" th:field="*{slika}"></td>
+				</tr>
+				<tr>
+					<td>Ime:</td>
+					<td><input type = "text" th:field="*{ime}"></td>
+				</tr>
+				<tr>
+					<td>Cena:</td>
+					<td><input type = "text" th:field="*{cena}"></td>
+				</tr>
+				<tr>
+					<td>Opis:</td>
+					<td><input type = "text" th:field="*{opis}"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save">
+						<input type = "hidden" th:field="*{id}">
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+	</body>
+</html>

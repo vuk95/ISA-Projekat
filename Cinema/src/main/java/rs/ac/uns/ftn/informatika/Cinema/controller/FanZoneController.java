@@ -1,64 +1,84 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
+
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
-@RestController
-@RequestMapping(value = "/fanZone")
-public class FanZoneController {
-	
-	@Autowired
-	private RekvizitService service;
-	
-	@RequestMapping(value="getRekviziti", method = RequestMethod.GET)
-	public ResponseEntity<List<ZvanicniRekvizit>> getRekviziti(){
-		
-		List<ZvanicniRekvizit> rekviziti = service.findAll();
-		return new ResponseEntity<>(rekviziti, HttpStatus.OK);
-		
-	}
-	
-	@RequestMapping(value="dodaj", method = RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<?> addRekvizit(@Validated @RequestBody ZvanicniRekvizit rekvizit, Errors errors){
 
-		if(errors.hasErrors()){
-			return new
-				ResponseEntity<String>(errors.getAllErrors().toString(),
-						HttpStatus.BAD_REQUEST);
-		}
+@Controller
+@RequestMapping("/fanzone")
+public class FanZoneController {
+
+	@Autowired
+	private RekvizitService servis;
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home() {
+	
+		return "fanzone";
+		//mora biti u templates
+	}
+	
+	@RequestMapping(value = "/getRekviziti", method = RequestMethod.GET)
+	public String rekviziti(ModelMap map) {
 		
-		ZvanicniRekvizit noviRekvizit = service.save(rekvizit);
-		return new ResponseEntity<>(noviRekvizit, HttpStatus.OK);
+		map.put("rekviziti", servis.findAll());
+		return "rekviziti";
+		//mora biti u templates
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<ZvanicniRekvizit> delete(@PathVariable Long id){
-		ZvanicniRekvizit obrisani = service.delete(id);
-		return new ResponseEntity<>(obrisani, HttpStatus.OK);
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String add(ModelMap map) {
+		
+		map.put("rekvizit", new ZvanicniRekvizit());
+		return "dodajRekvizit";
+	
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/rekviziti/{id}")
-	public void update(@PathVariable Long id, @RequestBody ZvanicniRekvizit rekvizit){
-		service.update(id, rekvizit);
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String add(@ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, ModelMap map) {
+		
+		servis.save(rekvizit);
+		return "redirect:../fanzone/getRekviziti";
+	
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/get/{id}",consumes="application/json")
-	public ResponseEntity<ZvanicniRekvizit> get(@PathVariable Long id){
-		ZvanicniRekvizit nadjeni = service.findOne(id);
-		return new ResponseEntity<>(nadjeni, HttpStatus.OK);
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Long id) {
+		
+		servis.delete(servis.find(id));
+		return "redirect:../getRekviziti";
+	
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") Long id, ModelMap map) {
+		
+		map.put("rekvizit", servis.find(id));
+		return "izmeniRekvizit";
+	
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String edit(@ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, ModelMap map) {
+		
+		ZvanicniRekvizit trenutniRekvizit = servis.find(rekvizit.getId());
+		trenutniRekvizit.setSlika(rekvizit.getSlika());
+		trenutniRekvizit.setIme(rekvizit.getIme());
+		trenutniRekvizit.setCena(rekvizit.getCena());
+		trenutniRekvizit.setOpis(rekvizit.getOpis());
+		
+		servis.save(trenutniRekvizit);
+		return "redirect:../fanzone/getRekviziti";
+	
 	}
 	
 }

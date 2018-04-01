@@ -12,6 +12,7 @@ import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
 
+
 @Component
 public class TestData {
 
@@ -29,7 +30,7 @@ public class TestData {
 		ZvanicniRekvizit r1 = new ZvanicniRekvizit("a.gif","Mac", 1000, "Sablja");
 		service.save(r1);
 		
-		ZvanicniRekvizit r2 = new ZvanicniRekvizit("b.gif","Solja", 5000, "za kafu");
+		ZvanicniRekvizit r2 = new ZvanicniRekvizit("b.gif","Solja", 2000, "za kafu");
 		service.save(r2);
 		
 		
@@ -38,5 +39,5 @@ public class TestData {
 		
 		
 	}
-	
+
 }

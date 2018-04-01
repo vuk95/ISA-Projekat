@@ -1,0 +1,32 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Naslovna</title>
+	</head>
+	<body>
+		<h3>Rekviziti</h3>
+		<a th:href="@{/fanzone/add}">Dodaj novi rekvizit</a>
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Slika</th>
+				<th>Ime</th>
+				<th>Cena</th>
+				<th>Opis</th>
+				<th>Opcije</th>
+			</tr>
+			<tr th:each="rekvizit, iterStat: ${rekviziti}">
+				<td th:text="${rekvizit.id}"></td>
+				<td th:text="${rekvizit.slika}"></td>
+				<td th:text="${rekvizit.ime}"></td>
+				<td th:text="${rekvizit.cena}"></td>
+				<td th:text="${rekvizit.opis}"></td>
+				<td>
+					<a th:href="${'/fanzone/delete/' + rekvizit.id}">Obrisi</a>
+					<a th:href="${'/fanzone/update/' + rekvizit.id}">Izmeni</a>
+				</td>
+
+			</tr>
+		</table>
+	</body>
+</html>

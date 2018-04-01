@@ -17,20 +17,15 @@ public class ZvanicniRekvizit {
 	
 	//kasnije uraditi da bude bas slika
 	@Column(name="Slika", columnDefinition="VARCHAR(40)")
-	@NotNull
 	private String slika;
 	
 	@Column(name="Ime", columnDefinition="VARCHAR(40)")
-	@NotNull
 	private String ime;
 	
 	@Column(name="Cena", columnDefinition="INTEGER")
-	@NotNull
-	@Min(30)
 	private int cena;
 	
 	@Column(name="Opis", columnDefinition="VARCHAR(60)")
-	@NotNull
 	private String opis;
 	
 	public Long getId() {

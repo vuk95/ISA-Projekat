@@ -1,51 +1,43 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.repository.RekvizitRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
-@Transactional
 @Service
+@Transactional
 public class RekvizitServiceImpl implements RekvizitService{
 
 	@Autowired
-	private RekvizitRepository repo;
+	private RekvizitRepository repository;
 	
 	@Override
-	public List<ZvanicniRekvizit> findAll() {
-		return repo.findAll();
+	public Iterable<ZvanicniRekvizit> findAll() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
 	}
 
 	@Override
-	public ZvanicniRekvizit save(ZvanicniRekvizit rekvizit) {
-		return repo.save(rekvizit);
-	}
-	
-	@Override
-	public ZvanicniRekvizit delete(Long id) {
-		ZvanicniRekvizit rekvizit = repo.findOne(id);
-		if(rekvizit == null){
-			throw new IllegalArgumentException("Tried to delete"
-					+ "non-existant product");
-		}
-		repo.delete(rekvizit);
-		return rekvizit;
+	public ZvanicniRekvizit find(Long id) {
+		// TODO Auto-generated method stub
+		return (ZvanicniRekvizit) repository.getOne(id);
 	}
 
 	@Override
-	public void update(Long id, ZvanicniRekvizit rekvizit) {
-		repo.save(rekvizit);
+	public void save(ZvanicniRekvizit rekvizit) {
+		// TODO Auto-generated method stub
+		repository.save(rekvizit);
 	}
 
 	@Override
-	public ZvanicniRekvizit findOne(Long id) {
-		ZvanicniRekvizit nadjeni = repo.findOne(id);
-		return nadjeni;
+	public void delete(ZvanicniRekvizit rekvizit) {
+		// TODO Auto-generated method stub
+		repository.delete(rekvizit);
 	}
+
 }
