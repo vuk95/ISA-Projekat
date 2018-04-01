@@ -1,8 +1,11 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +47,11 @@ public class FanZoneController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, ModelMap map) {
+	public String add(@Valid @ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit , BindingResult bindingResult, ModelMap map) {
+		
+		if(bindingResult.hasErrors()) {
+			return "dodajRekvizit";
+		}
 		
 		servis.save(rekvizit);
 		return "redirect:../fanzone/getRekviziti";
@@ -68,7 +75,11 @@ public class FanZoneController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(@ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, ModelMap map) {
+	public String edit(@ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, BindingResult bindingResult , ModelMap map) {
+		
+		if(bindingResult.hasErrors()) {
+			return "izmeniRekvizit";
+		}
 		
 		ZvanicniRekvizit trenutniRekvizit = servis.find(rekvizit.getId());
 		trenutniRekvizit.setSlika(rekvizit.getSlika());
