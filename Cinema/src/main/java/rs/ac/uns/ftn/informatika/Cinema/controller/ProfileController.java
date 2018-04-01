@@ -23,8 +23,17 @@ public class ProfileController {
 		ModelAndView modelAndView = new ModelAndView();
 		RegularUser user = regularUserService.findOne(id);
 
-		modelAndView.addObject("welcomeMessage", "Dobrodosli " + user.getName());
+		modelAndView.addObject("welcomeMessage", "Dobrodosli " + user.getName() + ", ovo su podaci o vama");
+		modelAndView.addObject("user", user);
 		modelAndView.setViewName("profile");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.GET)
+	public ModelAndView editProfile(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("editprofile");
 		return modelAndView;
 	}
 	
