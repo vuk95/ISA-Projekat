@@ -22,7 +22,7 @@ public class CinemaTheatre implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
-	@Column(name = "tip", nullable = false)
+	@Column(name = "Tip", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CinemaTheatreType type;
 	

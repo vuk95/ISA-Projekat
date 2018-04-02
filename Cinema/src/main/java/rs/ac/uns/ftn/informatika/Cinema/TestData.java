@@ -16,13 +16,8 @@ import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 @Component
 public class TestData {
 
-	private CinemaTheatreType CINEMA = null;
-
 	@Autowired
 	private RekvizitService service;
-	
-	@Autowired
-	private CinemaTheatreService ctservice;
 	
 	@PostConstruct
 	private void init(){
@@ -32,12 +27,7 @@ public class TestData {
 		
 		ZvanicniRekvizit r2 = new ZvanicniRekvizit("b.gif","Solja", 2000, "za kafu");
 		service.save(r2);
-		
-		
-		//CinemaTheatre ct = new CinemaTheatre("Bulevar Mihajla Pupina 3,Novi Sad","Jedan od najposecenijih bioskopa u zemlji","Arena Cineplex",CINEMA);
-		//ctservice.save(ct);
-		
-		
+				
 	}
 
 }
