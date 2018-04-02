@@ -21,7 +21,7 @@ public class CinemaTheatreController {
 	@Autowired
 	private CinemaTheatreService ctservice;
 	
-	@RequestMapping(value = "/homeTheatres" , method = RequestMethod.GET)
+/*	@RequestMapping(value = "/homeTheatres" , method = RequestMethod.GET)
 	public String homeTheatres() {
 		//sluzice samo za redirekciju na tu stranicu
 		
@@ -32,13 +32,13 @@ public class CinemaTheatreController {
 	@RequestMapping(value = "/GetTheatres" , method = RequestMethod.GET)
 	public String bioskopi(ModelMap map) {
 		
-		map.put("theatres",ctservice.findAll());
+		map.put("theatres",ctservice.findAll())
 		
 		return "theatres";
 	}
 	
-	
-	@RequestMapping(value = "/getCinemaTheatre" , method = RequestMethod.GET)
+*/	
+  /*	@RequestMapping(value = "/getCinemaTheatre" , method = RequestMethod.GET)
 	public ResponseEntity<List<CinemaTheatre>> getCinemaTheatre() {
 				
 		List<CinemaTheatre> bioskopIpozorista = ctservice.findAll();
@@ -46,7 +46,7 @@ public class CinemaTheatreController {
 		return new ResponseEntity<>(bioskopIpozorista,HttpStatus.OK);
 	}
 	
-	
+	*/
 	
 	
 }

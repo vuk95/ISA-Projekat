@@ -1,7 +1,5 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,18 +13,19 @@ import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 
 	@Autowired
-	private CinemaTheatreRepository ctrepository; 
-		
+	private CinemaTheatreRepository ctrepository;
+
 	@Override
-	public List<CinemaTheatre> findAll() {
-		
+	public Iterable<CinemaTheatre> findAll() {
 		return ctrepository.findAll();
 	}
 
 	@Override
-	public CinemaTheatre save(CinemaTheatre ct) {
+	public void save(CinemaTheatre ct) {
 		
-		return ctrepository.save(ct);
-	}
+		ctrepository.save(ct);
+	} 
+		
+	
 
 }

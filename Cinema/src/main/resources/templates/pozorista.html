@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Proba</title>
+	</head>
+	<body>
+		<h3>Pozorista</h3>
+		
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Ime</th>
+				<th>Adresa</th>
+				<th>Opis</th>
+				
+			</tr>
+			<tr th:each="pozoriste, iterStat: ${pozorista}">
+				<td th:text="${pozoriste.Id}"></td>
+				<td th:text="${pozoriste.name}"></td>
+				<td th:text="${pozoriste.address}"></td>
+				<td th:text="${pozoriste.description}"></td>
+				</tr>
+			
+		</table>
+	</body>
+</html>

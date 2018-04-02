@@ -34,9 +34,11 @@ public class FanZoneController {
 	@RequestMapping(value = "/getRekviziti", method = RequestMethod.GET)
 	public String rekviziti(ModelMap map) {
 		
+		//cuva rekvizite u modelu po principu [key,value]
 		map.put("rekviziti", servis.findAll());
 		return "rekviziti";
 		//mora biti u templates
+		//gadja taj html (rekviziti.html)
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
