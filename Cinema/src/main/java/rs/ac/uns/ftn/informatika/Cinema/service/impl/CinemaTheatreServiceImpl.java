@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
+import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatreType;
 import rs.ac.uns.ftn.informatika.Cinema.repository.CinemaTheatreRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 
@@ -24,6 +25,21 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 	public void save(CinemaTheatre ct) {
 		
 		ctrepository.save(ct);
+	}
+
+	
+
+	@Override
+	public Iterable<CinemaTheatre> findCinemas() {
+			
+		return ctrepository.findByType(CinemaTheatreType.CINEMA);
+		
+	}
+
+	@Override
+	public Iterable<CinemaTheatre> findTheatres() {
+		
+		return ctrepository.findByType(CinemaTheatreType.THEATRE);
 	}
 
 	

@@ -10,6 +10,8 @@ public interface CinemaTheatreService {
 	
 	public void save(CinemaTheatre ct);
 		
-
+	public Iterable<CinemaTheatre> findCinemas();
+	
+	public Iterable<CinemaTheatre> findTheatres();
 	
 }

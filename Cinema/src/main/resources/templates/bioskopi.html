@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Pozorista</title>
+		<title>Bioskopi</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -130,25 +130,23 @@ margin-left: 4px;
   </div>
 </div>
 
-
-<!-- Container (Theatres Section) -->
-<div class="w3-content w3-container w3-padding-64" id="theatres">
-  <h3 class="w3-center">THEATRES</h3>
-  <p class="w3-center"><em>All available theatres</em></p>
-		
-		<table style="width:100%">
+<!-- Container (Cinemas Section) -->
+<div class="w3-content w3-container w3-padding-64" id="cinemas">
+  <h3 class="w3-center">CINEMAS</h3>
+  <p class="w3-center"><em>All available cinemas</em></p>
+  <table style="width:100%">
 			<tr>
 				<th>Name</th>
 				<th>Address</th>
 				<th>Avg Raiting</th>
 				<th>Repertory</th>
   				<th>Description</th>
-				
-				
-			</tr>
-			<tr th:each="pozoriste, iterStat: ${pozorista}">
-				<td th:text="${pozoriste.name}"> </td>
-				<td th:text="${pozoriste.address}"></td>
+  				
+  		   </tr>
+  		   
+			<tr th:each="bioskop, iterStat: ${bioskopi}">
+				<td th:text="${bioskop.name}"> </td>
+				<td th:text="${bioskop.address}"></td>
 				<td>
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
@@ -157,7 +155,7 @@ margin-left: 4px;
 				<span class="fa fa-star checked"></span>
 				</td>
 				<td><button type="button" onclick="location.href='Repertoar.html'">Pogledaj</button></td>
-				<td><textarea th:text="${pozoriste.description}"></textarea></td>
+				<td><textarea th:text="${bioskop.description}"></textarea></td>
 				<td>
 				<a th:href="${#inputModalP}" data-toggle="modal" data-target="#inputModalP">Izmeni</a>
 				</td>
@@ -167,7 +165,7 @@ margin-left: 4px;
 <div class="w3-row">
     <div class="w3-col m6 w3-center w3-padding-large">
       
-      <img th:src="@{/images/pozoriste.jpg}" width="850" height="333">
+      <img th:src="@{/images/cinema.jpg}" width="850" height="333">
     </div> 
   </div>
   <p class="w3-large w3-center w3-padding-16">Most visited theatres:</p>

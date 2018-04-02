@@ -15,13 +15,22 @@ public class PozoristaIBioskopiController {
 	@Autowired
 	private CinemaTheatreService service;
 	
-	
-	@RequestMapping(value ="/getCinemaTheatre" , method = RequestMethod.GET )
+	//Puni model pronadjenim pozoristima
+	@RequestMapping(value ="/getTheatre" , method = RequestMethod.GET )
 	public String pozorista(ModelMap map) {
 		
-		map.put("pozorista",service.findAll());
-		return "pozorista";
+		map.put("pozorista",service.findTheatres()); //puni model po principu [key,value]
+		
+		return "pozorista"; //vraca pozorista.html
 	}
 	
+	//Puni model pronadjenim bioskopima
+	@RequestMapping(value = "/getCinema" , method = RequestMethod.GET)
+	public String bioskopi(ModelMap map) {
+		
+		map.put("bioskopi",service.findCinemas());
+		
+		return "bioskopi";
+	}
 	
 }
