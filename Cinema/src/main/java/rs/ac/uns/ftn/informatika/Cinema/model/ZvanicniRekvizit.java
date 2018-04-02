@@ -5,12 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Lob;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity(name="Rekvizit")
 public class ZvanicniRekvizit {
@@ -19,9 +15,9 @@ public class ZvanicniRekvizit {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	//kasnije uraditi da bude bas slika
-	@Column(name="Slika", columnDefinition="VARCHAR(40)")
-	private String slika;
+	@Lob
+	@Column(name="Slika")
+	private Byte[] slika;
 	
 	@Column(name="Ime", columnDefinition="VARCHAR(40)")
 	private String ime;
@@ -37,11 +33,11 @@ public class ZvanicniRekvizit {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getSlika() {
+	}	
+	public Byte[] getSlika() {
 		return slika;
 	}
-	public void setSlika(String slika) {
+	public void setSlika(Byte[] slika) {
 		this.slika = slika;
 	}
 	public String getIme() {
@@ -62,7 +58,7 @@ public class ZvanicniRekvizit {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public ZvanicniRekvizit(String slika, String ime, int cena, String opis) {
+	public ZvanicniRekvizit(Byte[] slika, String ime, int cena, String opis) {
 		super();
 		this.slika = slika;
 		this.ime = ime;

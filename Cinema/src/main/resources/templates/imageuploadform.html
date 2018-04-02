@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	</head>
+	<body>
+		<h1>Upload Image</h1>
+		<form  action="http:\\localhost" method="post" enctype="multipart/form-data" th:action="@{'/rekvizit/' + ${rekvizit.getId()} + '/image'}">
+         <label>Select File</label>
+         <input id="imagefile" name="imagefile" type="file" class="file">
+         <button type="submit">Submit</button>
+        </form>
+		
+	</body>
+	<!-- Mogla bi biti greska -->
+</html>

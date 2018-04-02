@@ -7,12 +7,6 @@
 		<h3>Izmeni Rekvizit:</h3>
 		<form th:action="@{/fanzone/update}" th:object="${rekvizit}" method ="post">
 			<table>
-				
-				<tr>
-					<td>Slika:</td>
-					<td><input type = "text" th:field="*{slika}"></td>
-					<td th:if="${#fields.hasErrors('slika')}" th:errors="*{slika}">Slika Error</td>
-				</tr>
 				<tr>
 					<td>Ime:</td>
 					<td><input type = "text" th:field="*{ime}"></td>

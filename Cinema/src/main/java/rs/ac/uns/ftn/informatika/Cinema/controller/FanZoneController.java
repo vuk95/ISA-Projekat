@@ -74,6 +74,13 @@ public class FanZoneController {
 		return "redirect:../getRekviziti";
 	
 	}
+	
+	@RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public String showById(@PathVariable Long id, ModelMap map){
+        
+    	map.put("rekvizit",servis.find(id));
+        return "showRekvizit";
+    }
 	//NEKI PROBLEM SA DTO KOD UPDATEA
 	/*@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Long id, ModelMap map) {

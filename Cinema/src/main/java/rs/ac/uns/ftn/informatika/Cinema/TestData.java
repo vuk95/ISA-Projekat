@@ -22,10 +22,16 @@ public class TestData {
 	@PostConstruct
 	private void init(){
 		
-		ZvanicniRekvizit r1 = new ZvanicniRekvizit("a.gif","Mac", 1000, "Sablja");
+		ZvanicniRekvizit r1 = new ZvanicniRekvizit();
+		r1.setIme("Ime");
+		r1.setCena(100);
+		r1.setOpis("Opis");
 		service.save(r1);
 		
-		ZvanicniRekvizit r2 = new ZvanicniRekvizit("b.gif","Solja", 2000, "za kafu");
+		ZvanicniRekvizit r2 = new ZvanicniRekvizit();
+		r2.setIme("Ime2");
+		r2.setCena(200);
+		r2.setOpis("Opis2");
 		service.save(r2);
 				
 	}
