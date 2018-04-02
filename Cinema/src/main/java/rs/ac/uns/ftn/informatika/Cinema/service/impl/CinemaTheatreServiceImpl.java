@@ -24,8 +24,8 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 	public void save(CinemaTheatre ct) {
 		
 		ctrepository.save(ct);
-	} 
-		
+	}
+
 	
 
 }
