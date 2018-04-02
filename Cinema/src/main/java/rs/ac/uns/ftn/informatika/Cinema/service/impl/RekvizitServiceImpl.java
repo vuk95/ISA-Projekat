@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.repository.RekvizitRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
@@ -39,5 +39,30 @@ public class RekvizitServiceImpl implements RekvizitService{
 		// TODO Auto-generated method stub
 		repository.delete(rekvizit);
 	}
+
+	@Override
+	public ZvanicniRekvizit createNewZvanicniRekvizit(NewRekvizitForm rekvizitForm) {
+		// TODO Auto-generated method stub
+		ZvanicniRekvizit rekvizit = new ZvanicniRekvizit();
+		rekvizit.setSlika(rekvizitForm.getSlika());
+		rekvizit.setIme(rekvizitForm.getIme());
+		rekvizit.setCena(rekvizitForm.getCena());
+		rekvizit.setOpis(rekvizitForm.getOpis());
+		
+		return repository.save(rekvizit);
+	}
+
+	@Override
+	public NewRekvizitForm setForm(ZvanicniRekvizit rekvizit) {
+		// TODO Auto-generated method stub
+		NewRekvizitForm forma = new NewRekvizitForm();
+		forma.setSlika(rekvizit.getSlika());
+		forma.setCena(rekvizit.getCena());
+		forma.setIme(rekvizit.getIme());
+		forma.setOpis(rekvizit.getOpis());
+		
+		return forma;
+	}
+
 
 }

@@ -21,21 +21,15 @@ public class ZvanicniRekvizit {
 	
 	//kasnije uraditi da bude bas slika
 	@Column(name="Slika", columnDefinition="VARCHAR(40)")
-	@NotEmpty(message = "Morate odabrati sliku")
 	private String slika;
 	
 	@Column(name="Ime", columnDefinition="VARCHAR(40)")
-	@NotEmpty(message = "Morate zadati ime")
 	private String ime;
 	
 	@Column(name="Cena", columnDefinition="INTEGER")
-	@NotNull(message = "Morate uneti neku cenu")
-	@Min(value=100, message = "Cena ne sme biti manja od 100")
-	@Max(value=4000, message = "Cena ne sme biti veca od 4000")
 	private int cena;
 	
 	@Column(name="Opis", columnDefinition="VARCHAR(60)")
-	@NotEmpty(message = "Morate dati opis")
 	private String opis;
 	
 	public Long getId() {

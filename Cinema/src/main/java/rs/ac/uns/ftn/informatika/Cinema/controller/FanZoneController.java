@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
@@ -47,10 +48,16 @@ public class FanZoneController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(@Valid @ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit , BindingResult bindingResult, ModelMap map) {
+	public String add(@Valid @ModelAttribute("rekvizit") NewRekvizitForm newRekvizit , BindingResult bindingResult, ModelMap map) {
+		
+		ZvanicniRekvizit rekvizit = new ZvanicniRekvizit();
 		
 		if(bindingResult.hasErrors()) {
 			return "dodajRekvizit";
+		}
+		
+		if(!bindingResult.hasErrors()) {
+			rekvizit = servis.createNewZvanicniRekvizit(newRekvizit);
 		}
 		
 		servis.save(rekvizit);
@@ -65,6 +72,35 @@ public class FanZoneController {
 		return "redirect:../getRekviziti";
 	
 	}
+	//NEKI PROBLEM SA DTO KOD UPDATEA
+	/*@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") Long id, ModelMap map) {
+		
+		map.put("rekvizit", servis.setForm(servis.find(id)));
+		return "izmeniRekvizit";
+	
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String edit(@Valid @ModelAttribute("rekvizit") NewRekvizitForm forma, BindingResult bindingResult , ModelMap map) {
+		
+		ZvanicniRekvizit trenutniRekvizit = new ZvanicniRekvizit();
+		
+		if(bindingResult.hasErrors()) {
+			return "izmeniRekvizit";
+		}
+		
+		if(!bindingResult.hasErrors()) {
+			trenutniRekvizit = servis.createNewZvanicniRekvizit(forma);
+		}
+		
+		
+		
+		servis.save(trenutniRekvizit);
+		return "redirect:../fanzone/getRekviziti";
+	
+	}
+	*/
 	
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Long id, ModelMap map) {
@@ -75,11 +111,12 @@ public class FanZoneController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(@ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, BindingResult bindingResult , ModelMap map) {
+	public String edit(@Valid @ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, BindingResult bindingResult , ModelMap map) {
 		
 		if(bindingResult.hasErrors()) {
 			return "izmeniRekvizit";
 		}
+		
 		
 		ZvanicniRekvizit trenutniRekvizit = servis.find(rekvizit.getId());
 		trenutniRekvizit.setSlika(rekvizit.getSlika());
@@ -91,5 +128,6 @@ public class FanZoneController {
 		return "redirect:../fanzone/getRekviziti";
 	
 	}
+	
 	
 }
