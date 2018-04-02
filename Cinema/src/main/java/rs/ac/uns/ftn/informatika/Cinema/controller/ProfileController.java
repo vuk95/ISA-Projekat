@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,11 +30,23 @@ public class ProfileController {
 		return modelAndView;
 	}
 	
+	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
 	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.GET)
-	public ModelAndView editProfile(@PathVariable Long id) {
+	public ModelAndView getEditProfile(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView();
+		RegularUser user = regularUserService.findOne(id);
 		
+		modelAndView.addObject("user", user);
 		modelAndView.setViewName("editprofile");
+		return modelAndView;
+	}
+	
+	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.PUT)
+	public ModelAndView putEditProfile(@ModelAttribute("user") RegularUser user, @PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		//regularUserService.save(user);
+		
 		return modelAndView;
 	}
 	

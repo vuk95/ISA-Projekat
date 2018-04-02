@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Korisnicki profil</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+	
+	<style>
+		table {
+			border-collapse:separate;
+    		border-spacing:0 8px;
+		}	
+	</style>
 </head>
 <body>
-	<h1>OVDE IDE EDIT PROFILA</h1>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="#">Pocetna</a></li>
+				<li><a href="#">Pozorista</a></li>
+				<li><a href="#">Bioskopi</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout">Odjava</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	
+	<div class="container">
+		<form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:object="${user}" th:method="PUT">
+			<table width="100%">
+				<tr>
+					<td><strong>Email: </strong></td>
+					<td><input type="text" th:field="*{email}" readonly class="form-control input-lg"/></td>
+				</tr>
+				<tr>
+					<td><strong>Ime: </strong></td>
+					<td><input type="text"  th:field="*{name}" class="form-control input-lg" required="true"/></td>
+				</tr>
+				<tr>
+					<td><strong>Prezime: </strong></td>
+					<td><input type="text" th:field="*{lastname}" class="form-control input-lg" required="true"/></td>
+				</tr>
+				<tr>
+					<td><strong>Grad: </strong></td>
+					<td><input type="text" th:field="*{city}" class="form-control input-lg" required="true"/></td>
+				</tr>
+				<tr>
+					<td><strong>Telefon: </strong></td>
+					<td><input type="text" th:field="*{phone}" class="form-control input-lg" required="true"/></td>
+				</tr>
+			</table>
+			<input type="submit" value="Izmeni" class="btn btn-lg btn-primary btn-block"/>
+		</form>
+	</div>
+	
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 </body>
 </html>
