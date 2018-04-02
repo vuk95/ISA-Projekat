@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Show Rekvizit</title>
+	</head>
+	<body>
+		<h1 th:text="${rekvizit.ime +' - ' + rekvizit.opis}"></h1>
+		
+		<a th:href="@{'/rekvizit/' + ${rekvizit.id} + '/image'}" role="button">Change Image</a>
+		
+		<img th:src="@{'/rekvizit/' + ${rekvizit.id} + '/rekvizitimage'}" width="360" height="240">
+	</body>
+</html>

@@ -8,8 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class NewRekvizitForm {
 
-	@NotEmpty(message = "Morate odabrati sliku")
-	private String slika;
+	
 	
 	@NotEmpty(message = "Morate zadati ime")
 	private String ime;
@@ -21,14 +20,6 @@ public class NewRekvizitForm {
 	
 	@NotEmpty(message = "Morate dati opis")
 	private String opis;
-
-	public String getSlika() {
-		return slika;
-	}
-
-	public void setSlika(String slika) {
-		this.slika = slika;
-	}
 
 	public String getIme() {
 		return ime;

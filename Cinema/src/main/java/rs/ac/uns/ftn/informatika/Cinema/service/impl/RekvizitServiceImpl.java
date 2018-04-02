@@ -44,7 +44,6 @@ public class RekvizitServiceImpl implements RekvizitService{
 	public ZvanicniRekvizit createNewZvanicniRekvizit(NewRekvizitForm rekvizitForm) {
 		// TODO Auto-generated method stub
 		ZvanicniRekvizit rekvizit = new ZvanicniRekvizit();
-		rekvizit.setSlika(rekvizitForm.getSlika());
 		rekvizit.setIme(rekvizitForm.getIme());
 		rekvizit.setCena(rekvizitForm.getCena());
 		rekvizit.setOpis(rekvizitForm.getOpis());
@@ -56,7 +55,6 @@ public class RekvizitServiceImpl implements RekvizitService{
 	public NewRekvizitForm setForm(ZvanicniRekvizit rekvizit) {
 		// TODO Auto-generated method stub
 		NewRekvizitForm forma = new NewRekvizitForm();
-		forma.setSlika(rekvizit.getSlika());
 		forma.setCena(rekvizit.getCena());
 		forma.setIme(rekvizit.getIme());
 		forma.setOpis(rekvizit.getOpis());
