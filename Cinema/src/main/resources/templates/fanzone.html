@@ -6,6 +6,11 @@
 	</head>
 	<body>
 		<h1>Dobrodosli u FanZonu!</h1>
-		<a th:href="@{http://localhost:8082/fanzone/getRekviziti}">Zvanicna prodavnica</a>
+		
+		<div th:switch="${logged.getUloga()}">
+			
+			<div th:case="'FAN_ZONE'"><a th:href="@{http://localhost:8082/fanzone/getRekviziti}">Zvanicna prodavnica</a></div>
+			<div th:case="*"><a th:href="@{http://localhost:8082/fanzone/getRekvizitiObican}">Zvanicna prodavnica</a></div>
+		</div>		
 	</body>
 </html>

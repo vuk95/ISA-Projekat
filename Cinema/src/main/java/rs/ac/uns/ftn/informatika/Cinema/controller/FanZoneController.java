@@ -3,6 +3,8 @@ package rs.ac.uns.ftn.informatika.Cinema.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
-
+import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
 
@@ -25,20 +27,31 @@ public class FanZoneController {
 	private RekvizitService servis;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home() {
+	public String home(ModelMap map) {
 	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		CurrentUser user = (CurrentUser) auth.getPrincipal();
+		
+		map.put("logged", user);
+		
 		return "fanzone";
-		//mora biti u templates
+		
 	}
 	
 	@RequestMapping(value = "/getRekviziti", method = RequestMethod.GET)
 	public String rekviziti(ModelMap map) {
 		
-		//cuva rekvizite u modelu po principu [key,value]
 		map.put("rekviziti", servis.findAll());
 		return "rekviziti";
-		//mora biti u templates
-		//gadja taj html (rekviziti.html)
+		
+	}
+	
+	@RequestMapping(value = "/getRekvizitiObican", method = RequestMethod.GET)
+	public String rekvizitiObican(ModelMap map) {
+		
+		map.put("rekviziti", servis.findAll());
+		return "rekvizitiObican";
+		
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)

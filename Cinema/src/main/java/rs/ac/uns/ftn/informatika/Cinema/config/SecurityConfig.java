@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/HomePage.html").permitAll()
 			.antMatchers("/registration").permitAll()
 			.antMatchers("/profile/**").authenticated()
+			.antMatchers("/fanzone/getRekviziti").hasAuthority("FAN_ZONE")
 			.and()
 			.formLogin()
 			.loginPage("/login")
