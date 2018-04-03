@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
 import rs.ac.uns.ftn.informatika.Cinema.repository.RegularUserRepository;
@@ -95,6 +96,17 @@ public class RegularUserServiceImpl implements RegularUserService {
 			
 		}
 		
+	}
+
+	@Override
+	public RegularUser updateRegularUserProfile(ProfileForm form) {
+		RegularUser user = regUserRepository.findOne(form.getId());
+		user.setName(form.getName());
+		user.setLastname(form.getLastname());
+		user.setCity(form.getCity());
+		user.setPhone(form.getPhone());
+		
+		return regUserRepository.save(user);
 	}
 
 }

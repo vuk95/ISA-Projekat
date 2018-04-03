@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.Cinema.service;
 import java.util.List;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
 public interface RegularUserService {
@@ -24,5 +25,7 @@ public interface RegularUserService {
 		public RegularUser createNewRegularUser(NewUserForm userForm);
 
 		public RegularUser findByConfirmationToken(String confirmationToken);
+		
+		public RegularUser updateRegularUserProfile(ProfileForm form);
 	
 }
