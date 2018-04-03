@@ -15,6 +15,11 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 
 	@Autowired
 	private CinemaTheatreRepository ctrepository;
+	
+	@Override
+	public CinemaTheatre findOne(Long id) {
+		return ctrepository.findOne(id);
+	}
 
 	@Override
 	public Iterable<CinemaTheatre> findAll() {

@@ -6,6 +6,8 @@ import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 
 public interface CinemaTheatreService {
 
+	public CinemaTheatre findOne(Long id);
+	
 	public Iterable<CinemaTheatre> findAll();
 	
 	public void save(CinemaTheatre ct);
