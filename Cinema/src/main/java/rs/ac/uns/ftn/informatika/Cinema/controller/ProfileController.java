@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 
@@ -34,18 +35,24 @@ public class ProfileController {
 	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView getEditProfile(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView();
-		RegularUser user = regularUserService.findOne(id);
+		RegularUser regUser = regularUserService.findOne(id);
+		ProfileForm user = new ProfileForm(regUser);
 		
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("editprofile");
 		return modelAndView;
 	}
 	
+	
+	
 	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
 	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.PUT)
-	public ModelAndView putEditProfile(@ModelAttribute("user") RegularUser user, @PathVariable Long id) {
+	public ModelAndView putEditProfile(@ModelAttribute("user") ProfileForm form, @PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView();
-		//regularUserService.save(user);
+		regularUserService.updateRegularUserProfile(form);
+		
+		modelAndView.addObject("successMessage", "Uspesno ste izmenili svoje podatke!");
+		modelAndView.setViewName("editprofile");
 		
 		return modelAndView;
 	}

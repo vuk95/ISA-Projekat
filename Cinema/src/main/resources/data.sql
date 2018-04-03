@@ -12,11 +12,23 @@ INSERT INTO korisnici
 (grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
 ('Vrbas' , 'stefanmilovic2@gmail.com', 'Milovic', 'Stefan', 'sm22', '1234567890', 'CINEMA_THEATRE', true);
 
+INSERT INTO korisnici
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('Novi sad' , 'pera@gmail.com', 'Peric', 'Pera', 'password', '06000000', 'REGULAR', true);
+
+INSERT INTO korisnici
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('Kumanovo' , 'mika@gmail.com', 'Mikic', 'Mika', 'password', '07300000', 'REGULAR', true);
+
 INSERT INTO obican_korisnik (id) VALUES ('1');
 
 INSERT INTO administrator (id, first_login) VALUES ('2', true);
 
 INSERT INTO administrator (id, first_login) VALUES ('3', true);
+
+INSERT INTO obican_korisnik (id) VALUES ('4');
+
+INSERT INTO obican_korisnik (id) VALUES ('5');
 
 --=====================================================================================================
 --Bioskopi
