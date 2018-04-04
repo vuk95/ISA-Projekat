@@ -109,4 +109,9 @@ public class RegularUserServiceImpl implements RegularUserService {
 		return regUserRepository.save(user);
 	}
 
+	@Override
+	public RegularUser findByEmail(String email) {
+		return regUserRepository.findByEmail(email);
+	}
+
 }
