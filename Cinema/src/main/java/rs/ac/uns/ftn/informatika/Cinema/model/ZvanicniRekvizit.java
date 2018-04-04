@@ -1,11 +1,16 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
 
 @Entity(name="Rekvizit")
@@ -28,6 +33,19 @@ public class ZvanicniRekvizit {
 	@Column(name="Opis", columnDefinition="VARCHAR(60)")
 	private String opis;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	private RegularUser user;
+	
+	@Column
+	private boolean rezervisan;
+	
+	public RegularUser getUser() {
+		return user;
+	}
+	public void setUser(RegularUser user) {
+		this.user = user;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +75,13 @@ public class ZvanicniRekvizit {
 	}
 	public void setOpis(String opis) {
 		this.opis = opis;
+	}
+	
+	public boolean isRezervisan() {
+		return rezervisan;
+	}
+	public void setRezervisan(boolean rezervisan) {
+		this.rezervisan = rezervisan;
 	}
 	public ZvanicniRekvizit(Byte[] slika, String ime, int cena, String opis) {
 		super();

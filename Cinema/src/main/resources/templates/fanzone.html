@@ -10,7 +10,8 @@
 		<div th:switch="${logged.getUloga()}">
 			
 			<div th:case="'FAN_ZONE'"><a th:href="@{http://localhost:8082/fanzone/getRekviziti}">Zvanicna prodavnica</a></div>
-			<div th:case="*"><a th:href="@{http://localhost:8082/fanzone/getRekvizitiObican}">Zvanicna prodavnica</a></div>
+			<div th:case="'REGULAR'"><a th:href="@{http://localhost:8082/fanzone/getRekvizitiObican}">Zvanicna prodavnica</a></div>
+			<div th:case="*"><h3>Zao nam je nemate pristup Fan zoni!</h3></div>
 		</div>		
 	</body>
 </html>

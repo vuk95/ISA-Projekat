@@ -21,7 +21,8 @@
 				<td th:text="${rekvizit.cena}"></td>
 				<td th:text="${rekvizit.opis}"></td>
 				<td>
-					<a href="#">Rezervisi</a>
+					<div th:if="${rekvizit.rezervisan} == false"><a th:href="${'/fanzone/reserve/' + rekvizit.id}">Rezervisi</a></div>
+					<div th:if="${rekvizit.rezervisan} == true"><p>Rezervisano</p></div>
 				</td>
 
 			</tr>
