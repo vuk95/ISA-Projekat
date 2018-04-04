@@ -24,6 +24,10 @@ INSERT INTO administrator (id, first_login) VALUES ('3', true);
 
 INSERT INTO administrator (id, first_login) VALUES ('4', true);
 
+INSERT INTO obican_korisnik (id) VALUES ('5');
+
+INSERT INTO obican_korisnik (id) VALUES ('6');
+
 --=====================================================================================================
 --Bioskopi
 

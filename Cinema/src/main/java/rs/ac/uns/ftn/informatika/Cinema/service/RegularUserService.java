@@ -13,6 +13,8 @@ public interface RegularUserService {
 		public RegularUser findOne(Long Id);
 			
 		public List<RegularUser> findAll();
+		
+		public RegularUser findByEmail(String email);
 
 		public RegularUser save(RegularUser regUser);
 
