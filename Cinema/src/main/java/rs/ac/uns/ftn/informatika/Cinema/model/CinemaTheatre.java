@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
 @Entity(name = "BioskopPozoriste")
 public class CinemaTheatre implements Serializable{
@@ -34,6 +39,9 @@ public class CinemaTheatre implements Serializable{
 	
 	@Column(name = "Opis")
 	private String description;
+	
+	@ManyToMany(mappedBy = "visitedCinemaTheatre")
+	private Set<RegularUser> regularUsers = new HashSet<RegularUser>();
 	
 	//@Column(name = "Repertoar")
 	//private List<MoviePerformance> repertoire; 
@@ -90,6 +98,14 @@ public class CinemaTheatre implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set<RegularUser> getRegularUsers() {
+		return regularUsers;
+	}
+
+	public void setRegularUsers(Set<RegularUser> regularUsers) {
+		this.regularUsers = regularUsers;
 	}
 	
 }

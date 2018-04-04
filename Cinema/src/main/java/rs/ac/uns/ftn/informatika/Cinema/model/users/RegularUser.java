@@ -9,8 +9,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 
@@ -20,7 +23,12 @@ public class RegularUser extends User{
 	@Column
 	private String confirmationToken;
 
-//	private Set<CinemaTheatre> cinemasTheatres = new HashSet<CinemaTheatre>();
+	@ManyToMany
+	@JoinTable(name = "poseceniBioskopiPozorista",
+				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "cinematheatre_id", referencedColumnName = "id"))
+	private Set<CinemaTheatre> visitedCinemaTheatre = new HashSet<CinemaTheatre>();
+	
 //	private Set<Ticket> tickets = new HashSet<Ticket>();
 	
 	public RegularUser() {
@@ -34,4 +42,13 @@ public class RegularUser extends User{
 	public void setConfirmationToken(String confirmationToken) {
 		this.confirmationToken = confirmationToken;
 	}
+
+	public Set<CinemaTheatre> getVisitedCinemaTheatre() {
+		return visitedCinemaTheatre;
+	}
+
+	public void setVisitedCinemaTheatre(Set<CinemaTheatre> visitedCinemaTheatre) {
+		this.visitedCinemaTheatre = visitedCinemaTheatre;
+	}
+	
 }

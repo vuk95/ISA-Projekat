@@ -19,6 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 	
+	@Autowired
+	private CustomAuthenticationSuccessHandler successHandler;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
@@ -32,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 			.loginPage("/login")
 			.failureUrl("/login?error=true")
-			.defaultSuccessUrl("/HomePage.html")			//dok se ne promeni
+			.successHandler(successHandler)
 			.usernameParameter("email")
 			.passwordParameter("password")
 			.permitAll()

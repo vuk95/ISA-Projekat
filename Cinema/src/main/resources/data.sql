@@ -87,6 +87,15 @@ INSERT INTO bioskop_pozoriste
 (adresa,opis,naziv,tip) values ('Narodnog heroja 1,Vranje','Jedno od najstarijih i najboljih pozorista u zemlji','Pozorište Bora Stankovic','THEATRE');
 
 --===============================================================================================================================
+-- Poseceni bioskopi 
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 1);
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 2);
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 6);
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 8);
 
+-- Posecena pozorista
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 10);
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 12);
+INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 15);
 
 
