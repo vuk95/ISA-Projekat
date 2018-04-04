@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.Cinema.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,6 +32,24 @@ public class PozoristaIBioskopiController {
 		map.put("bioskopi",service.findCinemas());
 		
 		return "bioskopi";
+	}
+	
+	
+		
+	@RequestMapping(value = "/updateTheatre/{id}" , method = RequestMethod.GET)
+	public String editTheatre(@PathVariable("id") Long id, ModelMap map) {
+		
+		map.put("pozoriste",service.findOne(id));
+		
+		return "izmeniPozoriste";
+	}
+	
+	@RequestMapping(value = "/updateCinema/{id}" , method = RequestMethod.GET)
+	public String editCinema(@PathVariable("id") Long id, ModelMap map) {
+		
+		map.put("bioskop",service.findOne(id));
+		
+		return "izmeniBioskop";
 	}
 	
 }

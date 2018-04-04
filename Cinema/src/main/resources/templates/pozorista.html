@@ -158,9 +158,11 @@ margin-left: 4px;
 				</td>
 				<td><button type="button" onclick="location.href='Repertoar.html'">Pogledaj</button></td>
 				<td><textarea th:text="${pozoriste.description}"></textarea></td>
+				
 				<td>
-				<a th:href="${#inputModalP}" data-toggle="modal" data-target="#inputModalP">Izmeni</a>
+				<a th:href="${'/cinematheatre/updateTheatre/' + pozoriste.Id}">Izmeni</a>
 				</td>
+				
 				</tr>
 			
 		</table>

@@ -68,40 +68,6 @@ margin-left: 4px;
 	</head>
 	<body>
 	
-	<div class="modal fade" id="inputModalP" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Changes</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <input type="hidden" name="id" id="id" />
-				<p>
-					<label for="oznaka">Name</label> <input type="text" class="tf" name="code"
-						id="oznaka" />
-				</p>
-				<p>
-					<label for="naziv">Address</label> <input type="text" class="tf1" name="name"
-						id="naziv" />
-				</p>
-				
-				<p>
-					<label for="oznaka">Description</label> <input type="text" class="tf2" name="code"
-						id="oznaka" />
-				</p>		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar" id="myNavbar">
@@ -157,7 +123,7 @@ margin-left: 4px;
 				<td><button type="button" onclick="location.href='Repertoar.html'">Pogledaj</button></td>
 				<td><textarea th:text="${bioskop.description}"></textarea></td>
 				<td>
-				<a th:href="${#inputModalP}" data-toggle="modal" data-target="#inputModalP">Izmeni</a>
+				<a th:href="${'/cinematheatre/updateCinema/' + bioskop.Id}">Izmeni</a>
 				</td>
 				</tr>
 			
