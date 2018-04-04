@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
+import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
 
@@ -25,6 +29,11 @@ public class FanZoneController {
 
 	@Autowired
 	private RekvizitService servis;
+	
+	@Autowired
+	private RegularUserService userServis;
+	
+	
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap map) {
@@ -149,6 +158,29 @@ public class FanZoneController {
 		servis.save(trenutniRekvizit);
 		return "redirect:../fanzone/getRekviziti";
 	
+	}
+	
+	@RequestMapping(value = "/reserve/{id}", method = RequestMethod.GET)
+	public String rezervisi(@PathVariable("id") Long id, ModelMap map) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		CurrentUser user = (CurrentUser) auth.getPrincipal();
+		if(user.getUloga().equals("REGULAR")) {
+			RegularUser ru = (RegularUser) user.getUser();
+			ZvanicniRekvizit rezervisani = servis.find(id);
+			if(rezervisani.isRezervisan() == false) {
+			rezervisani.setUser(ru);
+			rezervisani.setRezervisan(true);
+			servis.save(rezervisani);
+			map.put("logged", user);
+			map.put("rekvizit", rezervisani);
+			}
+			else {
+				System.out.println("Rekvizit je vec rezervisan!");
+			}
+		}
+		
+		return "redirect:/fanzone/getRekvizitiObican";
 	}
 	
 	

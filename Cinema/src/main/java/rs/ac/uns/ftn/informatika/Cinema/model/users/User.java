@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.model.users;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 
 @Entity(name ="Korisnici")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -16,6 +23,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private Long Id;
 	
 	@Column(name = "Role", nullable = false)
@@ -42,6 +50,7 @@ public class User {
 	
 	@Column
 	private boolean enabled;
+	
 	
 	//Konstruktori
 	
@@ -130,6 +139,5 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	} 
-	
+	}
 }

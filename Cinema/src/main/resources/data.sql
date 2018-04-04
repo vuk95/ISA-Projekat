@@ -16,13 +16,19 @@ INSERT INTO korisnici
 (grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
 ('Washington' , 'fanzone@gmail.com', 'Admin', 'Admin', 'password', '1234567890', 'FAN_ZONE', true);
 
-INSERT INTO obican_korisnik (id) VALUES ('1');
+INSERT INTO korisnici
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('NS' , 'obican@gmail.com', 'Markovic', 'Marko', 'password', '1234567890', 'REGULAR', true);
 
-INSERT INTO administrator (id, first_login) VALUES ('2', true);
+INSERT INTO obican_korisnik (user_id) VALUES ('1');
 
-INSERT INTO administrator (id, first_login) VALUES ('3', true);
+INSERT INTO administrator (user_id, first_login) VALUES ('2', true);
 
-INSERT INTO administrator (id, first_login) VALUES ('4', true);
+INSERT INTO administrator (user_id, first_login) VALUES ('3', true);
+
+INSERT INTO administrator (user_id, first_login) VALUES ('4', true);
+
+INSERT INTO obican_korisnik (user_id) VALUES ('5');
 
 --=====================================================================================================
 --Bioskopi
