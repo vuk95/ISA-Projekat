@@ -34,40 +34,41 @@ margin-left:270px;
 <h3 class="w3-center">Cinema changes</h3>
 <p class="w3-center"><em>You can change all data for cinemas</em></p>
 
-<form th:action="@{/cinematheatre/updateCinema}" th:object="${bioskop}" method ="post">
+	<form th:action="@{/cinematheatre/updateCinema}" th:object="${bioskop}" method ="post">
 			
 			<table style="width:100%"><tbody>
 			
-<p><tr>
-  <th>Name of Cinema: </th>
-  <th><input type="text"th:field="*{name}"></th>
-  </tr>  
-</p>  
+				<p><tr>
+  				<th>Name of Cinema: </th>
+  				<th><input type="text"th:field="*{name}"></th>
+  				</tr>  
+				</p>  
   
 
-<p><tr>
-  <th>Cinema address: </th>
-  <th>
-<input type="text" th:field="*{address}">
-</th>
-  </tr>  
- </p> 
+				<p><tr>
+  				<th>Cinema address: </th>
+  				<th>
+				<input type="text" th:field="*{address}">
+				</th>
+  				</tr>  
+ 				</p> 
 
-<p><tr>
-  <th>Description: </th>
-  <th><input type="text" th:field="*{description}"></th>
-  </tr>  
-</p>  
-
-<tr>
+				<p><tr>
+  				<th>Description: </th>
+  				<th><input type="text" th:field="*{description}"></th>
+  				</tr>  
+				</p>  
+				
+					<tr>
 					<td>&nbsp;</td>
 					<td><input class="dugme" type = "submit" value="Save changes">
 					<input type = "hidden" th:field="*{Id}">
 					</td>
 								
-</tr>
-</tbody>
-  </table> </p>
+					</tr>
+		</tbody>
+ 		 </table></p>
+		
 		</form>
 		
 <div class="w3-row">
