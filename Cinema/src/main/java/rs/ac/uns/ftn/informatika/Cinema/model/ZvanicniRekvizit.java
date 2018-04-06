@@ -18,6 +18,7 @@ public class ZvanicniRekvizit {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "rekvizit_id")
 	private Long id;
 	
 	@Lob

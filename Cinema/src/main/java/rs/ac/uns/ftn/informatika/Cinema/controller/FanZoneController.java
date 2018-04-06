@@ -1,6 +1,9 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -191,6 +194,8 @@ public class FanZoneController {
 			rezervisani.setUser(ru);
 			rezervisani.setRezervisan(true);
 			servis.save(rezervisani);
+			RegularUser reg = userServis.addRekvizit(rezervisani, ru.getId());
+			userServis.save(reg);
 			map.put("logged", user);
 			map.put("rekvizit", rezervisani);
 			}
@@ -229,6 +234,26 @@ public class FanZoneController {
 		oglServis.save(zaOdobravanje);
 		}
 		return "redirect:../getOglasiAdmin";
+	}
+	
+	@RequestMapping(value = "/myReservations")
+	public String mojeRezervacije(ModelMap map) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		CurrentUser user = (CurrentUser) auth.getPrincipal();
+		
+		
+		if(user.getUloga() == "REGULAR") {
+			RegularUser regular = (RegularUser) user.getUser();
+			//IMA NEKU GRESKU OVDE OPET BUDE PRAZNA LISTA DA BI SE PRIKAZALO
+		
+			map.put("user", regular);
+		}	
+		
+		
+		
+		
+		return "mojeRezervacije";
 	}
 	
 	

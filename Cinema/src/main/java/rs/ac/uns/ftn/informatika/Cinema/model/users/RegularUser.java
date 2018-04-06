@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -31,6 +32,12 @@ public class RegularUser extends User{
 	
 //	private Set<Ticket> tickets = new HashSet<Ticket>();
 	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "mojiRekviziti",
+				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "rekvizit_id", referencedColumnName = "rekvizit_id"))
+	private List<ZvanicniRekvizit> mojiRekviziti = new ArrayList<ZvanicniRekvizit>();
+	
 	public RegularUser() {
 		
 	}
@@ -50,5 +57,15 @@ public class RegularUser extends User{
 	public void setVisitedCinemaTheatre(Set<CinemaTheatre> visitedCinemaTheatre) {
 		this.visitedCinemaTheatre = visitedCinemaTheatre;
 	}
+
+	public List<ZvanicniRekvizit> getMojiRekviziti() {
+		return mojiRekviziti;
+	}
+
+	public void setMojiRekviziti(List<ZvanicniRekvizit> mojiRekviziti) {
+		this.mojiRekviziti = mojiRekviziti;
+	}
+	
+	
 	
 }

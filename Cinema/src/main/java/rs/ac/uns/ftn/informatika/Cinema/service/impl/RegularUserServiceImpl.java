@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
@@ -112,6 +113,15 @@ public class RegularUserServiceImpl implements RegularUserService {
 	@Override
 	public RegularUser findByEmail(String email) {
 		return regUserRepository.findByEmail(email);
+	}
+
+	@Override
+	public RegularUser addRekvizit(ZvanicniRekvizit r, Long Id) {
+		// TODO Auto-generated method stub
+		RegularUser regUser = regUserRepository.findOne(Id);
+		regUser.getMojiRekviziti().add(r);
+		regUserRepository.save(regUser);
+		return regUser;
 	}
 
 }

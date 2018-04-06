@@ -1,0 +1,22 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Rezervacije</title>
+	</head>
+	<body>
+		<h3>Moje rezervacije</h3>
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Slika</th>
+				<th>Ime</th>
+				<th>Cena</th>
+				<th>Opis</th>
+			</tr>
+			<tr th:each="rekvizit, iterStat: ${user.mojiRekviziti}">
+				<td th:text="${rekvizit.ime}"></td>
+			</tr>
+		
+		</table>
+	</body>
+</html>
