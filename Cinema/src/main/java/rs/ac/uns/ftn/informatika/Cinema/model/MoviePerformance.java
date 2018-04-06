@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -37,14 +38,15 @@ public class MoviePerformance {
 	@Column(name = "Opis")
 	private String description;
 	
+	@Lob
+	@Column(name = "Slika")
+	private Byte[] picture;
+	
 	@Column(name = "Cena", nullable = false)
 	private double price;
 	
 	@Column(name = "Reditelj", nullable = false)
 	private String director;
-	
-	//@Column(name = "Ocena")
-	//private Rating rating;
 	
 	@ManyToMany
 	@JoinTable(name = "glumi",
