@@ -41,15 +41,15 @@ margin-left:270px;
 					<p><tr>
   					<th>Name of Theatre: </th>
   					<th><input type="text"th:field="*{name}"></th>
+  					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
   					</tr>  
 					</p>  
   
 
 					<p><tr>
   					<th>Theatre address: </th>
-  					<th>
-					<input type="text" th:field="*{address}">
-					</th>
+  					<th><input type="text" th:field="*{address}"></th>
+  					<td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</td>
   					</tr>  
  					</p> 
 
