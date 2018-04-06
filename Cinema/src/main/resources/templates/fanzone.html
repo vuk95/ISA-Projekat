@@ -9,8 +9,12 @@
 		
 		<div th:switch="${logged.getUloga()}">
 			
-			<div th:case="'FAN_ZONE'"><a th:href="@{http://localhost:8082/fanzone/getRekviziti}">Zvanicna prodavnica</a></div>
-			<div th:case="'REGULAR'"><a th:href="@{http://localhost:8082/fanzone/getRekvizitiObican}">Zvanicna prodavnica</a></div>
+			<div th:case="'FAN_ZONE'"><a th:href="@{http://localhost:8082/fanzone/getRekviziti}">Zvanicna prodavnica</a>
+				<a th:href="@{http://localhost:8082/fanzone/getOglasiAdmin}">Korisnicki oglasi (Odobravanje)</a>
+			</div>
+			<div th:case="'REGULAR'"><a th:href="@{http://localhost:8082/fanzone/getRekvizitiObican}">Zvanicna prodavnica</a>
+				<a th:href="@{http://localhost:8082/fanzone/getOglasi}">Korisnicki oglasi</a>
+			</div>
 			<div th:case="*"><h3>Zao nam je nemate pristup Fan zoni!</h3></div>
 		</div>		
 	</body>

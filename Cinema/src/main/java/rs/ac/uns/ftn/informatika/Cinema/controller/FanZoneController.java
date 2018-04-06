@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
+import rs.ac.uns.ftn.informatika.Cinema.service.OglasService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
@@ -33,7 +35,8 @@ public class FanZoneController {
 	@Autowired
 	private RegularUserService userServis;
 	
-	
+	@Autowired
+	private OglasService oglServis;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap map) {
@@ -60,6 +63,22 @@ public class FanZoneController {
 		
 		map.put("rekviziti", servis.findAll());
 		return "rekvizitiObican";
+		
+	}
+	
+	@RequestMapping(value = "/getOglasi", method = RequestMethod.GET)
+	public String oglasi(ModelMap map) {
+		
+		map.put("oglasi", oglServis.findAll());
+		return "oglas";
+		
+	}
+	
+	@RequestMapping(value = "/getOglasiAdmin", method = RequestMethod.GET)
+	public String oglasiAdmin(ModelMap map) {
+		
+		map.put("oglasi", oglServis.findAll());
+		return "oglasAdmin";
 		
 	}
 	
@@ -181,6 +200,35 @@ public class FanZoneController {
 		}
 		
 		return "redirect:/fanzone/getRekvizitiObican";
+	}
+	
+	@RequestMapping(value = "/addOglas", method = RequestMethod.GET)
+	public String addOglas(ModelMap map) {
+		
+		map.put("oglas", new Oglas());
+		return "dodajOglas";
+	
+	}
+	
+	@RequestMapping(value = "/addOglas", method = RequestMethod.POST)
+	public String addOglas(@ModelAttribute("oglas") Oglas oglas, ModelMap map) {
+			
+		oglServis.save(oglas);
+		return "redirect:../fanzone/getOglasi";
+	
+	}
+	
+	@RequestMapping(value = "/approve/{id}", method = RequestMethod.GET)
+	public String odobri(@PathVariable("id") Long id, ModelMap map) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		CurrentUser user = (CurrentUser) auth.getPrincipal();
+		if(user.getUloga().equals("FAN_ZONE")) {
+		Oglas zaOdobravanje = oglServis.find(id);
+		zaOdobravanje.setOdobren(true);
+		oglServis.save(zaOdobravanje);
+		}
+		return "redirect:../getOglasiAdmin";
 	}
 	
 	

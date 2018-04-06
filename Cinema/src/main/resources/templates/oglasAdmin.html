@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Svi oglasi</title>
+	</head>
+	<body>
+		<h1>Svi korisnicki oglasi</h1>
+		
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Naziv</th>
+				<th>Opis</th>
+				<th>Datum isteka</th>
+				<th>Opcije</th>
+			</tr>
+			<tr th:each="oglas, iterStat: ${oglasi}">
+				<td th:text="${oglas.id}"></td>
+				<td th:text="${oglas.naziv}"></td>
+				<td th:text="${oglas.opis}"></td>
+				<td th:text="${oglas.datum}"></td>
+				<td>
+					<div th:if="${oglas.odobren} == false"><a th:href="${'/fanzone/approve/' + oglas.id}">Odobri</a></div>
+					<div th:if="${oglas.odobren} == true">Odobren oglas</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

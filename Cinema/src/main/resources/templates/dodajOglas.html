@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj oglas</title>
+	
+	</head>
+	<body>
+		<h3>Dodaj Oglas:</h3>
+		<form th:action="@{/fanzone/addOglas}" th:object="${oglas}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Naziv:</td>
+					<td><input type = "text" th:field="*{naziv}"></td>
+				</tr>
+				<tr>
+					<td>Datum:</td>
+					<td><input type="date" id="dateTime" th:field="*{datum}"></td>
+				</tr>
+				<tr>
+					<td>Opis:</td>
+					<td><input type = "text" th:field="*{opis}"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+	<script>
+	//ne bas idealna validacija za datum isteka
+		var dateTime = document.getElementById("dateTime").value;
+
+
+
+		var today = new Date().toISOString().split('T')[0];
+
+		document.getElementById("dateTime").setAttribute('min', today);
+		</script>
+</html>
