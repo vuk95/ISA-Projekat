@@ -1,8 +1,11 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +58,12 @@ public class PozoristaIBioskopiController {
 	}
 	
 	@RequestMapping(value = "/updateCinema" , method = RequestMethod.POST)
-	public String editCinema(@ModelAttribute("bioskop") CinemaTheatre bioskop,ModelMap map) {
+	public String editCinema(@Valid @ModelAttribute("bioskop") CinemaTheatre bioskop,BindingResult result,ModelMap map) {
+		
+		//Ako ima gresaka ostani na toj stranici
+		if(result.hasErrors()) {
+			return "izmeniBioskop";
+		}
 		
 		CinemaTheatre currentCinema = service.findOne(bioskop.getId());
 		
@@ -69,7 +77,12 @@ public class PozoristaIBioskopiController {
 	}
 	
 	@RequestMapping(value = "/updateTheatre" , method = RequestMethod.POST)
-	public String editTheatre(@ModelAttribute("pozoriste") CinemaTheatre pozoriste ,ModelMap map) {
+	public String editTheatre(@Valid @ModelAttribute("pozoriste") CinemaTheatre pozoriste,BindingResult result,ModelMap map) {
+		
+		//Ako ima gresaka ostani na toj stranici
+		if(result.hasErrors()) {
+			return "izmeniPozoriste";
+		}
 		
 		CinemaTheatre currentTheatre = service.findOne(pozoriste.getId());
 		

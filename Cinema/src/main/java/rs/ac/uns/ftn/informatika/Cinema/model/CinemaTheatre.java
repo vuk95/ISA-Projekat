@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
 @Entity(name = "BioskopPozoriste")
@@ -31,10 +33,14 @@ public class CinemaTheatre implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private CinemaTheatreType type;
 	
+	
 	@Column(name = "Naziv", nullable = false)
+	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String name;
 	
+	
 	@Column(name = "Adresa", nullable = false)
+	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String address;
 	
 	@Column(name = "Opis")
