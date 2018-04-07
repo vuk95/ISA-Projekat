@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,8 +41,6 @@ public class FanZoneController {
 	
 	@Autowired
 	private OglasService oglServis;
-	
-	private static List<ZvanicniRekvizit> mojiRek = new ArrayList<ZvanicniRekvizit>();
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap map) {
@@ -210,7 +209,6 @@ public class FanZoneController {
 			servis.save(rezervisani);
 			RegularUser reg = userServis.addRekvizit(rezervisani, ru.getId());
 			userServis.save(reg);
-			mojiRek = reg.getMojiRekviziti();
 			map.put("logged", user);
 			map.put("rekvizit", rezervisani);
 			}
@@ -252,7 +250,11 @@ public class FanZoneController {
 	}
 	
 	@RequestMapping(value = "/myReservations")
-	public String mojeRezervacije(ModelMap map) {
+	public String mojeRezervacije(Principal principal, ModelMap map) {
+		
+		RegularUser user = userServis.findByEmail(principal.getName());
+		map.put("user", user);
+		
 		/*
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		CurrentUser user = (CurrentUser) auth.getPrincipal();
@@ -265,7 +267,7 @@ public class FanZoneController {
 		}*/
 		//OVO I DALJE NE VALJA TREBA NAPRAVITI DA SE SALJE ID-USERA I DA SAMO ON IMA PRISTUP
 		//PROBLEM SA LISTOM JE STO SE NE PAMTI VRV DO LAZY INITIALIZATION!!!
-		map.put("rekviziti", mojiRek);
+		//map.put("rekviziti", mojiRek);
 		
 		
 		return "mojeRezervacije";
