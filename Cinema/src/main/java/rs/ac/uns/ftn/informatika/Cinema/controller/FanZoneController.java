@@ -41,6 +41,8 @@ public class FanZoneController {
 	@Autowired
 	private OglasService oglServis;
 	
+	private static List<ZvanicniRekvizit> mojiRek = new ArrayList<ZvanicniRekvizit>();
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap map) {
 	
@@ -63,6 +65,8 @@ public class FanZoneController {
 	
 	@RequestMapping(value = "/getRekvizitiObican", method = RequestMethod.GET)
 	public String rekvizitiObican(ModelMap map) {
+		
+		
 		
 		map.put("rekviziti", servis.findAll());
 		return "rekvizitiObican";
@@ -121,9 +125,13 @@ public class FanZoneController {
 	
 	@RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
     public String showById(@PathVariable Long id, ModelMap map){
-        
+		if(!servis.find(id).isRezervisan()) {
     	map.put("rekvizit",servis.find(id));
         return "showRekvizit";
+		}
+		
+		return "greskaIzmena";
+		
     }
 	//NEKI PROBLEM SA DTO KOD UPDATEA
 	/*@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -157,9 +165,14 @@ public class FanZoneController {
 	
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Long id, ModelMap map) {
-		
+		if(!servis.find(id).isRezervisan()) {
 		map.put("rekvizit", servis.find(id));
+		
 		return "izmeniRekvizit";
+		}
+		
+		return "greskaIzmena";
+		
 	
 	}
 	
@@ -178,6 +191,7 @@ public class FanZoneController {
 		trenutniRekvizit.setOpis(rekvizit.getOpis());
 		
 		servis.save(trenutniRekvizit);
+		
 		return "redirect:../fanzone/getRekviziti";
 	
 	}
@@ -196,6 +210,7 @@ public class FanZoneController {
 			servis.save(rezervisani);
 			RegularUser reg = userServis.addRekvizit(rezervisani, ru.getId());
 			userServis.save(reg);
+			mojiRek = reg.getMojiRekviziti();
 			map.put("logged", user);
 			map.put("rekvizit", rezervisani);
 			}
@@ -238,19 +253,19 @@ public class FanZoneController {
 	
 	@RequestMapping(value = "/myReservations")
 	public String mojeRezervacije(ModelMap map) {
-		
+		/*
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		CurrentUser user = (CurrentUser) auth.getPrincipal();
 		
 		
 		if(user.getUloga() == "REGULAR") {
 			RegularUser regular = (RegularUser) user.getUser();
-			//IMA NEKU GRESKU OVDE OPET BUDE PRAZNA LISTA DA BI SE PRIKAZALO
-		
-			map.put("user", regular);
-		}	
-		
-		
+			System.out.println(regular.getMojiRekviziti().size());
+			//map.put("user", regular);
+		}*/
+		//OVO I DALJE NE VALJA TREBA NAPRAVITI DA SE SALJE ID-USERA I DA SAMO ON IMA PRISTUP
+		//PROBLEM SA LISTOM JE STO SE NE PAMTI VRV DO LAZY INITIALIZATION!!!
+		map.put("rekviziti", mojiRek);
 		
 		
 		return "mojeRezervacije";

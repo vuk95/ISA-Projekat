@@ -32,7 +32,7 @@ public class RegularUser extends User{
 	
 //	private Set<Ticket> tickets = new HashSet<Ticket>();
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "mojiRekviziti",
 				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "rekvizit_id", referencedColumnName = "rekvizit_id"))

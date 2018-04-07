@@ -37,6 +37,7 @@ public class RekvizitServiceImpl implements RekvizitService{
 	@Override
 	public void delete(ZvanicniRekvizit rekvizit) {
 		// TODO Auto-generated method stub
+		if(!rekvizit.isRezervisan())
 		repository.delete(rekvizit);
 	}
 

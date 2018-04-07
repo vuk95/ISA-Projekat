@@ -13,8 +13,12 @@
 				<th>Cena</th>
 				<th>Opis</th>
 			</tr>
-			<tr th:each="rekvizit, iterStat: ${user.mojiRekviziti}">
+			<tr th:each="rekvizit, iterStat: ${rekviziti}">
+				<td th:text="${rekvizit.id}"></td>
+				<td><img th:src="@{'/rekvizit/' + ${rekvizit.id} + '/rekvizitimage'}" width="30" height="30"></td>
 				<td th:text="${rekvizit.ime}"></td>
+				<td th:text="${rekvizit.cena}"></td>
+				<td th:text="${rekvizit.opis}"></td>
 			</tr>
 		
 		</table>

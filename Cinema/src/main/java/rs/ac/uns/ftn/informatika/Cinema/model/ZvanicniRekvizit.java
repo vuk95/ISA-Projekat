@@ -38,6 +38,7 @@ public class ZvanicniRekvizit {
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private RegularUser user;
 	
+	
 	@Column
 	private boolean rezervisan;
 	
