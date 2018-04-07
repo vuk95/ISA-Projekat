@@ -1,11 +1,110 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Pocetna strana</title>
-	</head>
-	<body>
-		<h1>Dobrodosli</h1>
-		<a href = "login.html">Login</a>
-	</body>
+<head>
+	<title>HomePage</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href="bootstrap-3.3.7/css/bootstrapLogin.min.css" rel="stylesheet">
+
+
+<style>
+
+body {
+
+
+
+}
+
+.mt {
+
+margin-top:200px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left:850px;
+    margin-top:120px;
+}
+
+.button1 {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left:10px;
+    margin-top:120px;
+}
+
+.slovo {
+
+color:white;
+}
+
+</style>
+
+</head>
+<body>
+
+
+<!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">DVS CinemaTheatre</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Sign in</a>
+            </li>
+	     <span class="slovo">or</span>
+            <li class="nav-item">
+              <a class="nav-link" href="registration.html"> Sign up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt">Welcome to our Cinema Theatre site</h1>
+          <p class="lead">We are breaking all limitations!</p>
+        </div>
+      </div>
+    </div>
+
+ 
+<button class="button" onclick="location.href='http://localhost:8082/cinematheatre/getCinema'">Cinema</button>
+<button class="button1" onclick="location.href='http://localhost:8082/cinematheatre/getTheatre'">Theatre</button>
+
+
+
+</body>
 </html>
+
+

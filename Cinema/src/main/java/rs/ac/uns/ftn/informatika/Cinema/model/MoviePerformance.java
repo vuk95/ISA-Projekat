@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.Cinema.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GenerationType;
@@ -20,7 +22,7 @@ public class MoviePerformance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Id;
+	private Long Id;
 	
 	@Column(name = "Tip", nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -54,10 +56,23 @@ public class MoviePerformance {
     			inverseJoinColumns = @JoinColumn(name="Actor_id", referencedColumnName="Id"))
 	private Set<Actor> actors = new HashSet<Actor>();
 	
-	//TO DO: poster, ocena(nova tabela), sale, termini
+	
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "PozoristeBioskop_id" , referencedColumnName = "PozoristeBioskop_id")
+	//private CinemaTheatre ct; 
+	
+	//TO DO: ocena(nova tabela)
 	
 	public MoviePerformance() {
 		
+	}
+
+	public Byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Byte[] picture) {
+		this.picture = picture;
 	}
 
 	public long getId() {
