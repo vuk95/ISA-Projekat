@@ -2,11 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Naslovna</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h3>Rekviziti</h3>
-		<a th:href="@{/fanzone/myReservations}">Moje rezervacije</a>
-		<table border = "1">
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+    	<h1>Rekviziti</h1>      
+    	<a th:href="@{/fanzone/myReservations}">Moje rezervacije</a>
+  	  </div>
+	</div>
+		
+		
+		<div class="container">
+		<table class="table table-dark table-hover">
 			<tr>
 				<th>Id</th>
 				<th>Slika</th>
@@ -17,7 +28,7 @@
 			</tr>
 			<tr th:each="rekvizit, iterStat: ${rekviziti}">
 				<td th:text="${rekvizit.id}"></td>
-				<td><img th:src="@{'/rekvizit/' + ${rekvizit.id} + '/rekvizitimage'}" width="30" height="30"></td>
+				<td><img th:src="@{'/rekvizit/' + ${rekvizit.id} + '/rekvizitimage'}" width="50" height="50" class="img-thumbnail"></td>
 				<td th:text="${rekvizit.ime}"></td>
 				<td th:text="${rekvizit.cena}"></td>
 				<td th:text="${rekvizit.opis}"></td>
@@ -25,8 +36,8 @@
 					<div th:if="${rekvizit.rezervisan} == false"><a th:href="${'/fanzone/reserve/' + rekvizit.id}">Rezervisi</a></div>
 					<div th:if="${rekvizit.rezervisan} == true"><p>Rezervisano</p></div>
 				</td>
-
 			</tr>
 		</table>
+		</div>
 	</body>
 </html>

@@ -195,26 +195,27 @@ public class FanZoneController {
 	
 	}
 	
+	//OVA METODA BI SE MOGLA REFAKTORISATI
 	@RequestMapping(value = "/reserve/{id}", method = RequestMethod.GET)
 	public String rezervisi(@PathVariable("id") Long id, ModelMap map) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		CurrentUser user = (CurrentUser) auth.getPrincipal();
 		if(user.getUloga().equals("REGULAR")) {
-			RegularUser ru = (RegularUser) user.getUser();
-			ZvanicniRekvizit rezervisani = servis.find(id);
-			if(rezervisani.isRezervisan() == false) {
-			rezervisani.setUser(ru);
-			rezervisani.setRezervisan(true);
-			servis.save(rezervisani);
-			RegularUser reg = userServis.addRekvizit(rezervisani, ru.getId());
-			userServis.save(reg);
-			map.put("logged", user);
-			map.put("rekvizit", rezervisani);
-			}
-			else {
-				System.out.println("Rekvizit je vec rezervisan!");
-			}
+				RegularUser ru = (RegularUser) user.getUser();
+				ZvanicniRekvizit rezervisani = servis.find(id);
+					if(rezervisani.isRezervisan() == false) {
+						rezervisani.setUser(ru);
+						rezervisani.setRezervisan(true);
+						servis.save(rezervisani);
+						RegularUser reg = userServis.addRekvizit(rezervisani, ru.getId());
+						userServis.save(reg);
+						map.put("logged", user);
+						map.put("rekvizit", rezervisani);
+					}
+					else {
+						System.out.println("Rekvizit je vec rezervisan!");
+					}
 		}
 		
 		return "redirect:/fanzone/getRekvizitiObican";
@@ -254,21 +255,6 @@ public class FanZoneController {
 		
 		RegularUser user = userServis.findByEmail(principal.getName());
 		map.put("user", user);
-		
-		/*
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		CurrentUser user = (CurrentUser) auth.getPrincipal();
-		
-		
-		if(user.getUloga() == "REGULAR") {
-			RegularUser regular = (RegularUser) user.getUser();
-			System.out.println(regular.getMojiRekviziti().size());
-			//map.put("user", regular);
-		}*/
-		//OVO I DALJE NE VALJA TREBA NAPRAVITI DA SE SALJE ID-USERA I DA SAMO ON IMA PRISTUP
-		//PROBLEM SA LISTOM JE STO SE NE PAMTI VRV DO LAZY INITIALIZATION!!!
-		//map.put("rekviziti", mojiRek);
-		
 		
 		return "mojeRezervacije";
 	}
