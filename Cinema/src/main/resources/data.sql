@@ -102,4 +102,16 @@ INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 10
 INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 12);
 INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 15);
 
+--=================================================================================================================================
+
+--Predstava
+
+INSERT INTO film_predstava
+(opis,reditelj,trajanje,zanr,naziv,slika,cena,tip,pozoriste_bioskop_id) values ('Jedna od najpopularnijih srpskih pretstava','Andrija Milosevic','96','Komedija','Pevaj brate','vajpeTebra.jpg','350','PERFORMANCE','9');
+
+--===================================================================================================================================
+
+--Film
+INSERT INTO film_predstava
+(opis,reditelj,trajanje,zanr,naziv,slika,cena,tip,pozoriste_bioskop_id) values ('Jedan od najboljih stranih filmova.','Pierre Morel','93','Akcija,Triler','Taken (96 sati)','taken.jpg','500','MOVIE','3');
 

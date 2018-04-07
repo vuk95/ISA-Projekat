@@ -45,7 +45,7 @@ public class MoviePerformance {
 	private Byte[] picture;
 	
 	@Column(name = "Cena", nullable = false)
-	private double price;
+	private int price;
 	
 	@Column(name = "Reditelj", nullable = false)
 	private String director;
@@ -57,9 +57,9 @@ public class MoviePerformance {
 	private Set<Actor> actors = new HashSet<Actor>();
 	
 	
-	//@ManyToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "PozoristeBioskop_id" , referencedColumnName = "PozoristeBioskop_id")
-	//private CinemaTheatre ct; 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "PozoristeBioskop_id" , referencedColumnName = "Id")
+	private CinemaTheatre ct; 
 	
 	//TO DO: ocena(nova tabela)
 	
@@ -123,11 +123,11 @@ public class MoviePerformance {
 		this.description = description;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -147,4 +147,11 @@ public class MoviePerformance {
 		this.actors = actors;
 	}
 	
+	public CinemaTheatre getCt() {
+		return ct;
+	}
+
+	public void setCt(CinemaTheatre ct) {
+		this.ct = ct;
+	}
 }
