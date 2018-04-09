@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.Projection;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +15,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GenerationType;
 
 @Entity(name = "FilmPredstava")
@@ -60,6 +64,9 @@ public class MoviePerformance {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "PozoristeBioskop_id" , referencedColumnName = "Id")
 	private CinemaTheatre ct; 
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<Projection> projections;
 	
 	//TO DO: ocena(nova tabela)
 	
@@ -154,4 +161,13 @@ public class MoviePerformance {
 	public void setCt(CinemaTheatre ct) {
 		this.ct = ct;
 	}
+
+	public Set<Projection> getProjections() {
+		return projections;
+	}
+
+	public void setProjections(Set<Projection> projections) {
+		this.projections = projections;
+	}
+	
 }
