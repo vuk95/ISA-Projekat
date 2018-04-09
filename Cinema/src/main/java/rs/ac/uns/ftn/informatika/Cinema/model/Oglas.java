@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
@@ -32,6 +37,18 @@ public class Oglas {
 	@Column
 	private boolean odobren = false;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "ponudeZaOglas",
+				joinColumns = @JoinColumn(name = "oglas_id", referencedColumnName = "oglas_id"),
+				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
+	private List<Ponuda> ponudeZaOglas = new ArrayList<Ponuda>();
+	
+	public List<Ponuda> getPonudeZaOglas() {
+		return ponudeZaOglas;
+	}
+	public void setPonudeZaOglas(List<Ponuda> ponudeZaOglas) {
+		this.ponudeZaOglas = ponudeZaOglas;
+	}
 	public String getNaziv() {
 		return naziv;
 	}
