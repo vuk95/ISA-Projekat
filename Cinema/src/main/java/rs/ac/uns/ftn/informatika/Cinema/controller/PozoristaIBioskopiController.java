@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
+import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionService;
 
 @Controller
 @RequestMapping(value = "/cinematheatre")
@@ -20,6 +21,9 @@ public class PozoristaIBioskopiController {
 
 	@Autowired
 	private CinemaTheatreService service;
+		
+	@Autowired
+	private ProjectionService pservice;
 	
 	//Puni model pronadjenim pozoristima
 	@RequestMapping(value ="/getTheatre" , method = RequestMethod.GET )
@@ -93,6 +97,22 @@ public class PozoristaIBioskopiController {
 	    service.save(currentTheatre);
 		
 	    return "redirect:../cinematheatre/getTheatre";
+	}
+	
+	@RequestMapping(value = "/getProjekcije" , method = RequestMethod.GET)
+	public String projekcije(ModelMap map) {
+		
+		map.put("projekcije",pservice.findMovies());
+		
+		return "projekcije";
+	}
+	
+	@RequestMapping(value = "/getPredstave" , method = RequestMethod.GET)
+	public String predstave(ModelMap map) {
+		
+		map.put("predstave",pservice.findPerformances());
+	
+		return "predstave";
 	}
 	
 }

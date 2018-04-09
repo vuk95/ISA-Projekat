@@ -16,10 +16,10 @@ public class ProjectionServiceImpl implements ProjectionService {
 	@Autowired
 	private ProjectionRepository prepository;
 	
-	@Override
-	public MoviePerformance findOne(Long id) {
-		return prepository.findOne(id);
-	}
+	//@Override
+	//public MoviePerformance findOne(Long id) {
+		//return prepository.findOne(id);
+	//}
 
 	@Override
 	public Iterable<MoviePerformance> findAll() {
