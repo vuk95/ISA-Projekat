@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
+//POSTOJI GRESKA DA KREIRA DUPLIKATE
 @Entity(name="Ponuda") 	
 public class Ponuda {
 
@@ -22,7 +23,7 @@ public class Ponuda {
 	@Column(name="Cena", columnDefinition="INTEGER")
 	private int iznos;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private RegularUser user;
 	

@@ -13,6 +13,7 @@
 				<th>Naziv</th>
 				<th>Opis</th>
 				<th>Datum isteka</th>
+				<th>Opcije</th>
 			</tr>
 			<tr th:each="oglas, iterStat: ${oglasi}"  th:if="${oglas.odobren} == true">
 				
@@ -20,7 +21,9 @@
 				<td th:text="${oglas.naziv}"></td>
 				<td th:text="${oglas.opis}"></td>
 				<td th:text="${oglas.datum}"></td>
-				
+				<td>
+					<a th:href = "${'/fanzone/ponude/' + oglas.id}">Ponude</a>
+				</td>
 			</tr>
 		</table>
 	</body>

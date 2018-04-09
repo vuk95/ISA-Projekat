@@ -114,12 +114,3 @@ INSERT INTO film_predstava
 --Film
 INSERT INTO film_predstava
 (opis,reditelj,trajanje,zanr,naziv,slika,cena,tip,pozoriste_bioskop_id) values ('Jedan od najboljih stranih filmova.','Pierre Morel','93','Akcija,Triler','Taken (96 sati)','taken.jpg','500','MOVIE','3');
-
-INSERT INTO ponuda(ponuda_id, cena, user_id) values (1, 100, 1);
-INSERT INTO ponuda(ponuda_id, cena, user_id) values (2, 100, 1);
-INSERT INTO ponuda(ponuda_id, cena, user_id) values (3, 40, 5);
-
-INSERT INTO oglas(oglas_id, naziv, opis, datum) values (1, 'abc', 'abc', '25-09-2018');
-
-INSERT INTO ponude_za_oglas(oglas_id, ponuda_id) values (1, 1);
-INSERT INTO ponude_za_oglas(oglas_id, ponuda_id) values (1, 3);

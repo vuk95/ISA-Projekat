@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Daj ponudu</title>
+	
+	</head>
+	<body>
+		<h3>Daj ponudu:</h3>
+		<form th:action="@{'/fanzone/offer/' + ${oglas.id}}" th:object="${ponuda}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Izons:</td>
+					<td><input type = "text" th:field="*{iznos}"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Ponudi"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

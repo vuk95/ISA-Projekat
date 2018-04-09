@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
+import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.repository.OglasRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.OglasService;
 
@@ -31,6 +34,15 @@ public class OglasServiceImpl implements OglasService{
 	public void save(Oglas oglas) {
 		// TODO Auto-generated method stub
 		repository.save(oglas);
+	}
+	
+	@Override
+	public Oglas addPonuda(Ponuda p, Long id) {
+		// TODO Auto-generated method stub
+		Oglas oglas = repository.findOne(id);
+		oglas.getPonudeZaOglas().add(p);
+		repository.save(oglas);
+		return oglas;
 	}
 
 }

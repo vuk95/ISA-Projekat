@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.service.OglasService;
+import rs.ac.uns.ftn.informatika.Cinema.service.PonudaService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
@@ -41,6 +43,9 @@ public class FanZoneController {
 	
 	@Autowired
 	private OglasService oglServis;
+	
+	@Autowired
+	private PonudaService ponudaServis;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap map) {
@@ -275,6 +280,39 @@ public class FanZoneController {
 		map.put("user", user);
 		
 		return "mojiOglasi";
+	}
+	
+	@RequestMapping(value = "/ponude/{id}", method = RequestMethod.GET)
+	public String ponude(@PathVariable("id") Long id, ModelMap map) {
+		
+		Oglas oglas = oglServis.find(id);
+		
+		map.put("oglas", oglas);
+		
+		return "ponudeOglas";
+	}
+	
+	@RequestMapping(value = "/offer/{id}", method = RequestMethod.GET)
+	public String offer(@PathVariable("id") Long id, ModelMap map) {
+		
+		map.put("ponuda", new Ponuda());
+		map.put("oglas", oglServis.find(id));
+		return "dajPonudu";
+	
+	}
+	
+	@RequestMapping(value = "/offer/{id}", method = RequestMethod.POST)
+	public String addOglas(@PathVariable("id") Long id, @ModelAttribute("ponuda") Ponuda ponuda, Principal principal, ModelMap map) {
+			
+		
+		RegularUser user = userServis.findByEmail(principal.getName());
+		ponuda.setUser(user);
+		ponudaServis.save(ponuda);
+		Oglas ogl = oglServis.addPonuda(ponuda, id);
+		//oglServis.save(ogl);
+		
+		return "redirect:../ponude/" + id;
+	
 	}
 	
 }
