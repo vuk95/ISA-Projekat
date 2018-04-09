@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
+import rs.ac.uns.ftn.informatika.Cinema.model.MoviePerformance;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionService;
 
@@ -99,20 +101,102 @@ public class PozoristaIBioskopiController {
 	    return "redirect:../cinematheatre/getTheatre";
 	}
 	
-	@RequestMapping(value = "/getProjekcije" , method = RequestMethod.GET)
-	public String projekcije(ModelMap map) {
+	//Prikazuje filmske projekcije za dati bioskop
+	@RequestMapping(value = "/getProjekcije/{id}" , method = RequestMethod.GET)
+	public String projekcije(@PathVariable("id") Long id,ModelMap map) {
 		
-		map.put("projekcije",pservice.findMovies());
+		map.put("bioskop",service.findOne(id));
 		
 		return "projekcije";
 	}
 	
-	@RequestMapping(value = "/getPredstave" , method = RequestMethod.GET)
-	public String predstave(ModelMap map) {
+	//Prikazuje predstave za dato pozoriste
+	@RequestMapping(value = "/getPredstave/{id}" , method = RequestMethod.GET)
+	public String predstave(@PathVariable("id") Long id,ModelMap map) {
 		
-		map.put("predstave",pservice.findPerformances());
+		map.put("pozoriste",service.findOne(id));
 	
 		return "predstave";
 	}
+	
+	
+	@RequestMapping(value = "/updateProjekcije/{id}")
+	public String editProjekcije(@PathVariable("id") Long id,ModelMap map) {
+		
+		map.put("projekcija",pservice.findOne(id));
+		
+		return "izmeniProjekcije";
+	}
+	
+	
+	@RequestMapping(value = "/updatePredstave/{id}")
+	public String editPredstave(@PathVariable("id") Long id,ModelMap map) {
+		
+		map.put("predstava",pservice.findOne(id));
+		
+		return "izmeniPredstave";
+	}
+	
+	
+	@RequestMapping(value = "/updateProjekcije" , method = RequestMethod.POST)
+	public String editProjekcije(@ModelAttribute("projekcija") MoviePerformance projekcija,ModelMap map,HttpServletRequest request) {
+		
+
+		MoviePerformance currentMovie =  pservice.findOne(projekcija.getId());
+		
+		currentMovie.setName(projekcija.getName());
+		currentMovie.setGenre(projekcija.getGenre());
+		currentMovie.setDuration(projekcija.getDuration());
+		currentMovie.setDirector(projekcija.getDirector());
+		currentMovie.setDescription(projekcija.getDescription());
+		
+		pservice.save(currentMovie);
+		
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:"+ referer;
+		//ovde bi trebalo da se namesti da gadja:
+		//return "redirect:../cinematheatre/updateProjekcije/{id}"
+		
+	}
+	
+	
+	@RequestMapping(value = "/updatePredstave" , method = RequestMethod.POST)
+	public String editPredstave(@ModelAttribute("predstava") MoviePerformance predstava,ModelMap map,HttpServletRequest request) {
+		
+		MoviePerformance currentPerformance =  pservice.findOne(predstava.getId());
+		
+		currentPerformance.setName(predstava.getName());
+		currentPerformance.setGenre(predstava.getGenre());
+		currentPerformance.setDuration(predstava.getDuration());
+		currentPerformance.setDirector(predstava.getDirector());
+		currentPerformance.setDescription(predstava.getDescription());
+		
+		pservice.save(currentPerformance);
+		
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:"+ referer;
+		//ovde bi trebalo da se namesti da gadja:
+		//return "redirect:../cinematheatre/updatePredstave/{id}"
+		
+	}
+
+/*	
+
+ 	@RequestMapping(value = "/deletePredstave/{id}" , method = RequestMethod.GET)
+	public String deletePredstave(@PathVariable("id") Long id,HttpServletRequest request) {
+		
+		pservice.delete(pservice.findOne(id));
+		
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:"+ referer; 
+		//bezveze dodato, posto svakako ne moze return "redirect:../cinematheatre/deletePredstave/{id}"
+		
+	}
+
+	*/
+	
 	
 }

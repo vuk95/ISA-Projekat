@@ -114,3 +114,11 @@ INSERT INTO film_predstava
 --Film
 INSERT INTO film_predstava
 (opis,reditelj,trajanje,zanr,naziv,slika,cena,tip,pozoriste_bioskop_id) values ('Jedan od najboljih stranih filmova.','Pierre Morel','93','Akcija,Triler','Taken (96 sati)','taken.jpg','500','MOVIE','3');
+
+
+--====================================================================================================================================
+
+--Projekcije
+
+INSERT INTO repertoar_bioskop_pozoriste (pozoriste_bioskop_id,film_predstava_id) values (9,1);
+INSERT INTO repertoar_bioskop_pozoriste (pozoriste_bioskop_id,film_predstava_id) values (3,2);

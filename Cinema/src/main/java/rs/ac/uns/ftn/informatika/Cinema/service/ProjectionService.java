@@ -4,7 +4,7 @@ import rs.ac.uns.ftn.informatika.Cinema.model.MoviePerformance;
 
 public interface ProjectionService {
 
-	//public MoviePerformance findOne(Long id);
+	public MoviePerformance findOne(Long id);
 	
 	public Iterable<MoviePerformance> findAll();
 	
@@ -13,5 +13,7 @@ public interface ProjectionService {
 	public Iterable<MoviePerformance> findPerformances();
 
 	public void save(MoviePerformance mp);
+	
+	public void delete(MoviePerformance mp);
 	
 }

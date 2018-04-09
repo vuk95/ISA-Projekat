@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Izmeni filmske projekcije</title>
+	</head>
+	<body>
+
+	<h3>Izmeni Filmove:</h3>
+	
+	<form th:action="@{/cinematheatre/updateProjekcije}" th:object="${projekcija}" method ="post">
+			<table>
+				<tr>
+					<td>Naziv:</td>
+					<td><input type = "text" th:field="*{name}"></td>
+				</tr>
+				
+				<tr>
+					<td>Zanr:</td>
+					<td><input type = "text" th:field="*{genre}"></td>
+				</tr>
+				
+				<tr>
+					<td>Trajanje:</td>
+					<td><input type = "text" th:field="*{duration}"></td>
+				</tr>
+				
+				<tr>
+					<td>Reditelj:</td>
+					<td><input type = "text" th:field="*{director}"></td>
+				</tr>
+				
+				<tr>
+					<td>Opis:</td>
+					<td><input type = "text" th:field="*{description}"></td>
+				</tr>
+				
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save">
+						<input type = "hidden" th:field="*{id}">
+					</td>
+				</tr>
+			</table>
+		</form>
+
+
+	</body>	
+	
+</html>	

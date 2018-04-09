@@ -24,14 +24,16 @@
   				<th>Opis</th>
 			</tr>
 			
-			<tr th:each="predstava, iterStat: ${predstave}">
+			<tr th:each="predstava, iterStat: ${pozoriste.repertoarCT}">
 				
 				<td th:text="${predstava.name}"></td>
 				<td th:text="${predstava.genre}"></td>
 				<td th:text="${predstava.duration}"></td>
 				<td th:text="${predstava.director}"></td>
 				<td th:text="${predstava.description}"></td>
-			
+				<td><a>Dodaj</a></td>
+				<td><a th:href="${'/cinematheatre/updatePredstave/' + predstava.Id}">Izmeni</a></td>
+				<td><a>Obrisi</a></td>				
 			</tr>
 			
 			
