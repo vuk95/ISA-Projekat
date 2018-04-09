@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
+import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 
@@ -38,8 +39,22 @@ public class RegularUser extends User{
 				inverseJoinColumns = @JoinColumn(name = "rekvizit_id", referencedColumnName = "rekvizit_id"))
 	private List<ZvanicniRekvizit> mojiRekviziti = new ArrayList<ZvanicniRekvizit>();
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "mojiOglasi",
+				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "oglas_id", referencedColumnName = "oglas_id"))
+	private List<Oglas> mojiOglasi = new ArrayList<Oglas>();
+	
 	public RegularUser() {
 		
+	}
+	
+	public List<Oglas> getMojiOglasi() {
+		return mojiOglasi;
+	}
+
+	public void setMojiOglasi(List<Oglas> mojiOglasi) {
+		this.mojiOglasi = mojiOglasi;
 	}
 
 	public String getConfirmationToken() {

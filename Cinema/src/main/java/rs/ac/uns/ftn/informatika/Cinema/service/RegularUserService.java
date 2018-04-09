@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.Cinema.service;
 
 import java.util.List;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
@@ -32,4 +33,6 @@ public interface RegularUserService {
 		public RegularUser updateRegularUserProfile(ProfileForm form);
 	
 		public RegularUser addRekvizit(ZvanicniRekvizit r, Long Id);
+		
+		public RegularUser addMojOglas(Oglas o, Long id);
 }

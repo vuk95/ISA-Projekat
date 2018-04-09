@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
@@ -123,5 +124,15 @@ public class RegularUserServiceImpl implements RegularUserService {
 		regUserRepository.save(regUser);
 		return regUser;
 	}
+
+	@Override
+	public RegularUser addMojOglas(Oglas o, Long id) {
+		// TODO Auto-generated method stub
+		RegularUser regUser = regUserRepository.findOne(id);
+		regUser.getMojiOglasi().add(o);
+		regUserRepository.save(regUser);
+		return regUser;
+	}
+		
 
 }

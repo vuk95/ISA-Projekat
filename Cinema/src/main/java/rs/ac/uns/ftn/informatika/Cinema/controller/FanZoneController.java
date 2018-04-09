@@ -174,7 +174,7 @@ public class FanZoneController {
 		
 	
 	}
-	
+	//TREBA URADITI DA SE SALJE DTO ZBOG VALIDACIJE
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String edit(@Valid @ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, BindingResult bindingResult , ModelMap map) {
 		
@@ -221,18 +221,26 @@ public class FanZoneController {
 		return "redirect:/fanzone/getRekvizitiObican";
 	}
 	
+	//ZASTITI DA ADMIN NE MOZE OVDE DA UDJE ZAPRAVO SVI LINKOVI UNUTAR ONOGA STO JE ZABRANJENO
+	//SU DOZVOLJENI TO ISPRAVITI
 	@RequestMapping(value = "/addOglas", method = RequestMethod.GET)
 	public String addOglas(ModelMap map) {
+		
 		
 		map.put("oglas", new Oglas());
 		return "dodajOglas";
 	
 	}
-	
+	//TREBA URADITI DA SE SALJE DTO ZBOG VALIDACIJE
+	//TREBA URADITI UPLOAD SLIKE
 	@RequestMapping(value = "/addOglas", method = RequestMethod.POST)
-	public String addOglas(@ModelAttribute("oglas") Oglas oglas, ModelMap map) {
+	public String addOglas(@ModelAttribute("oglas") Oglas oglas, Principal principal, ModelMap map) {
 			
 		oglServis.save(oglas);
+		RegularUser user = userServis.findByEmail(principal.getName());
+		RegularUser reg = userServis.addMojOglas(oglas, user.getId());
+		userServis.save(reg);
+		
 		return "redirect:../fanzone/getOglasi";
 	
 	}
@@ -259,5 +267,14 @@ public class FanZoneController {
 		return "mojeRezervacije";
 	}
 	
+	@RequestMapping(value = "/mojiOglasi")
+	public String mojiOglasi(Principal principal, ModelMap map) {
+		
+		
+		RegularUser user = userServis.findByEmail(principal.getName());
+		map.put("user", user);
+		
+		return "mojiOglasi";
+	}
 	
 }

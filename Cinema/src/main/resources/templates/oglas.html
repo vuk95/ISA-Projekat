@@ -5,6 +5,7 @@
 	<body>
 		<h1>Svi korisnicki oglasi</h1>
 		<a th:href = "@{/fanzone/addOglas}">Novi oglas</a>
+		<a th:href = "@{/fanzone/mojiOglasi}">Moji oglasi</a>
 		
 		<table border = "1">
 			<tr>
@@ -19,7 +20,7 @@
 				<td th:text="${oglas.naziv}"></td>
 				<td th:text="${oglas.opis}"></td>
 				<td th:text="${oglas.datum}"></td>
-			
+				
 			</tr>
 		</table>
 	</body>

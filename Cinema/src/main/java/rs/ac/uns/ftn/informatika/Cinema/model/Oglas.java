@@ -16,6 +16,7 @@ public class Oglas {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "oglas_id")
 	private Long id;
 	
 	@Column(name="Naziv", columnDefinition="VARCHAR(40)")
