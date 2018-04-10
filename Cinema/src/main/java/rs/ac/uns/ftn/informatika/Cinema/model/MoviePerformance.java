@@ -48,9 +48,6 @@ public class MoviePerformance {
 	@Column(name = "Slika")
 	private Byte[] picture;
 	
-	@Column(name = "Cena", nullable = false)
-	private int price;
-	
 	@Column(name = "Reditelj", nullable = false)
 	private String director;
 	
@@ -60,11 +57,7 @@ public class MoviePerformance {
     			inverseJoinColumns = @JoinColumn(name="Actor_id", referencedColumnName="Id"))
 	private Set<Actor> actors = new HashSet<Actor>();
 	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "PozoristeBioskop_id" , referencedColumnName = "Id")
-	private CinemaTheatre ct; 
-	
+		
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Projection> projections;
 	
@@ -130,14 +123,6 @@ public class MoviePerformance {
 		this.description = description;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
 	public String getDirector() {
 		return director;
 	}
@@ -154,14 +139,6 @@ public class MoviePerformance {
 		this.actors = actors;
 	}
 	
-	public CinemaTheatre getCt() {
-		return ct;
-	}
-
-	public void setCt(CinemaTheatre ct) {
-		this.ct = ct;
-	}
-
 	public Set<Projection> getProjections() {
 		return projections;
 	}

@@ -55,11 +55,9 @@ public class CinemaTheatre implements Serializable{
 	@ManyToMany(mappedBy = "visitedCinemaTheatre")
 	private Set<RegularUser> regularUsers = new HashSet<RegularUser>();
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "repertoarBioskopPozoriste",
-			   joinColumns = @JoinColumn(name = "PozoristeBioskop_id" , referencedColumnName = "Id"),
-			   inverseJoinColumns = @JoinColumn(name = "FilmPredstava_id" , referencedColumnName = "Id")                                                                           )
-	private List<MoviePerformance> repertoarCT = new ArrayList<MoviePerformance>(); 
+	@OneToMany
+	private List<Projection> projections;
+	
 	
 	//TO DO: spisak karata sa popustima, konfiguracija segmenata i mesta u salama
 	
@@ -125,12 +123,4 @@ public class CinemaTheatre implements Serializable{
 		this.regularUsers = regularUsers;
 	}
 	
-	public List<MoviePerformance> getRepertoarCT() {
-		return repertoarCT;
-	}
-
-	public void setRepertoarCT(List<MoviePerformance> repertoarCT) {
-		this.repertoarCT = repertoarCT;
-	}
-
 }
