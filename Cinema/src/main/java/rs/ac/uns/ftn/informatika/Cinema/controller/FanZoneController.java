@@ -363,4 +363,23 @@ public class FanZoneController {
 		return "redirect:../mojiOglasi";
 	}
 	
+	@RequestMapping(value = "/obavestenja/{id}", method = RequestMethod.GET)
+	public String obavestenja(@PathVariable("id") Long id, ModelMap map, Principal principal) {
+		Oglas o = oglServis.find(id);
+		RegularUser user = userServis.findByEmail(principal.getName());
+		for(int i = 0; i < o.getPonudeZaOglas().size(); i++) {
+			if(o.getPonudeZaOglas().get(i).getUser().equals(user)) {
+				map.put("oglas", o);
+				map.put("ponuda", o.getPonudeZaOglas().get(i));
+				if(o.getPonudeZaOglas().get(i).isPrihvacena()) {
+				map.put("rez", " je prihvacena");
+				}
+				else {
+				map.put("rez", " nije prihvacena");
+				}
+			}
+		}
+		return "obavestenje";
+	}
+	
 }

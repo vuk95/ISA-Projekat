@@ -6,6 +6,7 @@
 		<h1>Ponude za:</h1>
 		<p th:text = "${oglas.naziv}"></p>
 		<a th:href="@{'/fanzone/offer/' + ${oglas.id}}">Daj ponudu</a>
+		<a th:href="@{'/fanzone/obavestenja/' + ${oglas.id}}">Obavestenja o oglasu</a>
 		<table border = "1">
 			<tr>
 				<th>Id</th>
