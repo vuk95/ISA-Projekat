@@ -306,10 +306,21 @@ public class FanZoneController {
 			
 		
 		RegularUser user = userServis.findByEmail(principal.getName());
-		ponuda.setUser(user);
-		ponudaServis.save(ponuda);
-		Oglas ogl = oglServis.addPonuda(ponuda, id);
-		//oglServis.save(ogl);
+		
+		if(!userServis.nemozePonuditi(oglServis.find(id), user)) {
+			if(!userServis.daoPonudu(oglServis.find(id), user)) {
+				ponuda.setUser(user);
+				//ponudaServis.save(ponuda);
+				Oglas ogl = oglServis.addPonuda(ponuda, id);
+				//oglServis.save(ogl);
+			}
+			else {
+				System.out.println("Ne mozete dati dve ponude");
+			}
+		}
+		else {
+			System.out.println("Ne mozete dati ponudu na svoj oglas");
+		}
 		
 		return "redirect:../ponude/" + id;
 	

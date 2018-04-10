@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
@@ -132,6 +133,28 @@ public class RegularUserServiceImpl implements RegularUserService {
 		regUser.getMojiOglasi().add(o);
 		regUserRepository.save(regUser);
 		return regUser;
+	}
+
+	@Override
+	public boolean daoPonudu(Oglas o, RegularUser user) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < o.getPonudeZaOglas().size(); i++) {
+			if(o.getPonudeZaOglas().get(i).getUser().equals(user)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean nemozePonuditi(Oglas o, RegularUser user) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < user.getMojiOglasi().size(); i++) {
+			if(user.getMojiOglasi().get(i).equals(o)) {
+				return true;
+			}
+		}
+		return false;
 	}
 		
 

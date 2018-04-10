@@ -24,6 +24,10 @@ INSERT INTO korisnici
 (grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
 ('BG' , 'fz@gmail.com', 'Markovski', 'Marko', 'password', '1234567890', 'FAN_ZONE', true);
 
+INSERT INTO korisnici
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('NS' , 'gmail@gmail.com', 'Jovanovic', 'Jovan', 'password', '1234567890', 'REGULAR', true);
+
 INSERT INTO obican_korisnik (user_id) VALUES ('1');
 
 INSERT INTO administrator (user_id, first_login) VALUES ('2', true);
@@ -35,6 +39,8 @@ INSERT INTO administrator (user_id, first_login) VALUES ('4', true);
 INSERT INTO obican_korisnik (user_id) VALUES ('5');
 
 INSERT INTO administrator (user_id, first_login) VALUES ('6', true);
+
+INSERT INTO obican_korisnik (user_id) VALUES ('7');
 
 --=====================================================================================================
 --Bioskopi
