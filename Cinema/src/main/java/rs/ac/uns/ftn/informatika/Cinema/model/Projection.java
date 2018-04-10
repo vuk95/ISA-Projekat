@@ -27,6 +27,10 @@ public class Projection {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private MoviePerformance moviePerformance;
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private CinemaTheatre cinemaTheatre;
 	
 	@Column(nullable = false)
 	private Date date;

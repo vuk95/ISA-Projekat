@@ -123,8 +123,3 @@ INSERT INTO film_predstava
 
 
 --====================================================================================================================================
-
---Projekcije
-
-INSERT INTO repertoar_bioskop_pozoriste (pozoriste_bioskop_id,film_predstava_id) values (9,1);
-INSERT INTO repertoar_bioskop_pozoriste (pozoriste_bioskop_id,film_predstava_id) values (3,2);
