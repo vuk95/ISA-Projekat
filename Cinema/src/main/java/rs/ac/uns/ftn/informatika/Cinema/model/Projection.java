@@ -70,6 +70,14 @@ public class Projection {
 		this.moviePerformance = moviePerformance;
 	}
 
+	public CinemaTheatre getCinemaTheatre() {
+		return cinemaTheatre;
+	}
+
+	public void setCinemaTheatre(CinemaTheatre cinemaTheatre) {
+		this.cinemaTheatre = cinemaTheatre;
+	}
+	
 	public Date getDate() {
 		return date;
 	}

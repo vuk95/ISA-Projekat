@@ -24,17 +24,7 @@
   				<th>Opis</th>
 			</tr>
 			
-			<tr th:each="projekcija, iterStat: ${bioskop.repertoarCT}">
-				
-				<td th:text="${projekcija.name}"></td>
-				<td th:text="${projekcija.genre}"></td>
-				<td th:text="${projekcija.duration}"></td>
-				<td th:text="${projekcija.director}"></td>
-				<td th:text="${projekcija.description}"></td>
-				<td><a>Dodaj</a></td>
-				<td><a th:href="${'/cinematheatre/updateProjekcije/' + projekcija.Id}">Izmeni</a></td>
-				<td><a>Obrisi</a></td>	
-			</tr>
+			
 			
 			
 			</table>
