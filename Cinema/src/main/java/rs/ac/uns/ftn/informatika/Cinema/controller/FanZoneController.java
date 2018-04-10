@@ -310,9 +310,11 @@ public class FanZoneController {
 		if(!userServis.nemozePonuditi(oglServis.find(id), user)) {
 			if(!userServis.daoPonudu(oglServis.find(id), user)) {
 				ponuda.setUser(user);
+				ponuda.setOglas(oglServis.find(id));
 				//ponudaServis.save(ponuda);
 				Oglas ogl = oglServis.addPonuda(ponuda, id);
 				//oglServis.save(ogl);
+				
 			}
 			else {
 				System.out.println("Ne mozete dati dve ponude");
@@ -324,6 +326,41 @@ public class FanZoneController {
 		
 		return "redirect:../ponude/" + id;
 	
+	}
+	
+	@RequestMapping(value = "/ponudeprim/{id}", method = RequestMethod.GET)
+	public String ponudePrimljene(@PathVariable("id") Long id, ModelMap map) {
+		
+		Oglas oglas = oglServis.find(id);
+		
+		map.put("oglas", oglas);
+		
+		return "primljene";
+	}
+	
+	@RequestMapping(value = "/accept/{id}", method = RequestMethod.GET)
+	public String accept(@PathVariable("id") Long id, ModelMap map) {
+		
+
+		
+		Ponuda ponuda = ponudaServis.find(id);
+		Oglas o = ponuda.getOglas();
+		for(int i = 0; i < o.getPonudeZaOglas().size(); i++) {
+			if(o.getPonudeZaOglas().get(i).getId().equals(id)) {
+				if(!ponuda.isPrihvacena()) {
+				ponuda.setPrihvacena(true);
+				ponudaServis.save(ponuda);
+				}
+			}
+			else {
+				o.getPonudeZaOglas().get(i).setPrihvacena(false);
+				ponudaServis.save(o.getPonudeZaOglas().get(i));
+			}
+			//o.getPonudeZaOglas().get(i).setPrihvacena(false);
+			//ponudaServis.save(o.getPonudeZaOglas().get(i));
+		}
+		
+		return "redirect:../mojiOglasi";
 	}
 	
 }

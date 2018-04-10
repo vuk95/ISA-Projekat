@@ -5,18 +5,22 @@
 	<body>
 		<h1>Ponude za:</h1>
 		<p th:text = "${oglas.naziv}"></p>
-		<a th:href="@{'/fanzone/offer/' + ${oglas.id}}">Daj ponudu</a>
 		<table border = "1">
 			<tr>
 				<th>Id</th>
 				<th>Iznos</th>
 				<th>Ponudjac</th>
+				<th>Opcije</th>
 			</tr>
 			<tr th:each="ponuda, iterStat: ${oglas.ponudeZaOglas}">
 				
 				<td th:text="${ponuda.id}"></td>
 				<td th:text="${ponuda.iznos}"></td>
-				<td th:text="${ponuda.user.email}"></td>		
+				<td th:text="${ponuda.user.email}"></td>	
+				<td>
+					<div th:if= "${ponuda.prihvacena} == false"><a th:href = "${'/fanzone/accept/' + ponuda.id}">Prihvati</a></div>
+					<div th:if = "${ponuda.prihvacena} == true"><p>Prihvaceno</p></div>
+				</td>	
 			</tr>
 		</table>
 	</body>

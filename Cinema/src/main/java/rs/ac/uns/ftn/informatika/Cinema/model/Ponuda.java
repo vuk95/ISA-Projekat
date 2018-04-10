@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
-//POSTOJI GRESKA DA KREIRA DUPLIKATE
 @Entity(name="Ponuda") 	
 public class Ponuda {
 
@@ -26,6 +25,13 @@ public class Ponuda {
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private RegularUser user;
+	
+	@ManyToOne
+	@JoinColumn(name = "oglas_id", referencedColumnName = "oglas_id")
+	private Oglas oglas;
+	
+	@Column
+	private boolean prihvacena;
 	
 	public Ponuda() {
 		
@@ -53,6 +59,22 @@ public class Ponuda {
 
 	public void setUser(RegularUser user) {
 		this.user = user;
+	}
+	
+	public Oglas getOglas() {
+		return oglas;
+	}
+
+	public void setOglas(Oglas oglas) {
+		this.oglas = oglas;
+	}
+
+	public boolean isPrihvacena() {
+		return prihvacena;
+	}
+
+	public void setPrihvacena(boolean prihvacena) {
+		this.prihvacena = prihvacena;
 	}
 	
 }

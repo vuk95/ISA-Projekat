@@ -3,19 +3,23 @@
 		<title>Moji oglasi</title>
 	</head>
 	<body>
-		<h3>Moje rezervacije</h3>
+		<h3>Moji oglasi</h3>
 		<table border = "1">
 			<tr>
 				<th>Id</th>
 				<th>Naziv</th>
 				<th>Datum</th>
 				<th>Opis</th>
+				<th>Opcije</th>
 			</tr>
 			<tr th:each="oglas, iterStat: ${user.mojiOglasi}"  th:if="${oglas.odobren} == true">
 				<td th:text="${oglas.id}"></td>
 				<td th:text="${oglas.naziv}"></td>
 				<td th:text="${oglas.datum}"></td>
 				<td th:text="${oglas.opis}"></td>
+				<td>
+					<a th:href = "${'/fanzone/ponudeprim/' + oglas.id}">Ponude</a>
+				</td>
 			</tr>
 		
 		</table>
