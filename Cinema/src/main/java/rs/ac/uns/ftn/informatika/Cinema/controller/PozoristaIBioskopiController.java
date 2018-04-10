@@ -182,21 +182,32 @@ public class PozoristaIBioskopiController {
 		
 	}
 
-/*	
 
- 	@RequestMapping(value = "/deletePredstave/{id}" , method = RequestMethod.GET)
+	@RequestMapping(value = "deletePredstave/{id}" , method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Long id) {
+		
+		pservice.delete(id);
+		
+		return "redirect:../getPredstave";
+		
+	}
+	
+
+ /*	@RequestMapping(value = "/deletePredstave/{id}" , method = RequestMethod.GET)
 	public String deletePredstave(@PathVariable("id") Long id,HttpServletRequest request) {
 		
-		pservice.delete(pservice.findOne(id));
+		MoviePerformance predstava = pservice.findOne(id);
 		
 		String referer = request.getHeader("Referer");
+		
+		pservice.delete(predstava);
 		
 		return "redirect:"+ referer; 
 		//bezveze dodato, posto svakako ne moze return "redirect:../cinematheatre/deletePredstave/{id}"
 		
 	}
 
-	*/
 	
+	*/
 	
 }

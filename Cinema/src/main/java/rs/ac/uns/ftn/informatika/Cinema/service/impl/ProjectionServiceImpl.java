@@ -42,10 +42,26 @@ public class ProjectionServiceImpl implements ProjectionService {
 	}
 
 	@Override
+	public MoviePerformance delete(Long id) {
+		
+		MoviePerformance mp = prepository.findOne(id);
+		
+		if(mp == null) {
+			
+			throw new IllegalArgumentException("Tried to delete"
+					+ "non-existant movie-performance projection");
+		}
+		
+			prepository.delete(mp);
+		
+		return mp;
+	}
+
+	/*@Override
 	public void delete(MoviePerformance mp) {
 		prepository.delete(mp);
 		
 	}
-
+*/
 	
 }

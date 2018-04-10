@@ -33,7 +33,7 @@
 				<td th:text="${predstava.description}"></td>
 				<td><a>Dodaj</a></td>
 				<td><a th:href="${'/cinematheatre/updatePredstave/' + predstava.Id}">Izmeni</a></td>
-				<td><a>Obrisi</a></td>				
+				<td><a th:href="${'/cinematheatre/deletePredstave/' + predstava.Id}">Obrisi</a></td>				
 			</tr>
 			
 			
