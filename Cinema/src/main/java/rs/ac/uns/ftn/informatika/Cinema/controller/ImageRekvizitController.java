@@ -30,16 +30,16 @@ public class ImageRekvizitController {
 
 	@Autowired
 	private RekvizitService rekvizitService;
-	
-    @GetMapping("rekvizit/{id}/image")
+	//fz admin
+    @GetMapping("fzrekvizit/{id}/image")
     public String showUploadForm(@PathVariable Long id, ModelMap map){
 
         map.put("rekvizit",rekvizitService.find(id));
 
         return "imageuploadform";
     }
-    
-    @PostMapping("rekvizit/{id}/image")
+    //fz admin
+    @PostMapping("fzrekvizit/{id}/image")
     public String handleImagePost(@PathVariable Long id, @RequestParam("imagefile") MultipartFile file){
 
         imageService.saveImageFile(id,file);
@@ -47,7 +47,7 @@ public class ImageRekvizitController {
         //return "redirect:/fanzone/show/" + id;
         return "redirect:/fanzone/getRekviziti";
     }
-    
+    //moze i obican
     @GetMapping("rekvizit/{id}/rekvizitimage")
     public void renderImageFromDB(@PathVariable Long id, HttpServletResponse response) throws IOException {
     	

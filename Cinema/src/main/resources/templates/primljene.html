@@ -18,7 +18,7 @@
 				<td th:text="${ponuda.iznos}"></td>
 				<td th:text="${ponuda.user.email}"></td>	
 				<td>
-					<div th:if= "${ponuda.prihvacena} == false"><a th:href = "${'/fanzone/accept/' + ponuda.id}">Prihvati</a></div>
+					<div th:if= "${ponuda.prihvacena} == false"><a th:href = "${'/fanzone/getOglasi/accept/' + ponuda.id}">Prihvati</a></div>
 					<div th:if = "${ponuda.prihvacena} == true"><p>Prihvaceno</p></div>
 				</td>	
 			</tr>

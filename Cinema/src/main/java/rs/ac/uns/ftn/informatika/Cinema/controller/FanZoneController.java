@@ -58,7 +58,7 @@ public class FanZoneController {
 		return "fanzone";
 		
 	}
-	
+	//fz admin
 	@RequestMapping(value = "/getRekviziti", method = RequestMethod.GET)
 	public String rekviziti(ModelMap map) {
 		
@@ -66,7 +66,7 @@ public class FanZoneController {
 		return "rekviziti";
 		
 	}
-	
+	//obican
 	@RequestMapping(value = "/getRekvizitiObican", method = RequestMethod.GET)
 	public String rekvizitiObican(ModelMap map) {
 		
@@ -76,7 +76,7 @@ public class FanZoneController {
 		return "rekvizitiObican";
 		
 	}
-	
+	//obican
 	@RequestMapping(value = "/getOglasi", method = RequestMethod.GET)
 	public String oglasi(ModelMap map) {
 		
@@ -84,7 +84,7 @@ public class FanZoneController {
 		return "oglas";
 		
 	}
-	
+	//fz admin
 	@RequestMapping(value = "/getOglasiAdmin", method = RequestMethod.GET)
 	public String oglasiAdmin(ModelMap map) {
 		
@@ -92,16 +92,16 @@ public class FanZoneController {
 		return "oglasAdmin";
 		
 	}
-	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	//fz admin
+	@RequestMapping(value = "getRekviziti/add", method = RequestMethod.GET)
 	public String add(ModelMap map) {
 		
 		map.put("rekvizit", new ZvanicniRekvizit());
 		return "dodajRekvizit";
 	
 	}
-	
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	//fz admin
+	@RequestMapping(value = "getRekviziti/add", method = RequestMethod.POST)
 	public String add(@Valid @ModelAttribute("rekvizit") NewRekvizitForm newRekvizit , BindingResult bindingResult, ModelMap map) {
 		
 		ZvanicniRekvizit rekvizit = new ZvanicniRekvizit();
@@ -115,19 +115,19 @@ public class FanZoneController {
 		}
 		
 		servis.save(rekvizit);
-		return "redirect:../fanzone/getRekviziti";
-	
-	}
-	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable("id") Long id) {
-		
-		servis.delete(servis.find(id));
 		return "redirect:../getRekviziti";
 	
 	}
+	//fz admin
+	@RequestMapping(value = "getRekviziti/delete/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Long id) {
+		
+		servis.delete(servis.find(id));
+		return "redirect:/fanzone/getRekviziti";
 	
-	@RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+	}
+	//fz admin
+	@RequestMapping(value = "getRekviziti/show/{id}", method = RequestMethod.GET)
     public String showById(@PathVariable Long id, ModelMap map){
 		if(!servis.find(id).isRezervisan()) {
     	map.put("rekvizit",servis.find(id));
@@ -167,7 +167,8 @@ public class FanZoneController {
 	}
 	*/
 	
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	//fz admin
+	@RequestMapping(value = "getRekviziti/update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Long id, ModelMap map) {
 		if(!servis.find(id).isRezervisan()) {
 		map.put("rekvizit", servis.find(id));
@@ -179,8 +180,9 @@ public class FanZoneController {
 		
 	
 	}
+	//fz admin
 	//TREBA URADITI DA SE SALJE DTO ZBOG VALIDACIJE
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "getRekviziti/update", method = RequestMethod.POST)
 	public String edit(@Valid @ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, BindingResult bindingResult , ModelMap map) {
 		
 		if(bindingResult.hasErrors()) {
@@ -196,12 +198,12 @@ public class FanZoneController {
 		
 		servis.save(trenutniRekvizit);
 		
-		return "redirect:../fanzone/getRekviziti";
+		return "redirect:../getRekviziti";
 	
 	}
-	
+	//obican
 	//OVA METODA BI SE MOGLA REFAKTORISATI
-	@RequestMapping(value = "/reserve/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "getRekvizitiObican/reserve/{id}", method = RequestMethod.GET)
 	public String rezervisi(@PathVariable("id") Long id, ModelMap map) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -226,9 +228,10 @@ public class FanZoneController {
 		return "redirect:/fanzone/getRekvizitiObican";
 	}
 	
+	//obican
 	//ZASTITI DA ADMIN NE MOZE OVDE DA UDJE ZAPRAVO SVI LINKOVI UNUTAR ONOGA STO JE ZABRANJENO
 	//SU DOZVOLJENI TO ISPRAVITI
-	@RequestMapping(value = "/addOglas", method = RequestMethod.GET)
+	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.GET)
 	public String addOglas(ModelMap map) {
 		
 		
@@ -236,9 +239,10 @@ public class FanZoneController {
 		return "dodajOglas";
 	
 	}
+	//obican
 	//TREBA URADITI DA SE SALJE DTO ZBOG VALIDACIJE
 	//TREBA URADITI UPLOAD SLIKE
-	@RequestMapping(value = "/addOglas", method = RequestMethod.POST)
+	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.POST)
 	public String addOglas(@ModelAttribute("oglas") Oglas oglas, Principal principal, ModelMap map) {
 			
 		oglServis.save(oglas);
@@ -246,11 +250,12 @@ public class FanZoneController {
 		RegularUser reg = userServis.addMojOglas(oglas, user.getId());
 		userServis.save(reg);
 		
-		return "redirect:../fanzone/getOglasi";
+		return "redirect:../getOglasi";
 	
 	}
 	
-	@RequestMapping(value = "/approve/{id}", method = RequestMethod.GET)
+	//admin fz
+	@RequestMapping(value = "getOglasiAdmin/approve/{id}", method = RequestMethod.GET)
 	public String odobri(@PathVariable("id") Long id, ModelMap map) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -260,10 +265,11 @@ public class FanZoneController {
 		zaOdobravanje.setOdobren(true);
 		oglServis.save(zaOdobravanje);
 		}
-		return "redirect:../getOglasiAdmin";
+		return "redirect:/fanzone/getOglasiAdmin";
 	}
 	
-	@RequestMapping(value = "/myReservations")
+	//obican
+	@RequestMapping(value = "getRekvizitiObican/myReservations")
 	public String mojeRezervacije(Principal principal, ModelMap map) {
 		
 		RegularUser user = userServis.findByEmail(principal.getName());
@@ -272,7 +278,8 @@ public class FanZoneController {
 		return "mojeRezervacije";
 	}
 	
-	@RequestMapping(value = "/mojiOglasi")
+	//obican
+	@RequestMapping(value = "getOglasi/mojiOglasi")
 	public String mojiOglasi(Principal principal, ModelMap map) {
 		
 		
@@ -282,7 +289,8 @@ public class FanZoneController {
 		return "mojiOglasi";
 	}
 	
-	@RequestMapping(value = "/ponude/{id}", method = RequestMethod.GET)
+	//obican
+	@RequestMapping(value = "getOglasi/ponude/{id}", method = RequestMethod.GET)
 	public String ponude(@PathVariable("id") Long id, ModelMap map) {
 		
 		Oglas oglas = oglServis.find(id);
@@ -291,8 +299,8 @@ public class FanZoneController {
 		
 		return "ponudeOglas";
 	}
-	
-	@RequestMapping(value = "/offer/{id}", method = RequestMethod.GET)
+	//obican
+	@RequestMapping(value = "getOglasi/offer/{id}", method = RequestMethod.GET)
 	public String offer(@PathVariable("id") Long id, ModelMap map) {
 		
 		map.put("ponuda", new Ponuda());
@@ -300,8 +308,8 @@ public class FanZoneController {
 		return "dajPonudu";
 	
 	}
-	
-	@RequestMapping(value = "/offer/{id}", method = RequestMethod.POST)
+	//obican
+	@RequestMapping(value = "getOglasi/offer/{id}", method = RequestMethod.POST)
 	public String addOglas(@PathVariable("id") Long id, @ModelAttribute("ponuda") Ponuda ponuda, Principal principal, ModelMap map) {
 			
 		
@@ -324,11 +332,11 @@ public class FanZoneController {
 			System.out.println("Ne mozete dati ponudu na svoj oglas");
 		}
 		
-		return "redirect:../ponude/" + id;
+		return "redirect:/fanzone/getOglasi/ponude/" + id;
 	
 	}
-	
-	@RequestMapping(value = "/ponudeprim/{id}", method = RequestMethod.GET)
+	//obican
+	@RequestMapping(value = "getOglasi/ponudeprim/{id}", method = RequestMethod.GET)
 	public String ponudePrimljene(@PathVariable("id") Long id, ModelMap map) {
 		
 		Oglas oglas = oglServis.find(id);
@@ -337,8 +345,9 @@ public class FanZoneController {
 		
 		return "primljene";
 	}
-	
-	@RequestMapping(value = "/accept/{id}", method = RequestMethod.GET)
+	//obican
+	//OVAKVE STVARI BI TREBALO ZASTITI DA MOZE SAMO TAJ REGULAR USER CIJA JE PONUDA DA PRIHVATI
+	@RequestMapping(value = "getOglasi/accept/{id}", method = RequestMethod.GET)
 	public String accept(@PathVariable("id") Long id, ModelMap map) {
 		
 
@@ -360,10 +369,10 @@ public class FanZoneController {
 			//ponudaServis.save(o.getPonudeZaOglas().get(i));
 		}
 		
-		return "redirect:../mojiOglasi";
+		return "redirect:/fanzone/getOglasi/mojiOglasi";
 	}
-	
-	@RequestMapping(value = "/obavestenja/{id}", method = RequestMethod.GET)
+	//obican
+	@RequestMapping(value = "getOglasi/obavestenja/{id}", method = RequestMethod.GET)
 	public String obavestenja(@PathVariable("id") Long id, ModelMap map, Principal principal) {
 		Oglas o = oglServis.find(id);
 		RegularUser user = userServis.findByEmail(principal.getName());

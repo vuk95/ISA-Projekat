@@ -3,7 +3,7 @@
 	</head>
 	<body>
 		<h1>Upload Image</h1>
-		<form  action="http:\\localhost" method="post" enctype="multipart/form-data" th:action="@{'/rekvizit/' + ${rekvizit.getId()} + '/image'}">
+		<form  action="http:\\localhost" method="post" enctype="multipart/form-data" th:action="@{'/fzrekvizit/' + ${rekvizit.getId()} + '/image'}">
          <label>Select File</label>
          <input id="imagefile" name="imagefile" type="file" class="file">
          <button type="submit">Submit</button>

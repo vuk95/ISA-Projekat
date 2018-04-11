@@ -19,7 +19,7 @@
 				<td th:text="${oglas.opis}"></td>
 				<td th:text="${oglas.datum}"></td>
 				<td>
-					<div th:if="${oglas.odobren} == false"><a th:href="${'/fanzone/approve/' + oglas.id}">Odobri</a></div>
+					<div th:if="${oglas.odobren} == false"><a th:href="${'/fanzone/getOglasiAdmin/approve/' + oglas.id}">Odobri</a></div>
 					<div th:if="${oglas.odobren} == true">Odobren oglas</div>
 				</td>
 			</tr>
