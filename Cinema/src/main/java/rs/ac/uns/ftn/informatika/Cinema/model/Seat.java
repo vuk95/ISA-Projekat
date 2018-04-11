@@ -24,7 +24,7 @@ public class Seat {
 	private RegularUser user;
 	
 	@ManyToOne
-	private Projection projection;
+	private Projections projection;
 	
 	public Seat() {
 		
@@ -54,11 +54,11 @@ public class Seat {
 		this.user = user;
 	}
 
-	public Projection getProjection() {
+	public Projections getProjection() {
 		return projection;
 	}
 
-	public void setProjection(Projection projection) {
+	public void setProjection(Projections projection) {
 		this.projection = projection;
 	}
 	
