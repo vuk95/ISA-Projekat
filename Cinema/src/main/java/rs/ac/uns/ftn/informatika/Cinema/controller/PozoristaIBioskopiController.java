@@ -104,7 +104,7 @@ public class PozoristaIBioskopiController {
 				
 		return "projekcije";
 	}
-	
+	//komentar za probu komita...
 /*	//Prikazuje predstave za dato pozoriste
 	@RequestMapping(value = "/getPredstave/{id}" , method = RequestMethod.GET)
 	public String predstave(@PathVariable("id") Long id,ModelMap map) {
