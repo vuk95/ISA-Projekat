@@ -27,7 +27,7 @@ public class Hall {
 	private int seatNumber; //broj sedista po redu
 	 
 	@OneToMany(fetch = FetchType.EAGER)
-	private Set<Projection> projections;
+	private Set<Projections> projections;
 	
 	
 	 public Hall() {
@@ -74,12 +74,12 @@ public class Hall {
 		this.seatNumber = seatNumber;
 	}
 
-	public Set<Projection> getProjections() {
+	public Set<Projections> getProjections() {
 		return projections;
 	}
 
 
-	public void setProjections(Set<Projection> projections) {
+	public void setProjections(Set<Projections> projections) {
 		this.projections = projections;
 	}
 	

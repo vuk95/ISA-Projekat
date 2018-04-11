@@ -120,7 +120,7 @@ margin-left: 4px;
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
 				</td>
-				<td><a>Pogledaj</a></td>
+				<td><a th:href="${'/cinematheatre/getProjekcije/' + bioskop.Id}">Pogledaj</a></td>
 				<td><textarea th:text="${bioskop.description}"></textarea></td>
 				<td><a th:href="${'/cinematheatre/updateCinema/' + bioskop.Id}">Izmeni</a></td>
 				</tr>
