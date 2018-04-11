@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
+import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
@@ -140,8 +141,11 @@ public class PozoristaIBioskopiController {
 	
 	
 	@RequestMapping(value = "/updateProjekcije" , method = RequestMethod.POST)
-	public String editProjekcije(@ModelAttribute("projekcija") Projections projekcija,ModelMap map,HttpServletRequest request) {
+	public String editProjekcije(@Valid @ModelAttribute("projekcija") Projections projekcija,BindingResult result,ModelMap map,HttpServletRequest request) {
 		
+		if(result.hasErrors()) {
+			return "izmeniProjekcije";
+		}
 
 		Projections currentMovie =  pservice.findOne(projekcija.getId());
 		
@@ -163,7 +167,11 @@ public class PozoristaIBioskopiController {
 	
 	
 	@RequestMapping(value = "/updatePredstave" , method = RequestMethod.POST)
-	public String editPredstave(@ModelAttribute("predstava") Projections predstava,ModelMap map,HttpServletRequest request) {
+	public String editPredstave(@Valid @ModelAttribute("predstava") Projections predstava,BindingResult result,ModelMap map,HttpServletRequest request) {
+		
+		if(result.hasErrors()) {
+			return "izmeniPredstave";
+		}
 		
 		Projections currentPerformance =  pservice.findOne(predstava.getId());
 		
@@ -183,15 +191,18 @@ public class PozoristaIBioskopiController {
 		
 	}
 
-/*
-	@RequestMapping(value = "deletePredstave/{id}" , method = RequestMethod.GET)
-	public String delete(@PathVariable("id") Long id) {
+
+	@RequestMapping(value = "/deleteProjekcije/{id}" , method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Long id,HttpServletRequest request) {
 		
 		pservice.delete(id);
 		
-		return "redirect:../getPredstave";
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:"+ referer; 
 		
 	}
+
 	
 
  /*	@RequestMapping(value = "/deletePredstave/{id}" , method = RequestMethod.GET)
@@ -211,4 +222,32 @@ public class PozoristaIBioskopiController {
 	
 	
 	*/
+	
+	@RequestMapping(value = "/getProjekcije/{id}/addProjekcije" , method = RequestMethod.GET)
+	public String addProjekcije(ModelMap map) {
+		
+		map.put("projekcija",new Projections());
+		
+		return "dodajProjekciju";
+	}
+	
+	@RequestMapping(value = "/getProjekcije/{id}/addProjekcije" , method = RequestMethod.POST)
+	public String addProjekcije(@Valid @PathVariable("id") @ModelAttribute("projekcija") NewProjectionsForm newProjection,BindingResult result,ModelMap map,Long id) {
+		
+		Projections projekcija = new Projections();
+		
+		if(result.hasErrors()) {
+			return "dodajProjekciju";
+		}
+		
+		if(!result.hasErrors()) {
+			projekcija = pservice.createNewProjections(newProjection);
+		}
+		
+		map.put("bioskop",service.findOne(id));		
+		pservice.save(projekcija);
+	
+		return "redirect:../cinematheatre/getProjekcije/" + projekcija.getId();
+	}
+	
 }

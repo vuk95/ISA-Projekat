@@ -1,12 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Izmeni pozorisne predstave</title>
+		<title>Dodaj novu projekciju</title>
 	</head>
 	<body>
-
-	<h3>Izmeni Predstave:</h3>
-	
-	<form th:action="@{/cinematheatre/updatePredstave}" th:object="${predstava}" method ="post">
+		<h3>Dodaj Film:</h3>
+		<form th:action="@{'/cinematheatre/getProjekcije'}" th:object="${projekcija}" method ="post">
 			<table>
 				<tr>
 					<td>Naziv:</td>
@@ -35,19 +33,14 @@
 				<tr>
 					<td>Opis:</td>
 					<td><input type = "text" th:field="*{description}"></td>
-					
 				</tr>
 				
 				<tr>
 					<td>&nbsp;</td>
 					<td><input type = "submit" value="Save">
-						<input type = "hidden" th:field="*{id}">
 					</td>
 				</tr>
 			</table>
 		</form>
-
-
-	</body>	
-	
-</html>	
+	</body>
+</html>

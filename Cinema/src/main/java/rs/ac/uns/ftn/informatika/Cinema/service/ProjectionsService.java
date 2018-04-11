@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.service;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 
 public interface ProjectionsService {
@@ -9,5 +10,11 @@ public interface ProjectionsService {
 	public Iterable<Projections> findAll();
 	
 	public void save(Projections p);
+	
+	public Projections delete(Long id);
+	
+	public Projections createNewProjections(NewProjectionsForm form);
+	
+	public NewProjectionsForm seForm(Projections p);
 	
 }

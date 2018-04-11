@@ -15,6 +15,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.GenerationType;
 
 @Entity(name = "Projekcije")
@@ -25,6 +31,7 @@ public class Projections {
 	private Long Id;
 	
 	@Column(name = "Naziv", nullable = false)
+	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String name;
 	
 	//enumeracija koja ce definisati tip projekcije- (filmska ili pozorisna projekcija)
@@ -33,6 +40,7 @@ public class Projections {
 	//private MoviePerformanceType type;
 	
 	@Column(name = "Zanr")
+	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String genre;
 	
 	public String getName() {
@@ -92,6 +100,9 @@ public class Projections {
 	}
 
 	@Column(name = "Trajanje", nullable = false)
+	@NotNull(message = "Morate uneti trajanje projekcije!")
+	@Min(value=30, message = "Trajanje projekcije ne sme biti manje od 30 minuta!")
+	@Max(value=300, message = "Trajanje projekcije ne sme biti vece od 300 minuta!")
 	private int duration;
 	
 	@Column(name = "Opis")
@@ -102,6 +113,7 @@ public class Projections {
 	private Byte[] picture;
 	
 	@Column(name = "Reditelj", nullable = false)
+	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String director;
 	
 	@ManyToMany

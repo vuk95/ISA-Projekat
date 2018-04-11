@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.repository.ProjectionsRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
@@ -30,5 +31,51 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		prepository.save(p);
 		
 	}
+
+	@Override
+	public Projections delete(Long id) {
+		
+		Projections p = prepository.findOne(id);
+			
+		if(p == null) {
+			throw new IllegalArgumentException("Tried to delete"
+					+ "non-existant movie-performance projection");
+		}
+			
+		prepository.delete(p);
+			
+			return p;
+		
+	}
+
+	@Override
+	public Projections createNewProjections(NewProjectionsForm form) {
+		
+		Projections p = new Projections();
+		
+		p.setName(form.getName());
+		p.setGenre(form.getGenre());
+		p.setDuration(form.getDuration());
+		p.setDirector(form.getDirector());
+		p.setDescription(form.getDescription());
+		
+		return prepository.save(p);
+	}
+
+	@Override
+	public NewProjectionsForm seForm(Projections p) {
+		
+		NewProjectionsForm form =  new NewProjectionsForm();
+		
+		form.setName(p.getName());
+		form.setGenre(p.getGenre());
+		form.setDuration(p.getDuration());
+		form.setDirector(p.getDirector());
+		form.setDescription(p.getDescription());
+		
+		return form;
+	}
+
+	
 
 }
