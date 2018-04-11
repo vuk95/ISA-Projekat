@@ -25,4 +25,10 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		return prepository.findAll();
 	}
 
+	@Override
+	public void save(Projections p) {
+		prepository.save(p);
+		
+	}
+
 }

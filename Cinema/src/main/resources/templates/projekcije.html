@@ -32,7 +32,7 @@
 				<td th:text="${projekcija.director}"></td>
 				<td th:text="${projekcija.description}"></td>
 				<td><a>Dodaj</a></td>
-				<td><a>Izmeni</a></td>
+				<td><a th:href="${'/cinematheatre/updateProjekcije/' + projekcija.Id}">Izmeni</a></td>
 				<td><a>Obrisi</a></td>	
 			</tr>
 			

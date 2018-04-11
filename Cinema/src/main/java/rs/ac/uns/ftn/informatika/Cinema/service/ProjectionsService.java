@@ -7,6 +7,7 @@ public interface ProjectionsService {
 	public Projections findOne(Long id);
 	
 	public Iterable<Projections> findAll();
-
+	
+	public void save(Projections p);
 	
 }
