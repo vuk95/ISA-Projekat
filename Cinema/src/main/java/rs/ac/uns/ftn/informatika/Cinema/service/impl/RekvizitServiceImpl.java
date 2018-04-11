@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.RekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.repository.RekvizitRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.RekvizitService;
 
@@ -61,6 +64,16 @@ public class RekvizitServiceImpl implements RekvizitService{
 		forma.setOpis(rekvizit.getOpis());
 		
 		return forma;
+	}
+	
+	@Override
+	public ZvanicniRekvizit updateZvanicniRekvizit(RekvizitForm form) {
+		ZvanicniRekvizit rekvizit = repository.findOne(form.getId());
+		rekvizit.setIme(form.getIme());
+		rekvizit.setCena(form.getCena());
+		rekvizit.setOpis(form.getOpis());
+		
+		return repository.save(rekvizit);
 	}
 
 

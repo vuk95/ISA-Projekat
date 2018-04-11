@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.service;
 
+
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
 
 public interface PonudaService {

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.NewOglasForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
@@ -43,6 +45,17 @@ public class OglasServiceImpl implements OglasService{
 		oglas.getPonudeZaOglas().add(p);
 		repository.save(oglas);
 		return oglas;
+	}
+	
+	@Override
+	public Oglas createNewOglas(NewOglasForm oglasForm) {
+		// TODO Auto-generated method stub
+		Oglas oglas = new Oglas();
+		oglas.setNaziv(oglasForm.getNaziv());
+		oglas.setOpis(oglasForm.getOpis());
+		oglas.setDatum(oglasForm.getDatum());
+		
+		return repository.save(oglas);
 	}
 
 }

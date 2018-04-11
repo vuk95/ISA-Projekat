@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
+import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.repository.PonudaRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.PonudaService;
 

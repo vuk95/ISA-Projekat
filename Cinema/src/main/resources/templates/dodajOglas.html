@@ -11,14 +11,17 @@
 				<tr>
 					<td>Naziv:</td>
 					<td><input type = "text" th:field="*{naziv}"></td>
+					<td th:if="${#fields.hasErrors('naziv')}" th:errors="*{naziv}">Ime Error</td>
 				</tr>
 				<tr>
 					<td>Datum:</td>
 					<td><input type="date" id="dateTime" th:field="*{datum}"></td>
+					<td th:if="${#fields.hasErrors('datum')}" th:errors="*{datum}">Datum Error</td>
 				</tr>
 				<tr>
 					<td>Opis:</td>
 					<td><input type = "text" th:field="*{opis}"></td>
+					<td th:if="${#fields.hasErrors('opis')}" th:errors="*{opis}">Opis Error</td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>

@@ -29,7 +29,7 @@ public class Oglas {
 	
 	@Column(name="Opis", columnDefinition="VARCHAR(60)")
 	private String opis;
-	
+	//posle ispraviti da ovo bude date
 	@Column(name="Datum", columnDefinition="VARCHAR(40)")
 	private String datum;
 	//slika

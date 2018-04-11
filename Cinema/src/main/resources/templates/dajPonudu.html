@@ -11,6 +11,7 @@
 				<tr>
 					<td>Izons:</td>
 					<td><input type = "text" th:field="*{iznos}"></td>
+					<td th:if="${#fields.hasErrors('iznos')}" th:errors="*{iznos}">Iznos Error</td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.NewOglasForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
+import rs.ac.uns.ftn.informatika.Cinema.model.RekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
@@ -134,36 +136,36 @@ public class FanZoneController {
 		return "greskaIzmena";
 		
     }
-	//NEKI PROBLEM SA DTO KOD UPDATEA
-	/*@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	//fz admin
+	@RequestMapping(value = "getRekviziti/update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Long id, ModelMap map) {
+		if(!servis.find(id).isRezervisan()) {
+		RekvizitForm rekvizit = new RekvizitForm(servis.find(id));
 		
-		map.put("rekvizit", servis.setForm(servis.find(id)));
+		map.put("rekvizit", rekvizit);
+		
 		return "izmeniRekvizit";
-	
+		}
+		return "greskaIzmena";
 	}
-	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(@Valid @ModelAttribute("rekvizit") NewRekvizitForm forma, BindingResult bindingResult , ModelMap map) {
+	//fz admin
+	@RequestMapping(value = "getRekviziti/update", method = RequestMethod.POST)
+	public String edit(@Valid @ModelAttribute("rekvizit") RekvizitForm rekvizit, BindingResult bindingResult , ModelMap map) {
 		
-		ZvanicniRekvizit trenutniRekvizit = new ZvanicniRekvizit();
 		
 		if(bindingResult.hasErrors()) {
 			return "izmeniRekvizit";
 		}
 		
 		if(!bindingResult.hasErrors()) {
-			trenutniRekvizit = servis.createNewZvanicniRekvizit(forma);
+			servis.updateZvanicniRekvizit(rekvizit);
 		}
 		
-		
-		
-		servis.save(trenutniRekvizit);
-		return "redirect:../fanzone/getRekviziti";
+		return "redirect:/fanzone/getRekviziti";
 	
 	}
-	*/
 	
+	/*STARO
 	//fz admin
 	@RequestMapping(value = "getRekviziti/update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Long id, ModelMap map) {
@@ -198,6 +200,7 @@ public class FanZoneController {
 		return "redirect:../getRekviziti";
 	
 	}
+	*/
 	//obican
 	//OVA METODA BI SE MOGLA REFAKTORISATI
 	@RequestMapping(value = "getRekvizitiObican/reserve/{id}", method = RequestMethod.GET)
@@ -225,9 +228,39 @@ public class FanZoneController {
 		return "redirect:/fanzone/getRekvizitiObican";
 	}
 	
+	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.GET)
+	public String addOglas(ModelMap map) {
+		
+		
+		map.put("oglas", new Oglas());
+		return "dodajOglas";
+	
+	}
+	
+	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.POST)
+	public String addOglas(@Valid @ModelAttribute("oglas") NewOglasForm o,BindingResult result, Principal principal, ModelMap map) {
+		
+		Oglas oglas = new Oglas();
+		
+		if(result.hasErrors()) {
+			return "dodajOglas";
+		}
+		if(!result.hasErrors()) {
+		
+			oglas = oglServis.createNewOglas(o);
+		}
+			RegularUser user = userServis.findByEmail(principal.getName());
+			RegularUser reg = userServis.addMojOglas(oglas, user.getId());
+			userServis.save(reg);
+		
+		return "redirect:../getOglasi";
+	
+	}
+	
 	//obican
 	//ZASTITI DA ADMIN NE MOZE OVDE DA UDJE ZAPRAVO SVI LINKOVI UNUTAR ONOGA STO JE ZABRANJENO
 	//SU DOZVOLJENI TO ISPRAVITI
+	/*
 	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.GET)
 	public String addOglas(ModelMap map) {
 		
@@ -250,7 +283,7 @@ public class FanZoneController {
 		return "redirect:../getOglasi";
 	
 	}
-	
+	*/
 	//admin fz
 	@RequestMapping(value = "getOglasiAdmin/approve/{id}", method = RequestMethod.GET)
 	public String odobri(@PathVariable("id") Long id, ModelMap map) {
@@ -307,8 +340,12 @@ public class FanZoneController {
 	}
 	//obican
 	@RequestMapping(value = "getOglasi/offer/{id}", method = RequestMethod.POST)
-	public String addOglas(@PathVariable("id") Long id, @ModelAttribute("ponuda") Ponuda ponuda, Principal principal, ModelMap map) {
-			
+	public String addOglas(@PathVariable("id") Long id,@Valid @ModelAttribute("ponuda") Ponuda ponuda,BindingResult result, Principal principal, ModelMap map) {
+		
+		if(result.hasErrors()) {
+			map.put("oglas", oglServis.find(id));
+			return "dajPonudu";
+		}
 		
 		RegularUser user = userServis.findByEmail(principal.getName());
 		

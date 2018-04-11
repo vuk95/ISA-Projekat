@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
@@ -20,6 +21,7 @@ public class Ponuda {
 	private Long id;
 	
 	@Column(name="Cena", columnDefinition="INTEGER")
+	@Min(value=100, message = "Cena ne sme biti manja od 100")
 	private int iznos;
 	
 	@ManyToOne
