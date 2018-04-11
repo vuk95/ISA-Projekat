@@ -109,29 +109,6 @@ INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 12
 INSERT INTO poseceni_bioskopi_pozorista(user_id, cinematheatre_id) VALUES (5, 15);
 
 --=============================================================================================================================================================
---Filmovi
-INSERT INTO film_predstava(opis,reditelj,trajanje,zanr,naziv,slika,tip) values 
-('Prvi deo Marvelove trilogije o Betmenu','Kristofer Nolan','140','Akcija,Avanturisticki,Triler','Bataman Begins','bb.jpg','MOVIE');
-
-INSERT INTO film_predstava(opis,reditelj,trajanje,zanr,naziv,slika,tip) values 
-('Drugi deo Marvelove trilogije o Betmenu','Kristofer Nolan','152','Akcija,Avanturisticki','The Dark Knight','tdk.jpg','MOVIE');  
-
-INSERT INTO film_predstava(opis,reditelj,trajanje,zanr,naziv,slika,tip) values 
-('Poslednji deo Marvelove trilogije o Betmenu','Kristofer Nolan','164','Akcija,Triler','The Dark Knight Rises','tdkr.jpg','MOVIE');  
-
---==============================================================================================================================================================
---Predstave
-
-INSERT INTO film_predstava(opis,reditelj,trajanje,zanr,naziv,slika,tip) values 
-('Pretstava uradjena po motivima istoimenog dela Iva Andrica','Kokan Mladenovic','155','Drama','Na Drini Cuprija','ndc.jpg','PERFORMANCE');
-
-INSERT INTO film_predstava(opis,reditelj,trajanje,zanr,naziv,slika,tip) values 
-('Jedna od najkomicnijih srpskih pretstava','Andrija Milosevic','96','Komedija','Pevaj brate','pb.jpg','PERFORMANCE');
-
-INSERT INTO film_predstava(opis,reditelj,trajanje,zanr,naziv,slika,tip) values 
-('Jedna od najboljih srpskih predstava','Dusan Kovacevic','165','Komedija,Drama','Radovan III','r3.jpg','PERFORMANCE');
-
---===============================================================================================================================================================
 --Sale
 
 INSERT INTO hall(ime,broj_redova,broj_sedista) values ('Glavna sala',12,12);
@@ -140,25 +117,25 @@ INSERT INTO hall(ime,broj_redova,broj_sedista) values ('Velika sala',10,12);
 
 INSERT INTO hall(ime,broj_redova,broj_sedista) values ('Mala sala',9,6);
 
---================================================================================================================================================================
---Projekcije
+--==============================================================================================================================
+--Projekcije(filmovi/predstave)
 
-INSERT INTO projekcije (date,price,cinema_theatre_id,hall_id,movie_performance_id) values
-('2018-02-03','350','1','1','3');
+INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('2018-02-03','Poslednji deo Marvelove trilogije o Betmenu','Kristofer Nolan','164','Akcija,Triler','The Dark Knight Rises','tdkr.jpg','350','1','1');
 
-INSERT INTO projekcije (date,price,cinema_theatre_id,hall_id,movie_performance_id) values
-('2018-03-05','350','1','2','2');
+INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('2018-03-05','Drugi deo Marvelove trilogije o Betmenu','Kristofer Nolan','152','Akcija,Avanturisticki','The Dark Knight','tdk.jpg','350','1','2');
 
-INSERT INTO projekcije (date,price,cinema_theatre_id,hall_id,movie_performance_id) values
-('2018-01-11','350','4','1','1');
+INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('2018-01-11','Prvi deo Marvelove trilogije o Betmenu','Kristofer Nolan','140','Akcija,Avanturisticki,Triler','Bataman Begins','bb.jpg','350','4','1');
 
-INSERT INTO projekcije (date,price,cinema_theatre_id,hall_id,movie_performance_id) values
-('2018-04-01','350','9','3','4');
+INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('2018-04-01','Jedna od najboljih srpskih predstava','Dusan Kovacevic','165','Komedija,Drama','Radovan III','r3.jpg','350','9','3');
 
-INSERT INTO projekcije (date,price,cinema_theatre_id,hall_id,movie_performance_id) values
-('2018-02-10','350','14','2','6');
+INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('2018-02-10','Pretstava uradjena po motivima istoimenog dela Iva Andrica','Kokan Mladenovic','155','Drama','Na Drini Cuprija','ndc.jpg','350','14','2');
 
---================================================================================================================================================================
+--================================================================================================================================
 --Bioskop_Pozoriste_projekcije
 
 INSERT INTO bioskop_pozoriste_projections(bioskop_pozoriste_id,projections_id) values
@@ -176,20 +153,3 @@ INSERT INTO bioskop_pozoriste_projections(bioskop_pozoriste_id,projections_id) v
 INSERT INTO bioskop_pozoriste_projections(bioskop_pozoriste_id,projections_id) values
 (14,5);
 
---===============================================================================================================================================================
---Film_Predstava_projekcije
-
-INSERT INTO film_predstava_projections(film_predstava_id,projections_id) values
-(1,3);
-
-INSERT INTO film_predstava_projections(film_predstava_id,projections_id) values
-(2,2);
-
-INSERT INTO film_predstava_projections(film_predstava_id,projections_id) values
-(3,1);
-
-INSERT INTO film_predstava_projections(film_predstava_id,projections_id) values
-(4,4);
-
-INSERT INTO film_predstava_projections(film_predstava_id,projections_id) values
-(6,5);

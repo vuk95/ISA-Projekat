@@ -24,7 +24,7 @@ public class Actor {
 	private String lastname;
 	
 	@ManyToMany(mappedBy = "actors")
-	private Set<MoviePerformance> moviesPerformances = new HashSet<MoviePerformance>();
+	private Set<Projections> projections = new HashSet<Projections>();
 	
 	public Actor() {
 		
@@ -54,12 +54,13 @@ public class Actor {
 		this.lastname = lastname;
 	}
 
-	public Set<MoviePerformance> getMoviesPerformances() {
-		return moviesPerformances;
+	public Set<Projections> getProjections() {
+		return projections;
 	}
 
-	public void setMoviesPerformances(Set<MoviePerformance> moviesPerformances) {
-		this.moviesPerformances = moviesPerformances;
+	public void setProjections(Set<Projections> projections) {
+		this.projections = projections;
 	}
+
 	
 }

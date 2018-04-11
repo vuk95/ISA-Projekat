@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
-import rs.ac.uns.ftn.informatika.Cinema.model.MoviePerformance;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
-import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionService;
 
 @Controller
 @RequestMapping(value = "/cinematheatre")
@@ -24,9 +22,6 @@ public class PozoristaIBioskopiController {
 	@Autowired
 	private CinemaTheatreService service;
 		
-	@Autowired
-	private ProjectionService pservice;
-	
 	//Puni model pronadjenim pozoristima
 	@RequestMapping(value ="/getTheatre" , method = RequestMethod.GET )
 	public String pozorista(ModelMap map) {
@@ -101,16 +96,16 @@ public class PozoristaIBioskopiController {
 	    return "redirect:../cinematheatre/getTheatre";
 	}
 	
-	//Prikazuje filmske projekcije za dati bioskop
+ 	//Prikazuje filmske projekcije za dati bioskop
 	@RequestMapping(value = "/getProjekcije/{id}" , method = RequestMethod.GET)
 	public String projekcije(@PathVariable("id") Long id,ModelMap map) {
 		
 		map.put("bioskop",service.findOne(id));
-		
+				
 		return "projekcije";
 	}
 	
-	//Prikazuje predstave za dato pozoriste
+/*	//Prikazuje predstave za dato pozoriste
 	@RequestMapping(value = "/getPredstave/{id}" , method = RequestMethod.GET)
 	public String predstave(@PathVariable("id") Long id,ModelMap map) {
 		
@@ -139,10 +134,10 @@ public class PozoristaIBioskopiController {
 	
 	
 	@RequestMapping(value = "/updateProjekcije" , method = RequestMethod.POST)
-	public String editProjekcije(@ModelAttribute("projekcija") MoviePerformance projekcija,ModelMap map,HttpServletRequest request) {
+	public String editProjekcije(@ModelAttribute("projekcija") FPProjekcije projekcija,ModelMap map,HttpServletRequest request) {
 		
 
-		MoviePerformance currentMovie =  pservice.findOne(projekcija.getId());
+		FPProjekcije currentMovie =  pservice.findOne(projekcija.getId());
 		
 		currentMovie.setName(projekcija.getName());
 		currentMovie.setGenre(projekcija.getGenre());
@@ -162,9 +157,9 @@ public class PozoristaIBioskopiController {
 	
 	
 	@RequestMapping(value = "/updatePredstave" , method = RequestMethod.POST)
-	public String editPredstave(@ModelAttribute("predstava") MoviePerformance predstava,ModelMap map,HttpServletRequest request) {
+	public String editPredstave(@ModelAttribute("predstava") FPProjekcije predstava,ModelMap map,HttpServletRequest request) {
 		
-		MoviePerformance currentPerformance =  pservice.findOne(predstava.getId());
+		FPProjekcije currentPerformance =  pservice.findOne(predstava.getId());
 		
 		currentPerformance.setName(predstava.getName());
 		currentPerformance.setGenre(predstava.getGenre());

@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,18 +53,18 @@ public class CinemaTheatre implements Serializable{
 	private Set<RegularUser> regularUsers = new HashSet<RegularUser>();
 	
 	@OneToMany
-	private List<Projection> projections;
+	private List<Projections> projections =  new ArrayList<Projections>();
 	
 	
 	//TO DO: spisak karata sa popustima, konfiguracija segmenata i mesta u salama
 	
 	
+	
+
 	public CinemaTheatre() {
 		
 	}
 	
-	
-
 	public CinemaTheatre(String address,String description,String name,CinemaTheatreType type) {
 		
 		this.address = address;
@@ -120,17 +121,11 @@ public class CinemaTheatre implements Serializable{
 		this.regularUsers = regularUsers;
 	}
 	
-	public List<Projection> getProjections() {
+	public List<Projections> getProjections() {
 		return projections;
 	}
 
-
-
-	public void setProjections(List<Projection> projections) {
+	public void setProjections(List<Projections> projections) {
 		this.projections = projections;
 	}
-
-
-
-	
 }
