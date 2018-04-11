@@ -1,10 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 
 import javax.validation.Valid;
 
@@ -337,23 +334,33 @@ public class FanZoneController {
 	}
 	//obican
 	@RequestMapping(value = "getOglasi/ponudeprim/{id}", method = RequestMethod.GET)
-	public String ponudePrimljene(@PathVariable("id") Long id, ModelMap map) {
+	public String ponudePrimljene(@PathVariable("id") Long id, ModelMap map, Principal principal) {
+		
+		RegularUser user = userServis.findByEmail(principal.getName());
 		
 		Oglas oglas = oglServis.find(id);
+		for(int i = 0; i < user.getMojiOglasi().size(); i++) {
+			if(user.getMojiOglasi().get(i).equals(oglas)){
+				map.put("oglas", oglas);
+			}
+		}
 		
-		map.put("oglas", oglas);
+		map.put("info", "Niste vlasnik ovog oglasa!");
 		
 		return "primljene";
 	}
 	//obican
 	//OVAKVE STVARI BI TREBALO ZASTITI DA MOZE SAMO TAJ REGULAR USER CIJA JE PONUDA DA PRIHVATI
 	@RequestMapping(value = "getOglasi/accept/{id}", method = RequestMethod.GET)
-	public String accept(@PathVariable("id") Long id, ModelMap map) {
+	public String accept(@PathVariable("id") Long id, ModelMap map, Principal principal) {
 		
-
+		RegularUser user = userServis.findByEmail(principal.getName());
 		
 		Ponuda ponuda = ponudaServis.find(id);
 		Oglas o = ponuda.getOglas();
+		for(int j = 0; j < user.getMojiOglasi().size(); j++) {
+			if(user.getMojiOglasi().get(j).equals(o)) {
+		
 		for(int i = 0; i < o.getPonudeZaOglas().size(); i++) {
 			if(o.getPonudeZaOglas().get(i).getId().equals(id)) {
 				if(!ponuda.isPrihvacena()) {
@@ -367,6 +374,11 @@ public class FanZoneController {
 			}
 			//o.getPonudeZaOglas().get(i).setPrihvacena(false);
 			//ponudaServis.save(o.getPonudeZaOglas().get(i));
+			}
+			}
+			else {
+				System.out.println("Nemate prava da prihvatate ponude za tudj oglas!");
+			}
 		}
 		
 		return "redirect:/fanzone/getOglasi/mojiOglasi";

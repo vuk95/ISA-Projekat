@@ -3,7 +3,10 @@
 		<title>Ponude</title>
 	</head>
 	<body>
-		<h1>Ponude za:</h1>
+		<div th:if="${oglas} == null">
+			<p th:text = "${info}"></p>
+		</div>
+		<div th:if="${oglas} != null"><h1>Ponude za:</h1>
 		<p th:text = "${oglas.naziv}"></p>
 		<table border = "1">
 			<tr>
@@ -23,5 +26,7 @@
 				</td>	
 			</tr>
 		</table>
+		</div>
+		
 	</body>
 </html>
