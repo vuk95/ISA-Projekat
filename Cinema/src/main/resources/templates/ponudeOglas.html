@@ -12,12 +12,14 @@
 				<th>Id</th>
 				<th>Iznos</th>
 				<th>Ponudjac</th>
+				<th>Opcije</th>
 			</tr>
 			<tr th:each="ponuda, iterStat: ${oglas.ponudeZaOglas}">
 				
 				<td th:text="${ponuda.id}"></td>
 				<td th:text="${ponuda.iznos}"></td>
-				<td th:text="${ponuda.user.email}"></td>		
+				<td th:text="${ponuda.user.email}"></td>
+				<td><a th:href="${'/fanzone/getOglasi/updateoffer/' + ponuda.id}">Izmeni</a></td>		
 			</tr>
 		</table>
 	</body>

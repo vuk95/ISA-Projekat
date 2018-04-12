@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Izmeni ponudu</title>
+	
+	</head>
+	<body>
+		<h3>Izmeni ponudu:</h3>
+		<form th:action="@{'/fanzone/getOglasi/updateoffer/' + ${ponuda.id}}" th:object="${ponuda}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Izons:</td>
+					<td><input type = "text" th:field="*{iznos}"></td>
+					<td th:if="${#fields.hasErrors('iznos')}" th:errors="*{iznos}">Iznos Error</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Ponudi">
+						<input type = "hidden" th:field="*{id}">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

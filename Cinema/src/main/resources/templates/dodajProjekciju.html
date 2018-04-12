@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<h3>Dodaj Film:</h3>
-		<form th:action="@{'/cinematheatre/getProjekcije'}" th:object="${projekcija}" method ="post">
+		<form th:action="@{'/cinematheatre/getProjekcije/'+${bioskop.id}+'/addProjekcije'}" th:object="${projekcija}" method ="post">
 			<table>
 				<tr>
 					<td>Naziv:</td>

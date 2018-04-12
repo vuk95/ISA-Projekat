@@ -340,7 +340,7 @@ public class FanZoneController {
 	}
 	//obican
 	@RequestMapping(value = "getOglasi/offer/{id}", method = RequestMethod.POST)
-	public String addOglas(@PathVariable("id") Long id,@Valid @ModelAttribute("ponuda") Ponuda ponuda,BindingResult result, Principal principal, ModelMap map) {
+	public String offer(@PathVariable("id") Long id,@Valid @ModelAttribute("ponuda") Ponuda ponuda,BindingResult result, Principal principal, ModelMap map) {
 		
 		if(result.hasErrors()) {
 			map.put("oglas", oglServis.find(id));
@@ -369,6 +369,49 @@ public class FanZoneController {
 		return "redirect:/fanzone/getOglasi/ponude/" + id;
 	
 	}
+	
+	//obican
+		@RequestMapping(value = "getOglasi/updateoffer/{id}", method = RequestMethod.GET)
+		public String editoffer(@PathVariable("id") Long id, ModelMap map) {
+			
+			Ponuda p = ponudaServis.find(id);
+			
+			map.put("ponuda", p);
+			map.put("oglas", p.getOglas());
+			return "izmeniPonudu";
+		
+		}
+		
+		//obican
+		@RequestMapping(value = "getOglasi/updateoffer/{id}", method = RequestMethod.POST)
+		public String editoffer(@PathVariable("id") Long id,@Valid @ModelAttribute("ponuda") Ponuda ponuda,BindingResult result, Principal principal, ModelMap map) {
+			
+			if(result.hasErrors()) {
+				map.put("ponuda", ponudaServis.find(id));
+				return "izmeniPonudu";
+			}
+			Ponuda p = ponudaServis.find(ponuda.getId());
+			
+			RegularUser user = userServis.findByEmail(principal.getName());
+			
+			if(p.isPrihvacena()) {
+				System.out.println("Ne mozete menjati prihvacenu ponudu");
+			}
+			
+			else if(!p.getUser().getId().equals(user.getId())) {
+				System.out.println("Ne mozete menjati tudju ponudu!");
+			}
+			else {
+			p.setIznos(ponuda.getIznos());
+			
+			
+			ponudaServis.save(p);
+			}
+			//nesto redirekcija ne valja
+			return "redirect:/fanzone/getOglasi/ponude/" + p.getOglas().getId();
+		
+		}
+	
 	//obican
 	@RequestMapping(value = "getOglasi/ponudeprim/{id}", method = RequestMethod.GET)
 	public String ponudePrimljene(@PathVariable("id") Long id, ModelMap map, Principal principal) {

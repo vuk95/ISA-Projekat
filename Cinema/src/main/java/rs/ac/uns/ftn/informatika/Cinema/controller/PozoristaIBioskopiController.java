@@ -224,15 +224,16 @@ public class PozoristaIBioskopiController {
 	*/
 	
 	@RequestMapping(value = "/getProjekcije/{id}/addProjekcije" , method = RequestMethod.GET)
-	public String addProjekcije(ModelMap map) {
+	public String addProjekcije(@PathVariable("id") Long id, ModelMap map) {
 		
+		map.put("bioskop", service.findOne(id));
 		map.put("projekcija",new Projections());
 		
 		return "dodajProjekciju";
 	}
 	
 	@RequestMapping(value = "/getProjekcije/{id}/addProjekcije" , method = RequestMethod.POST)
-	public String addProjekcije(@Valid @PathVariable("id") @ModelAttribute("projekcija") NewProjectionsForm newProjection,BindingResult result,ModelMap map,Long id) {
+	public String addProjekcije(@PathVariable("id") Long id, @Valid @ModelAttribute("projekcija") NewProjectionsForm newProjection,BindingResult result,ModelMap map) {
 		
 		Projections projekcija = new Projections();
 		
