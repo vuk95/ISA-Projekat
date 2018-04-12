@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>System Admin Page</title>
+	</head>
+	<body>
+		<h1>Welcome: <span th:text = "${user.name}"></span></h1>
+		<a th:href="@{/systemAdmin/addCT}">Dodaj novi bioskop/pozoriste</a>
+		<h4>Svi bioskopi/pozorista</h4>
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Tip</th>
+				<th>Ime</th>
+				<th>Adresa</th>
+				<th>Opis</th>
+			</tr>
+			<tr th:each="bioskoppozoriste, iterStat: ${bioskopipozorista}">
+				<td th:text="${bioskoppozoriste.id}"></td>
+				<td th:text="${bioskoppozoriste.type}"></td>
+				<td th:text="${bioskoppozoriste.name}"></td>
+				<td th:text="${bioskoppozoriste.address}"></td>
+				<td th:text="${bioskoppozoriste.description}"></td>
+			</tr>
+		</table>
+		
+		
+	</body>
+</html>

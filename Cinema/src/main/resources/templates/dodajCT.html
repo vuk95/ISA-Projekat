@@ -1,0 +1,43 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj CT</title>
+	</head>
+	<body>
+		<h3>Dodaj Pozoriste/Bioskop:</h3>
+		<form th:action="@{/systemAdmin/addCT}" th:object="${ct}" method ="post">
+			<table>
+				<tr>
+					<td>Ime:</td>
+					<td><input type = "text" th:field="*{name}"></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ime Error</td>
+				</tr>
+				<tr>
+					<td>Tip:</td>
+					<td><select  th:field="*{type}">
+						<option th:each="tip : ${T(rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatreType).values()}"
+							th:value = "${tip}"
+							th:text = "${tip}"
+						>
+						</option>
+					</select></td>					
+				</tr>
+				<tr>
+					<td>Adresa:</td>
+					<td><input type = "text" th:field="*{address}"></td>
+					 <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Adresa Error</td>
+				</tr>
+				<tr>
+					<td>Opis:</td>
+					<td><input type = "text" th:field="*{description}"></td>
+					<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Opis Error</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+		
+	</body>
+</html>
