@@ -124,17 +124,17 @@ public class Projections {
 	
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn
 	private CinemaTheatre cinemaTheatre;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn
 	private Hall hall;
 	
-	@Column(nullable = false)
+	@Column
 	private Date date;
 	
-	@Column(nullable = false)
+	@Column
 	private double price;
 	
 	@OneToMany
