@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Izvestaj</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<style>
+
+ul {
+
+margin-top:30px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+	<div class="w3-content w3-container w3-padding-64" id="theatres">
+		<h3 class="w3-center">Reports</h3>
+		<p class="w3-center"><em>Here you can find out cinema/theatre statistic</em></p>
+
+<ul>
+      <li><a th:href="${'/cinematheatre/raitingCinemas'}">Average Raiting of Cinemas</a></li>
+      <li><a th:href="${'/cinematheatre/raitingTheatres'}">Average Raiting of Theatres</a></li>
+      <li><a th:href="${'/cinematheatre/raitingProjections'}">Average Raiting of Projections</a></li>
+      <li><a href="#inputU">Graphical view of the visit in Cinemas</a></li>
+      <li><a href="#inputU">Graphical view of the visit in Theatres</a></li>
+      <li><a href="#inputCheck">Income of Cinemas</a></li>
+      <li><a href="#inputCheck">Income of Theatres</a></li>
+</ul>
+
+
+	</div>
+</body>
+</html>

@@ -55,11 +55,22 @@ public class CinemaTheatre implements Serializable{
 	@OneToMany
 	private List<Projections> projections =  new ArrayList<Projections>();
 	
+	@Column(name = "Prosecna_ocena")
+	private double avgraiting;
+	
 	
 	//TO DO: spisak karata sa popustima, konfiguracija segmenata i mesta u salama
 	
 	
 	
+
+	public double getAvgraiting() {
+		return avgraiting;
+	}
+
+	public void setAvgraiting(double avgraiting) {
+		this.avgraiting = avgraiting;
+	}
 
 	public CinemaTheatre() {
 		
