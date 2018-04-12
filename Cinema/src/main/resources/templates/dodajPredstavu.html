@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj novu projekciju</title>
+	</head>
+	<body>
+		<h3>Dodaj Predstavu:</h3>
+		<form th:action="@{'/cinematheatre/getPredstave/'+${pozoriste.id}+'/addPredstave'}" th:object="${predstava}" method ="post">
+			<table>
+				<tr>
+					<td>Naziv:</td>
+					<td><input type = "text" th:field="*{name}"></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+				</tr>
+				
+				<tr>
+					<td>Zanr:</td>
+					<td><input type = "text" th:field="*{genre}"></td>
+					<td th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Genre Error</td>
+				</tr>
+				
+				<tr>
+					<td>Trajanje:</td>
+					<td><input type = "text" th:field="*{duration}"></td>
+					<td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</td>
+				</tr>
+				
+				<tr>
+					<td>Reditelj:</td>
+					<td><input type = "text" th:field="*{director}"></td>
+					<td th:if="${#fields.hasErrors('director')}" th:errors="*{director}">Director Error</td>
+				</tr>
+				
+				<tr>
+					<td>Opis:</td>
+					<td><input type = "text" th:field="*{description}"></td>
+				</tr>
+				
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

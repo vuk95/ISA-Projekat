@@ -245,10 +245,47 @@ public class PozoristaIBioskopiController {
 			projekcija = pservice.createNewProjections(newProjection);
 		}
 		
+		
 		map.put("bioskop",service.findOne(id));		
+		
+		CinemaTheatre ct = service.addProjection(projekcija, id);
+		service.save(ct);
+		
 		pservice.save(projekcija);
 	
-		return "redirect:../cinematheatre/getProjekcije/" + projekcija.getId();
+		return "redirect:/cinematheatre/getProjekcije/" + id;
+	}
+	
+	@RequestMapping(value = "/getPredstave/{id}/addPredstave" , method = RequestMethod.GET)
+	public String addPredstave(@PathVariable("id") Long id,ModelMap map) {
+		
+		map.put("pozoriste",service.findOne(id));
+		map.put("predstava",new Projections());
+		
+		return "dodajPredstavu";
+	}
+	
+	@RequestMapping(value = "/getPredstave/{id}/addPredstave" , method = RequestMethod.POST)
+	public String addPredstave(@PathVariable("id") Long id,@Valid @ModelAttribute("predstava") NewProjectionsForm newPerformance,BindingResult result,ModelMap map) {
+		
+		Projections predstava = new Projections();
+		
+		if(result.hasErrors()) {
+			return "dodajPredstavu";
+		}
+		
+		if(!result.hasErrors()) {
+			predstava = pservice.createNewProjections(newPerformance);
+		}
+		
+		map.put("pozoriste",service.findOne(id));
+		
+		CinemaTheatre ct = service.addProjection(predstava, id);
+		service.save(ct);
+			
+		pservice.save(predstava);
+		
+		return "redirect:/cinematheatre/getPredstave/" + id;
 	}
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatreType;
+import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.repository.CinemaTheatreRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 
@@ -45,6 +46,17 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 	public Iterable<CinemaTheatre> findTheatres() {
 		
 		return ctrepository.findByType(CinemaTheatreType.THEATRE);
+	}
+
+	@Override
+	public CinemaTheatre addProjection(Projections p, Long id) {
+		
+		CinemaTheatre ct = ctrepository.findOne(id);
+		ct.getProjections().add(p);
+		p.setCinemaTheatre(ct);
+		ctrepository.save(ct);
+			
+		return ct;
 	}
 
 	
