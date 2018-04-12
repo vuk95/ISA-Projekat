@@ -26,7 +26,7 @@
 			
 			<tr th:each="predstava, iterStat: ${pozoriste.projections}">
 				
-				<td th:text="${predstava.name}"></td>
+				<td><a th:href="@{'/cinematheatre/getPredstave/' + ${pozoriste.Id} + '/' + ${predstava.Id}}" th:text="${predstava.name}"></a></td>
 				<td th:text="${predstava.genre}"></td>
 				<td th:text="${predstava.duration}"></td>
 				<td th:text="${predstava.director}"></td>

@@ -26,7 +26,7 @@
 			
 			<tr th:each="projekcija, iterStat: ${bioskop.projections}">
 				
-				<td th:text="${projekcija.name}"></td>
+				<td><a th:href="@{'/cinematheatre/getProjekcije/' + ${bioskop.Id} + '/' + ${projekcija.Id}}" th:text="${projekcija.name}"></a></td>
 				<td th:text="${projekcija.genre}"></td>
 				<td th:text="${projekcija.duration}"></td>
 				<td th:text="${projekcija.director}"></td>

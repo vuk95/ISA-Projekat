@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Projekcija</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+	<div class="container">
+		<div th:if="${error}" class="alert alert-danger" th:text=${error}></div>
+		
+		<div th:if="!${error}">
+			<h1 th:text="${projection.name}"></h1>
+			
+			<div class="col-md-4">
+				<img src="http://www.thesugarclub.com/content/cache/85dd71a0df47248f/la-haine-original1_335_486.jpg" width="180" height="300">
+			</div>
+			
+			<div class="col-md-8">
+				<h4 th:text="'Pocinje: ' + ${projection.date}"></h4>
+				<h4 th:text="'Traje: ' + ${projection.duration}"></h4>
+				<h4 th:text="'Sala: ' + ${projection.hall.name}"></h4>
+				<h4 th:text="'Cena: ' + ${projection.price}"></h4>
+				<h4 th:text="'Reditelj: ' + ${projection.director}"></h4>
+				<h6><i th:text="${projection.genre}"></i></h6>
+				<br>
+				<h4>Kratak opis:</h4>
+				<p th:text="${projection.description}"></p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<h1>Deo za rezervisanje sedista!</h1>
+	</div>
+
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
+</body>
+</html>
