@@ -43,6 +43,7 @@ public class Projections {
 	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String genre;
 	
+	
 	public String getName() {
 		return name;
 	}
@@ -140,7 +141,17 @@ public class Projections {
 	@OneToMany
 	private Set<Seat> seats;
 
+	@Column(name = "Prosecna_ocena")
+	private double avgraiting;
 	
+	public double getAvgraiting() {
+		return avgraiting;
+	}
+
+	public void setAvgraiting(double avgraiting) {
+		this.avgraiting = avgraiting;
+	}
+
 	public Projections() {
 		
 	}

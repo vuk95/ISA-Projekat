@@ -1,5 +1,3 @@
---Korisnici
-
 INSERT INTO korisnici
 (grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
 ('Zrenjanin' , 'email@gmail.com', 'Prezime', 'Ime', 'password', '8321093012', 'REGULAR', true);
@@ -41,60 +39,59 @@ INSERT INTO obican_korisnik (user_id) VALUES ('5');
 INSERT INTO administrator (user_id, first_login) VALUES ('6', true);
 
 INSERT INTO obican_korisnik (user_id) VALUES ('7');
-
 --=====================================================================================================
 --Bioskopi
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Bulevar Mihajla Pupina 3,Novi Sad','Jedan od najposecenijih bioskopa u zemlji','Arena Cineplex','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Bulevar Mihajla Pupina 3,Novi Sad','5','Jedan od najposecenijih bioskopa u zemlji','Arena Cineplex','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Novosadski put bb,Zrenjanin','Bioskop u Zrenjaninu','CineStar','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Novosadski put bb,Zrenjanin','1.7','Bioskop u Zrenjaninu','CineStar','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Bulevar Mihajla Pupina 4,Beograd','Jedan od boljih bioskopa','Cineplexx UŠCE Shopping Center','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Bulevar Mihajla Pupina 4,Beograd','4.9','Jedan od boljih bioskopa','Cineplexx UŠCE Shopping Center','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Decanska 14,Beograd','Najbolji bioskop','Dvorana Doma sindikata','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Decanska 14,Beograd','5','Najbolji bioskop','Dvorana Doma sindikata','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Trg Cara Jovana Nenada 15,Subotica','Bioskop u Subotici','Eurocinema','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Trg Cara Jovana Nenada 15,Subotica','2.3','Bioskop u Subotici','Eurocinema','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Bulevar kraljice Marije 56,Kragujevac','Bioskop u Kragujevcu','Cineplexx Kragujevac Plaza','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Bulevar kraljice Marije 56,Kragujevac','3.4','Bioskop u Kragujevcu','Cineplexx Kragujevac Plaza','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Maršala Tita 73/a,Vrbas','Bioskop u Vrbasu','Bioskop Jugoslavija','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Maršala Tita 73/a,Vrbas','2.8','Bioskop u Vrbasu','Bioskop Jugoslavija','CINEMA');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Bulevar Medijana 21,Niš','Bioskop u Nišu','Cineplexx Niš','CINEMA');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Bulevar Medijana 21,Niš','3.2','Bioskop u Nišu','Cineplexx Niš','CINEMA');
 
 --======================================================================================================================
 --Pozorista
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Pozorišni trg 1,Novi Sad','Jedno od najposecenijih pozorista u zemlji','Srpsko narodno pozorište','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Pozorišni trg 1,Novi Sad','5','Jedno od najposecenijih pozorista u zemlji','Srpsko narodno pozorište','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Trg slobode 7,Zrenjanin','Pozoriste u Zrenjninu','Narodno pozorište „Toša Jovanovic','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Trg slobode 7,Zrenjanin','2.1','Pozoriste u Zrenjninu','Narodno pozorište „Toša Jovanovic','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Trg republike,Beograd','Jedno od pozorista u Beogradu','Narodno pozorište','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Trg republike,Beograd','3.8','Jedno od pozorista u Beogradu','Narodno pozorište','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Ulica kralja Milana 50,Beograd','Jedno od najposecenijih pozorista u Beogradu','Jugoslovensko dramsko pozorište','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Ulica kralja Milana 50,Beograd','4.3','Jedno od najposecenijih pozorista u Beogradu','Jugoslovensko dramsko pozorište','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Mileševska 64a,Beograd','Jedno od mnogobrojnih pozorista u Beogradu','Beogradsko dramsko pozorište','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Mileševska 64a,Beograd','3.6','Jedno od mnogobrojnih pozorista u Beogradu','Beogradsko dramsko pozorište','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Svetogorska 21,Beograd','Jedno od najboljih pozorista u zemlji','Atelje 212','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Svetogorska 21,Beograd','5','Jedno od najboljih pozorista u zemlji','Atelje 212','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Karadjordjeva 22,Šabac','Jedno od pozorista sa dugom tradicijom dobrih glumaca','Šabacko pozorište','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Karadjordjeva 22,Šabac','2.9','Jedno od pozorista sa dugom tradicijom dobrih glumaca','Šabacko pozorište','THEATRE');
 
 INSERT INTO bioskop_pozoriste
-(adresa,opis,naziv,tip) values ('Narodnog heroja 1,Vranje','Jedno od najstarijih i najboljih pozorista u zemlji','Pozorište Bora Stankovic','THEATRE');
+(adresa,prosecna_ocena,opis,naziv,tip) values ('Narodnog heroja 1,Vranje','4.5','Jedno od najstarijih i najboljih pozorista u zemlji','Pozorište Bora Stankovic','THEATRE');
 
 --===============================================================================================================================
 -- Poseceni bioskopi 
@@ -120,20 +117,20 @@ INSERT INTO hall(ime,broj_redova,broj_sedista) values ('Mala sala',9,6);
 --==============================================================================================================================
 --Projekcije(filmovi/predstave)
 
-INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
-('2018-02-03','Poslednji deo Marvelove trilogije o Betmenu','Kristofer Nolan','164','Akcija,Triler','The Dark Knight Rises','tdkr.jpg','350','1','1');
+INSERT INTO projekcije(prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('4.8','2018-02-03','Poslednji deo Marvelove trilogije o Betmenu','Kristofer Nolan','164','Akcija,Triler','The Dark Knight Rises','tdkr.jpg','350','1','1');
 
-INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
-('2018-03-05','Drugi deo Marvelove trilogije o Betmenu','Kristofer Nolan','152','Akcija,Avanturisticki','The Dark Knight','tdk.jpg','350','1','2');
+INSERT INTO projekcije(prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('5','2018-03-05','Drugi deo Marvelove trilogije o Betmenu','Kristofer Nolan','152','Akcija,Avanturisticki','The Dark Knight','tdk.jpg','350','1','2');
 
-INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
-('2018-01-11','Prvi deo Marvelove trilogije o Betmenu','Kristofer Nolan','140','Akcija,Avanturisticki,Triler','Bataman Begins','bb.jpg','350','4','1');
+INSERT INTO projekcije(prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('4.1','2018-01-11','Prvi deo Marvelove trilogije o Betmenu','Kristofer Nolan','140','Akcija,Avanturisticki,Triler','Batman Begins','bb.jpg','350','4','1');
 
-INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
-('2018-04-01','Jedna od najboljih srpskih predstava','Dusan Kovacevic','165','Komedija,Drama','Radovan III','r3.jpg','350','9','3');
+INSERT INTO projekcije(prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('3.7','2018-04-01','Jedna od najboljih srpskih predstava','Dusan Kovacevic','165','Komedija,Drama','Radovan III','r3.jpg','350','9','3');
 
-INSERT INTO projekcije(date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
-('2018-02-10','Pretstava uradjena po motivima istoimenog dela Iva Andrica','Kokan Mladenovic','155','Drama','Na Drini Cuprija','ndc.jpg','350','14','2');
+INSERT INTO projekcije(prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,slika,price,cinema_theatre_id,hall_id) values
+('4.3','2018-02-10','Pretstava uradjena po motivima istoimenog dela Iva Andrica','Kokan Mladenovic','155','Drama','Na Drini Cuprija','ndc.jpg','350','14','2');
 
 --================================================================================================================================
 --Bioskop_Pozoriste_projekcije

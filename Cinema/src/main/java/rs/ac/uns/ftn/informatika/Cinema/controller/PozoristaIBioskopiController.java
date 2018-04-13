@@ -288,4 +288,36 @@ public class PozoristaIBioskopiController {
 		return "redirect:/cinematheatre/getPredstave/" + id;
 	}
 	
+	
+	@RequestMapping(value = "/getReports")
+	public String getReports() {
+		
+		return "reports";
+	}
+	
+	@RequestMapping(value = "/raitingCinemas")
+	public String raitingsOfCinemas(ModelMap map) {
+		
+		map.put("bioskopi",service.findCinemas());
+		
+		return "oceneBioskopi";
+	}
+	
+	@RequestMapping(value = "/raitingTheatres")
+	public String raitingsOfTheatres(ModelMap map) {
+		
+		map.put("pozorista",service.findTheatres());
+		
+		return "ocenePozorista";
+	}
+	
+	@RequestMapping(value = "/raitingProjections")
+	public String raitingsOfMovies(ModelMap map) {
+		
+		map.put("projekcije",pservice.findAll());
+		
+		return "oceneProjekcije";
+	}
+	
+	
 }
