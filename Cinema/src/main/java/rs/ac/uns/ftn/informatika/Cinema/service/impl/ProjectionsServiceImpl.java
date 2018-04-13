@@ -1,9 +1,12 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.Hall;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.repository.ProjectionsRepository;
@@ -76,6 +79,22 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		return form;
 	}
 
-	
+	@Override
+	public String[] getSeatConfiguration(Long id) {
+		Projections projection = prepository.findOne(id);
+		Hall hall = projection.getHall();
+		StringBuilder sb = new StringBuilder();
+		ArrayList<String> lista = new ArrayList<String>();
+		
+		for(int i = 0; i < hall.getRowNumber(); i++) {
+			for(int j = 0; j < hall.getSeatNumber(); j++) {
+				sb.append("s");
+			}
+			lista.add(sb.toString());
+			sb = new StringBuilder();
+		}
+		
+		return lista.toArray(new String[lista.size()]);
+	}
 
 }

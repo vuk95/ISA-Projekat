@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,6 +59,21 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 		ctrepository.save(ct);
 			
 		return ct;
+	}
+
+	@Override
+	public Projections findMyProjectionById(Long ctId, Long pId) {
+		Projections projection = null;
+		CinemaTheatre ct = ctrepository.findOne(ctId);
+		List<Projections> projections = ct.getProjections();
+		
+		for(Projections proj : projections) {
+			if(proj.getId().equals(pId)) {
+				projection = proj;
+			}
+		}
+		
+		return projection;
 	}
 
 	

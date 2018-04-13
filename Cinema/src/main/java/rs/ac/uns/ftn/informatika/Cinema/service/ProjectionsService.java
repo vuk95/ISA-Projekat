@@ -17,4 +17,6 @@ public interface ProjectionsService {
 	
 	public NewProjectionsForm seForm(Projections p);
 	
+	public String[] getSeatConfiguration(Long id);
+	
 }

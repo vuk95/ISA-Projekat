@@ -19,4 +19,6 @@ public interface CinemaTheatreService {
 	
 	public CinemaTheatre addProjection(Projections p,Long id); 
 	
+	public Projections findMyProjectionById(Long ctId, Long pId);
+	
 }
