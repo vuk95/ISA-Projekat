@@ -16,6 +16,7 @@ import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.User;
 import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
 import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
@@ -121,6 +122,36 @@ public class SystemAdminController {
 	
 		return "redirect:/systemAdmin/admini";
 		
+	}
+	
+	@RequestMapping(value = "systemAdmin/admini/addSystem", method = RequestMethod.GET)
+	public String addSystem(ModelMap map) {
+		
+		map.put("admin", new NewAdminForm());
+		return "dodajSystem";
+		
+	}
+	
+	@RequestMapping(value = "systemAdmin/admini/addSystem", method = RequestMethod.POST)
+	public String addPozoristeBioskop(@Valid @ModelAttribute("admin") NewAdminForm admin ,BindingResult bindingResult, ModelMap map, Principal principal) {
+		
+		Administrator administrator = new Administrator();
+		
+		Administrator a  = (Administrator) userService.findUserByEmail(principal.getName());
+		
+		if(bindingResult.hasErrors()) {
+			return "dodajSystem";
+		}
+		else {
+			if(a.getRole().equals(Role.SYSTEM) && a.isPredefinisani()) {
+			administrator = adminService.createNewAdminSystem(admin);
+			}
+			else {
+				System.out.println("Ne mozete dodavati druge administratore sistema!");
+			}
+		}
+	
+		return "redirect:/systemAdmin/admini";
 	}
 
 }

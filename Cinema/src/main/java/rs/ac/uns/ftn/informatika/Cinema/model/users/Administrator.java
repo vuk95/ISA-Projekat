@@ -9,6 +9,9 @@ public class Administrator extends User{
 	@Column(name = "firstLogin", nullable = false)
 	private boolean firstLogin;
 	
+	@Column(name = "predefinisani", nullable = false)
+	private boolean predefinisani;
+	
 	public Administrator() {
 		
 	}
@@ -20,5 +23,14 @@ public class Administrator extends User{
 	public void setFirstLogin(boolean firstLogin) {
 		this.firstLogin = firstLogin;
 	}
+
+	public boolean isPredefinisani() {
+		return predefinisani;
+	}
+
+	public void setPredefinisani(boolean predefinisani) {
+		this.predefinisani = predefinisani;
+	}
+	
 	
 }

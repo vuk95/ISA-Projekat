@@ -82,6 +82,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 			admin.setRole(Role.CINEMA_THEATRE);
 			admin.setEnabled(true);
 			admin.setFirstLogin(true);
+			admin.setPredefinisani(false);
 			admin.setEmail(newAdmin.getEmail());
 			admin.setName(newAdmin.getName());
 			admin.setLastname(newAdmin.getLastname());
@@ -103,6 +104,29 @@ public class AdministratorServiceImpl implements AdministratorService {
 			admin.setRole(Role.FAN_ZONE);
 			admin.setEnabled(true);
 			admin.setFirstLogin(true);
+			admin.setPredefinisani(false);
+			admin.setEmail(newAdmin.getEmail());
+			admin.setName(newAdmin.getName());
+			admin.setLastname(newAdmin.getLastname());
+			admin.setCity(newAdmin.getCity());
+			admin.setPhone(newAdmin.getPhone());
+			admin.setPassword(newAdmin.getPassword());
+			
+			return administratorRepository.save(admin);
+		}
+	}
+	
+	@Override
+	public Administrator createNewAdminSystem(NewAdminForm newAdmin) {
+		if(allUserService.emailExists(newAdmin.getEmail())) {
+			return null;
+		} else {
+		
+			Administrator admin = new Administrator();
+			admin.setRole(Role.SYSTEM);
+			admin.setEnabled(true);
+			admin.setFirstLogin(true);
+			admin.setPredefinisani(false);
 			admin.setEmail(newAdmin.getEmail());
 			admin.setName(newAdmin.getName());
 			admin.setLastname(newAdmin.getLastname());

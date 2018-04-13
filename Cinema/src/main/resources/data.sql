@@ -26,19 +26,26 @@ INSERT INTO korisnici
 (grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
 ('NS' , 'gmail@gmail.com', 'Jovanovic', 'Jovan', 'password', '1234567890', 'REGULAR', true);
 
+INSERT INTO korisnici
+(grad, email, prezime, ime, lozinka, telefon, role, enabled) VALUES 
+('Beograd' , 'a@gmail.com', 'Prezime', 'Ime', 'password', '453454', 'SYSTEM', true);
+
+
 INSERT INTO obican_korisnik (user_id) VALUES ('1');
 
-INSERT INTO administrator (user_id, first_login) VALUES ('2', true);
+INSERT INTO administrator (user_id, first_login, predefinisani) VALUES ('2', true, true);
 
-INSERT INTO administrator (user_id, first_login) VALUES ('3', true);
+INSERT INTO administrator (user_id, first_login, predefinisani) VALUES ('3', true, false);
 
-INSERT INTO administrator (user_id, first_login) VALUES ('4', true);
+INSERT INTO administrator (user_id, first_login, predefinisani) VALUES ('4', true, false);
 
 INSERT INTO obican_korisnik (user_id) VALUES ('5');
 
-INSERT INTO administrator (user_id, first_login) VALUES ('6', true);
+INSERT INTO administrator (user_id, first_login, predefinisani) VALUES ('6', true, false);
 
 INSERT INTO obican_korisnik (user_id) VALUES ('7');
+
+INSERT INTO administrator (user_id, first_login, predefinisani) VALUES ('8', true, false);
 --=====================================================================================================
 --Bioskopi
 

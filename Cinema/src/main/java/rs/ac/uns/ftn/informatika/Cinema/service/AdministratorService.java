@@ -22,7 +22,9 @@ public interface AdministratorService {
 
 		public Administrator createNewAdminCT(NewAdminForm newAdmin);
 
-		Administrator createNewAdminFZ(NewAdminForm newAdmin);
+		public Administrator createNewAdminFZ(NewAdminForm newAdmin);
+
+		public Administrator createNewAdminSystem(NewAdminForm newAdmin);
 	
 	
 }
