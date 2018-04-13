@@ -1,0 +1,59 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Administratori</title>
+	</head>
+	<body>
+		<h3>Svi Administratori</h3>
+		<h4>Administratori Pozorista i Bioskopa</h4>
+		<a th:href="@{/systemAdmin/admini/addCTadmin}">Dodaj novog admina pozorista/bioskopa</a>
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Uloga</th>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Grad</th>
+				<th>Telefon</th>
+				<th>Password</th>
+			</tr>
+			<tr th:each="administrator, iterStat: ${administratori}" th:if="${administrator.role == T(rs.ac.uns.ftn.informatika.Cinema.model.users.Role).CINEMA_THEATRE}">
+				<td th:text="${administrator.id}"></td>
+				<td th:text="${administrator.email}"></td>
+				<td th:text="${administrator.role}"></td>
+				<td th:text="${administrator.name}"></td>
+				<td th:text="${administrator.lastname}"></td>
+				<td th:text="${administrator.city}"></td>
+				<td th:text="${administrator.phone}"></td>
+				<td th:text="${administrator.password}"></td>
+			</tr>
+		</table>
+		<h4>Administratori Fanzone</h4>
+		<a th:href="@{/systemAdmin/admini/addFZadmin}">Dodaj novog admina fanzone</a>
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Uloga</th>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Grad</th>
+				<th>Telefon</th>
+				<th>Password</th>
+			</tr>
+			<tr th:each="administrator, iterStat: ${administratori}" th:if="${administrator.role == T(rs.ac.uns.ftn.informatika.Cinema.model.users.Role).FAN_ZONE}">
+				<td th:text="${administrator.id}"></td>
+				<td th:text="${administrator.email}"></td>
+				<td th:text="${administrator.role}"></td>
+				<td th:text="${administrator.name}"></td>
+				<td th:text="${administrator.lastname}"></td>
+				<td th:text="${administrator.city}"></td>
+				<td th:text="${administrator.phone}"></td>
+				<td th:text="${administrator.password}"></td>
+			</tr>
+		</table>
+		
+		
+	</body>
+</html>

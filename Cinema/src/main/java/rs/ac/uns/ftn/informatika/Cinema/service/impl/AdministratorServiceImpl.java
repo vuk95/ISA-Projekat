@@ -1,14 +1,20 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.NewAdminForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
 import rs.ac.uns.ftn.informatika.Cinema.repository.AdministratorRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
+import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 
 @Transactional
 @Service
@@ -16,7 +22,10 @@ public class AdministratorServiceImpl implements AdministratorService {
 
 	@Autowired
 	public AdministratorRepository administratorRepository;
-		
+	
+	@Autowired
+	public AllUsersService allUserService;
+	
 	@Override
 	public Administrator findOne(Long Id) {
 		return administratorRepository.findOne(Id);
@@ -60,6 +69,48 @@ public class AdministratorServiceImpl implements AdministratorService {
 			
 			this.delete(id);
 			
+		}
+	}
+	
+	@Override
+	public Administrator createNewAdminCT(NewAdminForm newAdmin) {
+		if(allUserService.emailExists(newAdmin.getEmail())) {
+			return null;
+		} else {
+		
+			Administrator admin = new Administrator();
+			admin.setRole(Role.CINEMA_THEATRE);
+			admin.setEnabled(true);
+			admin.setFirstLogin(true);
+			admin.setEmail(newAdmin.getEmail());
+			admin.setName(newAdmin.getName());
+			admin.setLastname(newAdmin.getLastname());
+			admin.setCity(newAdmin.getCity());
+			admin.setPhone(newAdmin.getPhone());
+			admin.setPassword(newAdmin.getPassword());
+			
+			return administratorRepository.save(admin);
+		}
+	}
+	
+	@Override
+	public Administrator createNewAdminFZ(NewAdminForm newAdmin) {
+		if(allUserService.emailExists(newAdmin.getEmail())) {
+			return null;
+		} else {
+		
+			Administrator admin = new Administrator();
+			admin.setRole(Role.FAN_ZONE);
+			admin.setEnabled(true);
+			admin.setFirstLogin(true);
+			admin.setEmail(newAdmin.getEmail());
+			admin.setName(newAdmin.getName());
+			admin.setLastname(newAdmin.getLastname());
+			admin.setCity(newAdmin.getCity());
+			admin.setPhone(newAdmin.getPhone());
+			admin.setPassword(newAdmin.getPassword());
+			
+			return administratorRepository.save(admin);
 		}
 	}
 

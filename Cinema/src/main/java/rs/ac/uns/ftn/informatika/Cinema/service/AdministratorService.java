@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.Cinema.service;
 
 import java.util.List;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.NewAdminForm;
 
 public interface AdministratorService {
 	
@@ -18,6 +19,10 @@ public interface AdministratorService {
 		public Administrator delete(Long Id);
 			
 		public void delete(List<Long> ids);
+
+		public Administrator createNewAdminCT(NewAdminForm newAdmin);
+
+		Administrator createNewAdminFZ(NewAdminForm newAdmin);
 	
 	
 }

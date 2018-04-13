@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj admina pozorista i bioskopa</title>
+	</head>
+	<body>
+		<h1>Dodaj admina pozorista i bioskopa</h1>
+		<form th:action="@{/systemAdmin/admini/addCTadmin}" th:object="${admin}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Email:</td>
+					<td><input type = "text" th:field="*{email}"></td>
+					<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+				</tr>
+				<tr>
+					<td>Ime:</td>
+					<td><input type = "text" th:field="*{name}"></td>
+					 <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ime Error</td>
+				</tr>
+				<tr>
+					<td>Prezime:</td>
+					<td><input type = "text" th:field="*{lastname}"></td>
+					<td th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Prezime Error</td>
+				</tr>
+				<tr>
+					<td>Grad:</td>
+					<td><input type = "text" th:field="*{city}"></td>
+					<td th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Grad Error</td>
+				</tr>
+				<tr>
+					<td>Telefon:</td>
+					<td><input type = "text" th:field="*{phone}"></td>
+					<td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Telefon Error</td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type = "text" th:field="*{password}"></td>
+					<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+		
+	</body>
+</html>
