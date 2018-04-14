@@ -78,7 +78,7 @@
 					<ul id="selected-seats">
 					</ul>
 					Ukupno: <b>$<span id="total">0</span></b>
-					<button class="checkout-button">Checkout</button>
+					<button id="checkout" class="checkout-button">Checkout</button>
 					<br>
 					<br>
 					<div id="legend">
@@ -166,8 +166,9 @@
 			});
 
 			//klik na checkout dugme
-			$('#checkout-button').on('click', function() {
-				console.log('Kliknuo si na dugme!');
+			$('#checkout').click(function(){
+				str = JSON.stringify(sc.find('selected').seatIds);
+				console.log('Selektovana mesta: ' + str);
 			});
 			
 			//let's pretend some seats have already been booked
