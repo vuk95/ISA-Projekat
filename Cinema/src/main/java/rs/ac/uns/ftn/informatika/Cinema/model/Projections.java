@@ -44,6 +44,85 @@ public class Projections {
 	private String genre;
 	
 	
+	
+	@Column(name = "Trajanje", nullable = false)
+	@NotNull(message = "Morate uneti trajanje projekcije!")
+	@Min(value=30, message = "Trajanje projekcije ne sme biti manje od 30 minuta!")
+	@Max(value=300, message = "Trajanje projekcije ne sme biti vece od 300 minuta!")
+	private int duration;
+	
+	@Column(name = "Opis")
+	private String description;
+	
+	@Lob
+	@Column(name = "Slika")
+	private Byte[] picture;
+	
+	@Column(name = "Reditelj", nullable = false)
+	@NotEmpty(message = "Polje ne sme biti prazno !")
+	private String director;
+	
+	@Column(name = "Glumci")
+	private String actors;
+	
+/*	@ManyToMany
+	@JoinTable(name = "glumi",
+    			joinColumns = @JoinColumn(name="Projection_id", referencedColumnName="Id"),
+    			inverseJoinColumns = @JoinColumn(name="Actor_id", referencedColumnName="Id"))
+	private Set<Actor> actors = new HashSet<Actor>();
+	
+*/	
+	@ManyToOne
+	@JoinColumn
+	private CinemaTheatre cinemaTheatre;
+	
+	@ManyToOne
+	@JoinColumn
+	private Hall hall;
+	
+	@Column
+	private Date date;
+	
+	@Column
+	private double price;
+	
+	@OneToMany
+	private Set<Seat> seats;
+
+	@Column(name = "Prosecna_ocena")
+	private double avgraiting;
+	
+	
+	public Projections() {
+		
+	}
+	
+		
+	public double getAvgraiting() {
+		return avgraiting;
+	}
+
+	public void setAvgraiting(double avgraiting) {
+		this.avgraiting = avgraiting;
+	}
+
+	public String getActors() {
+		return actors;
+	}
+
+
+	public void setActors(String actors) {
+		this.actors = actors;
+	}
+	
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -55,6 +134,7 @@ public class Projections {
 	public String getGenre() {
 		return genre;
 	}
+	
 
 	public void setGenre(String genre) {
 		this.genre = genre;
@@ -92,78 +172,16 @@ public class Projections {
 		this.director = director;
 	}
 
-	public Set<Actor> getActors() {
-		return actors;
-	}
+	//public Set<Actor> getActors() {
+		//return actors;
+	//}
 
-	public void setActors(Set<Actor> actors) {
-		this.actors = actors;
-	}
+	//public void setActors(Set<Actor> actors) {
+		//this.actors = actors;
+	//}
 
-	@Column(name = "Trajanje", nullable = false)
-	@NotNull(message = "Morate uneti trajanje projekcije!")
-	@Min(value=30, message = "Trajanje projekcije ne sme biti manje od 30 minuta!")
-	@Max(value=300, message = "Trajanje projekcije ne sme biti vece od 300 minuta!")
-	private int duration;
-	
-	@Column(name = "Opis")
-	private String description;
-	
-	@Lob
-	@Column(name = "Slika")
-	private Byte[] picture;
-	
-	@Column(name = "Reditelj", nullable = false)
-	@NotEmpty(message = "Polje ne sme biti prazno !")
-	private String director;
-	
-	@ManyToMany
-	@JoinTable(name = "glumi",
-    			joinColumns = @JoinColumn(name="Projection_id", referencedColumnName="Id"),
-    			inverseJoinColumns = @JoinColumn(name="Actor_id", referencedColumnName="Id"))
-	private Set<Actor> actors = new HashSet<Actor>();
 	
 	
-	@ManyToOne
-	@JoinColumn
-	private CinemaTheatre cinemaTheatre;
-	
-	@ManyToOne
-	@JoinColumn
-	private Hall hall;
-	
-	@Column
-	private Date date;
-	
-	@Column
-	private double price;
-	
-	@OneToMany
-	private Set<Seat> seats;
-
-	@Column(name = "Prosecna_ocena")
-	private double avgraiting;
-	
-	public double getAvgraiting() {
-		return avgraiting;
-	}
-
-	public void setAvgraiting(double avgraiting) {
-		this.avgraiting = avgraiting;
-	}
-
-	public Projections() {
-		
-	}
-
-	public Long getId() {
-		return Id;
-	}
-
-	public void setId(Long id) {
-		Id = id;
-	}
-
 	public Hall getHall() {
 		return hall;
 	}
@@ -204,5 +222,6 @@ public class Projections {
 	public void setSeats(Set<Seat> seats) {
 		this.seats = seats;
 	}
+	
 	
 }

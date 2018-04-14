@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+﻿<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Bioskopi</title>
 <meta charset="UTF-8">
@@ -104,8 +104,8 @@ margin-left: 4px;
 			<tr>
 				<th>Name</th>
 				<th>Address</th>
-				<th>Avg Raiting</th>
-				<th>Repertory</th>
+				<th>Avg Rating</th>
+				<th>Repertoire</th>
   				<th>Description</th>
   				
   		   </tr>
@@ -114,11 +114,7 @@ margin-left: 4px;
 				<td th:text="${bioskop.name}"> </td>
 				<td th:text="${bioskop.address}"></td>
 				<td>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
+				<span th:text="${bioskop.avgraiting}" class="fa fa-star checked"></span>
 				</td>
 				<td><a th:href="${'/cinematheatre/getProjekcije/' + bioskop.Id}">Pogledaj</a></td>
 				<td><textarea th:text="${bioskop.description}"></textarea></td>

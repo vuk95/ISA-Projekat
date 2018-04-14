@@ -20,16 +20,18 @@
 					<td th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Genre Error</td>
 				</tr>
 				
-				<tr>
-					<td>Trajanje:</td>
-					<td><input type = "text" th:field="*{duration}"></td>
-					<td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</td>
-				</tr>
+				
 				
 				<tr>
 					<td>Reditelj:</td>
 					<td><input type = "text" th:field="*{director}"></td>
 					<td th:if="${#fields.hasErrors('director')}" th:errors="*{director}">Director Error</td>
+				</tr>
+				
+				<tr>
+					<td>Trajanje:</td>
+					<td><input type = "text" th:field="*{duration}"></td>
+					<td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</td>
 				</tr>
 				
 				<tr>

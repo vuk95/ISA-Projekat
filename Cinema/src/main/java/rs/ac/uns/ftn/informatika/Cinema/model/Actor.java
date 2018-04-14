@@ -23,8 +23,10 @@ public class Actor {
 	@Column(name = "Prezime", nullable = false)
 	private String lastname;
 	
-	@ManyToMany(mappedBy = "actors")
-	private Set<Projections> projections = new HashSet<Projections>();
+	//@ManyToMany(mappedBy = "actors")
+	//private Set<Projections> projections = new HashSet<Projections>();
+	
+	
 	
 	public Actor() {
 		
@@ -54,13 +56,13 @@ public class Actor {
 		this.lastname = lastname;
 	}
 
-	public Set<Projections> getProjections() {
-		return projections;
-	}
+	//public Set<Projections> getProjections() {
+		//return projections;
+	//}
 
-	public void setProjections(Set<Projections> projections) {
-		this.projections = projections;
-	}
+	//public void setProjections(Set<Projections> projections) {
+		//this.projections = projections;
+	//}
 
 	
 }

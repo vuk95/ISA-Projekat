@@ -13,7 +13,7 @@
 	<div class="w3-content w3-container w3-padding-64" id="cinemas">
   	<h3 class="w3-center">MOVIES</h3>
   	<p class="w3-center"><em>All available movies for this cinema</em></p>
-  	<a th:href="@{'/cinematheatre/getProjekcije/'  + ${bioskop.Id} + '/addProjekcije'}">Dodaj novu projekciju</a>
+  	<a th:href="@{'/cinematheatre/getProjekcije/'  + ${bioskop.Id} + '/addProjekcije'}"><span class="glyphicon glyphicon-plus-sign"></span> Dodaj novu projekciju</a>
   		 <table style="width:100%">	
 		
 			<tr>
@@ -22,6 +22,8 @@
 				<th>Trajanje</th>
 				<th>Reditelj</th>
   				<th>Opis</th>
+  				<th>Cena</th>
+  				<th>Ocena</th>
 			</tr>
 			
 			<tr th:each="projekcija, iterStat: ${bioskop.projections}">
@@ -31,6 +33,8 @@
 				<td th:text="${projekcija.duration}"></td>
 				<td th:text="${projekcija.director}"></td>
 				<td th:text="${projekcija.description}"></td>
+				<td th:text="${projekcija.price}"></td>
+				<td th:text="${projekcija.avgraiting}"></td>
 				<td><a th:href="${'/cinematheatre/updateProjekcije/' + projekcija.Id}">Izmeni</a></td>
 				<td><a th:href="${'/cinematheatre/deleteProjekcije/' + projekcija.Id}">Obrisi</a></td>	
 			</tr>
