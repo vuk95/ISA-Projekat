@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>	
+	</head>
+	<body>
+		<h1>Izmeni podatke</h1>
+		<form th:action="@{'/fanzone/profile/' + ${user.id} + '/edit'}" th:object="${user}" th:method="PUT">
+			<table>
+				<tr>
+					<td><strong>Email: </strong></td>
+					<td><input type="text" th:field="*{email}" readonly /></td>
+				</tr>
+				<tr>
+					<td><strong>Password: </strong></td>
+					<td><input type="text" th:field="*{password}" required/></td>
+				</tr>
+				<tr>
+					<td><strong>Ime: </strong></td>
+					<td><input type="text"  th:field="*{name}" required/></td>
+				</tr>
+				<tr>
+					<td><strong>Prezime: </strong></td>
+					<td><input type="text" th:field="*{lastname}" required/></td>
+				</tr>
+				<tr>
+					<td><strong>Grad: </strong></td>
+					<td><input type="text" th:field="*{city}" required/></td>
+				</tr>
+				<tr>
+					<td><strong>Telefon: </strong></td>
+					<td><input type="text" th:field="*{phone}" required/></td>
+				</tr>
+			</table>
+			<input type="submit" value="Izmeni"/>
+		</form>
+	</body>
+</html>

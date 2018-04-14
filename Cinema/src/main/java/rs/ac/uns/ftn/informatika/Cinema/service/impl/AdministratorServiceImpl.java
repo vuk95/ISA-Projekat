@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.FZAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
 import rs.ac.uns.ftn.informatika.Cinema.repository.AdministratorRepository;
@@ -136,6 +138,18 @@ public class AdministratorServiceImpl implements AdministratorService {
 			
 			return administratorRepository.save(admin);
 		}
+	}
+	
+	@Override
+	public Administrator updateFZAdminProfile(FZAdminForm form) {
+		Administrator user = administratorRepository.findOne(form.getId());
+		user.setPassword(form.getPassword());
+		user.setName(form.getName());
+		user.setLastname(form.getLastname());
+		user.setCity(form.getCity());
+		user.setPhone(form.getPhone());
+		
+		return administratorRepository.save(user);
 	}
 
 	

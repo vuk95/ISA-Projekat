@@ -6,6 +6,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,12 @@ import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
 import rs.ac.uns.ftn.informatika.Cinema.model.RekvizitForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.FZAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
+import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
 import rs.ac.uns.ftn.informatika.Cinema.service.OglasService;
 import rs.ac.uns.ftn.informatika.Cinema.service.PonudaService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
@@ -46,6 +51,9 @@ public class FanZoneController {
 	@Autowired
 	private PonudaService ponudaServis;
 	
+	@Autowired
+	private AdministratorService adminService;
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(ModelMap map) {
 	
@@ -57,6 +65,37 @@ public class FanZoneController {
 		return "fanzone";
 		
 	}
+	//=======================================================================================
+	//PROFIL ADMINISTRATORA FAN ZONE
+	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+	@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+	public String showProfile(@PathVariable Long id, ModelMap map) {
+		
+		Administrator fzadmin = adminService.findOne(id);
+		if(fzadmin.getRole().equals(Role.FAN_ZONE)) {
+		map.put("user", fzadmin);
+		}
+		return "fzprofile";
+	}
+	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.GET)
+	public String editProfile(@PathVariable Long id, ModelMap map) {
+		
+		Administrator fzadmin = adminService.findOne(id);
+		FZAdminForm user = new FZAdminForm(fzadmin);
+		map.put("user", user);
+		return "fzeditprofile";
+	}
+	
+	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.PUT)
+	public String putEditProfile(@ModelAttribute("user") FZAdminForm form, @PathVariable Long id) {
+		
+		adminService.updateFZAdminProfile(form);
+		return "redirect:/fanzone/profile/" + id;
+	}
+	
+	//=======================================================================================
 	//fz admin
 	@RequestMapping(value = "/getRekviziti", method = RequestMethod.GET)
 	public String rekviziti(ModelMap map) {

@@ -10,6 +10,7 @@
 			
 			<div th:case="'FAN_ZONE'"><a th:href="@{http://localhost:8082/fanzone/getRekviziti}">Zvanicna prodavnica</a>
 				<a th:href="@{http://localhost:8082/fanzone/getOglasiAdmin}">Korisnicki oglasi (Odobravanje)</a>
+				<a th:href="@{'/fanzone/profile/' + ${logged.id}}">Moj profil</a>
 			</div>
 			<div th:case="'REGULAR'"><a th:href="@{http://localhost:8082/fanzone/getRekvizitiObican}">Zvanicna prodavnica</a>
 				<a th:href="@{http://localhost:8082/fanzone/getOglasi}">Korisnicki oglasi</a>
