@@ -59,12 +59,52 @@ public class FanZoneController {
 	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		CurrentUser user = (CurrentUser) auth.getPrincipal();
-		
 		map.put("logged", user);
+		if(user.getUser().getRole().equals(Role.FAN_ZONE)) {
+			Administrator admin = (Administrator) user.getUser();
+			map.put("admin", admin);
+			System.out.println(admin.isFirstLogin());
+			
+			if(admin.isFirstLogin()) {
+	
+				return "fzFirstLogin";
+			}
+			else {
+				return "fanzone";
+			}
+		}
+		
 		
 		return "fanzone";
 		
 	}
+	
+	//OTPRILIKE RADI IMA NEKIH NEDOSTATAKA
+	//ne bi smelo da se desi da moze da ide na edit profile pre ovoga?
+	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+	@RequestMapping(value = "/profile/{id}/editpassword", method = RequestMethod.PUT)
+	public String putEditPassword(@ModelAttribute("admin") Administrator admin, @PathVariable Long id, ModelMap map) {
+	
+		Administrator administrator = adminService.findOne(id);
+		if(!administrator.getPassword().equals(admin.getPassword())) {
+			System.out.println("Morate promeniti lozinku!");
+	
+			administrator.setPassword(admin.getPassword());
+			administrator.setFirstLogin(false);
+			adminService.save(administrator);
+		
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			CurrentUser user = (CurrentUser) auth.getPrincipal();
+			map.put("logged", user);
+		}
+		else {
+			System.out.println("Morate promeniti lozinku!");
+			return "fzFirstLogin";
+		}
+		
+		return "fanzone";
+	}
+	
 	//=======================================================================================
 	//PROFIL ADMINISTRATORA FAN ZONE
 	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")

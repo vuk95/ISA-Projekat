@@ -28,6 +28,8 @@ public interface AdministratorService {
 		public Administrator createNewAdminSystem(NewAdminForm newAdmin);
 
 		public Administrator updateFZAdminProfile(FZAdminForm form);
+
+		public Administrator updateFZAdminPassword(FZAdminForm form);
 	
 	
 }

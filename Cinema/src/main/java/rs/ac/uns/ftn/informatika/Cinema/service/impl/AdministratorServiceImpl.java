@@ -151,7 +151,19 @@ public class AdministratorServiceImpl implements AdministratorService {
 		
 		return administratorRepository.save(user);
 	}
-
+	
+	@Override
+	public Administrator updateFZAdminPassword(FZAdminForm form) {
+		Administrator user = administratorRepository.findOne(form.getId());
+		user.setPassword(form.getPassword());
+		user.setName(form.getName());
+		user.setLastname(form.getLastname());
+		user.setCity(form.getCity());
+		user.setPhone(form.getPhone());
+		user.setFirstLogin(false);
+		
+		return administratorRepository.save(user);
+	}
 	
 	
 }

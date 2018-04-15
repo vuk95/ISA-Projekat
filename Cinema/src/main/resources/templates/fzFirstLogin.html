@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>
+		Prvi put ulogovan administrator fan zone
+		</title>
+	</head>
+	<body>
+		<h1 th:text = "'Hello: ' + ${admin.name}"></h1>
+		<h1 th:text = "'Ovo je Vasa stara lozinka:' + ${admin.password}"></h1>
+		<h1>Molimo Vas izmenite Vasu lozinku!</h1>
+		<form th:action="@{'/fanzone/profile/' + ${admin.id} + '/editpassword'}" th:object="${admin}" th:method="PUT">
+			<table>
+				
+				<tr>
+					<td><strong>Password: </strong></td>
+					<td><input type="text" th:field="*{password}" required/></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Izmeni">
+						<input type = "hidden" th:field="*{id}">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
