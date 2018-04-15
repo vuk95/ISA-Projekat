@@ -64,7 +64,8 @@ public class ProjectionImageController {
 	            throw new RuntimeException("there is no rekvizit with this id : " + id);
 	        }
 
-	        //baca null exception ali u principu radi
+	        //baca null exception na ovoj liniji koda zato sto u bazi u ovom trenutku nema slike
+	        //pa ne moze da vrati length
 	        byte[] byteArray = new byte[projekcija.getPicture().length];
 	        int i= 0;
 	      
@@ -111,7 +112,8 @@ public class ProjectionImageController {
 		            throw new RuntimeException("there is no rekvizit with this id : " + id);
 		        }
 
-		        //baca null exception ali u principu radi
+		        //baca null exception na ovoj liniji koda zato sto u bazi u ovom trenutku nema slike
+		        //pa ne moze da vrati length
 		        byte[] byteArray = new byte[projekcija.getPicture().length];
 		        int i= 0;
 		      

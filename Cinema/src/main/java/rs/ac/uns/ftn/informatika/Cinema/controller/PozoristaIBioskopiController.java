@@ -154,14 +154,14 @@ public class PozoristaIBioskopiController {
 		currentMovie.setDuration(projekcija.getDuration());
 		currentMovie.setDirector(projekcija.getDirector());
 		currentMovie.setDescription(projekcija.getDescription());
-	/*	currentMovie.setActors(projekcija.getActors());
 		currentMovie.setAvgraiting(projekcija.getAvgraiting());
-		currentMovie.setDate(projekcija.getDate());
-		currentMovie.setGenre(projekcija.getGenre());
 		currentMovie.setPrice(projekcija.getPrice());
-		currentMovie.setHall(projekcija.getHall());
+		currentMovie.setActors(projekcija.getActors());
+		
+		//currentMovie.setDate(projekcija.getDate());
+		//currentMovie.setHall(projekcija.getHall());
 	
-	*/	
+		
 		pservice.save(currentMovie);
 		
 		String referer = request.getHeader("Referer");
@@ -187,11 +187,11 @@ public class PozoristaIBioskopiController {
 		currentPerformance.setDuration(predstava.getDuration());
 		currentPerformance.setDirector(predstava.getDirector());
 		currentPerformance.setDescription(predstava.getDescription());
-		//currentPerformance.setActors(predstava.getActors());
-		//currentPerformance.setAvgraiting(predstava.getAvgraiting());
+		currentPerformance.setAvgraiting(predstava.getAvgraiting());
+		currentPerformance.setPrice(predstava.getPrice());
+		currentPerformance.setActors(predstava.getActors());
+		
 		//currentPerformance.setDate(predstava.getDate());
-		//currentPerformance.setGenre(predstava.getGenre());
-		//currentPerformance.setPrice(predstava.getPrice());
 		//currentPerformance.setHall(predstava.getHall());
 		
 		pservice.save(currentPerformance);
