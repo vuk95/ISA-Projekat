@@ -166,9 +166,27 @@
 			});
 
 			//klik na checkout dugme
-			$('#checkout').click(function(){
-				str = JSON.stringify(sc.find('selected').seatIds);
+			$('#checkout').click(function(e){
+				e.preventDefault();
+				var reservation = {
+						seats : sc.find('selected').seatIds
+				}				
+				
+				str = JSON.stringify(reservation);
 				console.log('Selektovana mesta: ' + str);
+				
+				$.ajax({
+					type: "POST",
+					url: "/api/seats/reservation",
+					data: JSON.stringify(reservation),
+					contentType:"application/json; charset=utf-8",
+					dataType:"json",
+					success: function() {
+						str = JSON.stringify(reservation);
+						console.log('SUCESS - Selektovana mesta: ' + reservation);
+					}
+					
+				});
 			});
 			
 			//let's pretend some seats have already been booked

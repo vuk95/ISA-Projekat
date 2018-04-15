@@ -1,32 +1,34 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
-import javax.persistence.GenerationType;
-
 @Entity
-public class Seat {
+public class Reservation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
-	@Column(name = "redniBroj")
-	private int ordinalNumber;
+	@ManyToOne
+	private Projections projection;
 	
 	@ManyToOne
 	private RegularUser user;
 	
-	@ManyToOne
-	private Projections projection;
+	@ElementCollection
+	private List<String> seats = new ArrayList<String>();
 	
-	public Seat() {
+	public Reservation() {
 		
 	}
 
@@ -38,12 +40,12 @@ public class Seat {
 		Id = id;
 	}
 
-	public int getOrdinalNumber() {
-		return ordinalNumber;
+	public Projections getProjection() {
+		return projection;
 	}
 
-	public void setOrdinalNumber(int ordinalNumber) {
-		this.ordinalNumber = ordinalNumber;
+	public void setProjection(Projections projection) {
+		this.projection = projection;
 	}
 
 	public RegularUser getUser() {
@@ -54,12 +56,12 @@ public class Seat {
 		this.user = user;
 	}
 
-	public Projections getProjection() {
-		return projection;
+	public List<String> getSeats() {
+		return seats;
 	}
 
-	public void setProjection(Projections projection) {
-		this.projection = projection;
+	public void setSeats(List<String> seats) {
+		this.seats = seats;
 	}
 	
 }

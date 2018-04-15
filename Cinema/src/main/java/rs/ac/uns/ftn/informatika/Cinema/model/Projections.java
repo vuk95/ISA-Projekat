@@ -87,8 +87,8 @@ public class Projections {
 	private double price;
 	
 	@OneToMany
-	private Set<Seat> seats;
-
+	private Set<Reservation> reservations;
+	
 	@Column(name = "Prosecna_ocena")
 	private double avgraiting;
 	
@@ -134,7 +134,6 @@ public class Projections {
 	public String getGenre() {
 		return genre;
 	}
-	
 
 	public void setGenre(String genre) {
 		this.genre = genre;
@@ -215,13 +214,13 @@ public class Projections {
 		this.price = price;
 	}
 
-	public Set<Seat> getSeats() {
-		return seats;
+	public Set<Reservation> getReservations() {
+		return reservations;
 	}
 
-	public void setSeats(Set<Seat> seats) {
-		this.seats = seats;
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
 	}
-	
 	
 }

@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
+import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 
@@ -44,6 +45,9 @@ public class RegularUser extends User{
 				joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "oglas_id", referencedColumnName = "oglas_id"))
 	private List<Oglas> mojiOglasi = new ArrayList<Oglas>();
+	
+	@OneToMany
+	private Set<Reservation> reservations;
 	
 	public RegularUser() {
 		
@@ -80,7 +84,13 @@ public class RegularUser extends User{
 	public void setMojiRekviziti(List<ZvanicniRekvizit> mojiRekviziti) {
 		this.mojiRekviziti = mojiRekviziti;
 	}
-	
-	
+
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 	
 }
