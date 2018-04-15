@@ -22,6 +22,10 @@
 				<th>Trajanje</th>
 				<th>Reditelj</th>
   				<th>Opis</th>
+  				<th>Cena</th>
+  				<th>Ocena</th>
+  				<th>Glumci</th>
+  				<th>Slika</th>
 			</tr>
 			
 			<tr th:each="predstava, iterStat: ${pozoriste.projections}">
@@ -31,7 +35,11 @@
 				<td th:text="${predstava.duration}"></td>
 				<td th:text="${predstava.director}"></td>
 				<td th:text="${predstava.description}"></td>
-				<td><a>Dodaj</a></td>
+				<td th:text="${predstava.price}"></td>
+				<td th:text="${predstava.avgraiting}"></td>
+				<td th:text="${predstava.actors}"></td>
+				<td><img th:src="@{'/pozoriste/' + ${predstava.Id} + '/pozoristeimage'}" width="30" height="30"></td>
+				
 				<td><a th:href="${'/cinematheatre/updatePredstave/' + predstava.Id}">Izmeni</a></td>
 				<td><a th:href="${'/cinematheatre/deletePredstave/' + predstava.Id}">Obrisi</a></td>				
 			</tr>
