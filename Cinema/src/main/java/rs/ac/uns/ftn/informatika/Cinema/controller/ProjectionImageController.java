@@ -34,7 +34,7 @@ public class ProjectionImageController {
 	private ProjectionImageService imgservice;
 	
 	@GetMapping("pozoriste/{id}/image")
-    public String showUploadForm(@PathVariable Long id, ModelMap map){
+    public String showUploadTheatreForm(@PathVariable Long id, ModelMap map){
 
         map.put("predstava",pservice.findOne(id));
         
@@ -43,7 +43,7 @@ public class ProjectionImageController {
     }
 	
 	 @PostMapping("pozoriste/{id}/image")
-	 public String handleImagePost(@PathVariable Long id, @RequestParam("imagefile") MultipartFile file){
+	 public String handleTheatreImagePost(@PathVariable Long id, @RequestParam("imagefile") MultipartFile file){
 
 		 	imgservice.saveImageFile(id,file);
 
@@ -56,7 +56,7 @@ public class ProjectionImageController {
 	
 	
 	 @GetMapping("pozoriste/{id}/pozoristeimage")
-	 public void renderImageFromDB(@PathVariable Long id, HttpServletResponse response) throws IOException {
+	 public void renderTheatreImage(@PathVariable Long id, HttpServletResponse response) throws IOException {
 	    	
 	    	Projections projekcija = pservice.findOne(id);
 	        
@@ -80,5 +80,53 @@ public class ProjectionImageController {
 
 	    }
 	
+	 @GetMapping("bioskop/{id}/image")
+	    public String showUploadCinemaForm(@PathVariable Long id, ModelMap map){
+
+	        map.put("projekcija",pservice.findOne(id));
+	        
+	        
+	        return "projekcijeimageupload";
+	    }
+		
+		 @PostMapping("bioskop/{id}/image")
+		 public String handleCinemaImagePost(@PathVariable Long id, @RequestParam("imagefile") MultipartFile file){
+
+			 	imgservice.saveImageFile(id,file);
+
+			 	//String referer = request.getHeader("Referer");
+				
+				//return "redirect:"+ referer;
+			 	
+		        return "redirect:/cinematheatre/updateProjekcije/" + id;
+		    }
+		
+		
+		 @GetMapping("bioskop/{id}/bioskopimage")
+		 public void renderCinemaImage(@PathVariable Long id, HttpServletResponse response) throws IOException {
+		    	
+		    	Projections projekcija = pservice.findOne(id);
+		        
+		        if(projekcija == null){
+		            throw new RuntimeException("there is no rekvizit with this id : " + id);
+		        }
+
+		        //baca null exception ali u principu radi
+		        byte[] byteArray = new byte[projekcija.getPicture().length];
+		        int i= 0;
+		      
+		        for(Byte wrappedByte : projekcija.getPicture() ){
+
+		            byteArray[i++] = wrappedByte;
+		        }
+		        
+		        response.setContentType("image/jpeg");
+		        InputStream is = new ByteArrayInputStream(byteArray);
+		        IOUtils.copy(is,response.getOutputStream());
+
+
+		    }
+	 
+	 
 	
 }

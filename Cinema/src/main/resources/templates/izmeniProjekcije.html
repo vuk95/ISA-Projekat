@@ -54,6 +54,10 @@
 					<td><input type = "text" th:field="*{actors}"></td>
 				</tr>
 				
+				<tr>
+				<td><a th:href="@{'/bioskop/'  + ${projekcija.id} + '/image'}" role="button">Change Image</a></td>
+				<td><img th:src="@{'/bioskop/' + ${projekcija.id} + '/bioskopimage'}" width="360" height="240"></td>
+				</tr>
 		
 				<tr>
 					<td>&nbsp;</td>

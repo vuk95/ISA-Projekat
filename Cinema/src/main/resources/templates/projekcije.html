@@ -25,6 +25,7 @@
   				<th>Cena</th>
   				<th>Ocena</th>
   				<th>Glumci</th>
+  				<th>Slika</th>
 			</tr>
 			
 			<tr th:each="projekcija, iterStat: ${bioskop.projections}">
@@ -37,6 +38,8 @@
 				<td th:text="${projekcija.price}"></td>
 				<td th:text="${projekcija.avgraiting}"></td>
 				<td th:text="${projekcija.actors}"></td>
+				<td><img th:src="@{'/bioskop/' + ${projekcija.Id} + '/bioskopimage'}" width="30" height="30"></td>
+				
 				<td><a th:href="${'/cinematheatre/updateProjekcije/' + projekcija.Id}">Izmeni</a></td>
 				<td><a th:href="${'/cinematheatre/deleteProjekcije/' + projekcija.Id}">Obrisi</a></td>	
 			</tr>
