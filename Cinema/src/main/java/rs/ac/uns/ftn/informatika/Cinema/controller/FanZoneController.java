@@ -28,7 +28,9 @@ import rs.ac.uns.ftn.informatika.Cinema.model.users.CurrentUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.FZAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.User;
 import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
+import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.OglasService;
 import rs.ac.uns.ftn.informatika.Cinema.service.PonudaService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
@@ -54,26 +56,31 @@ public class FanZoneController {
 	@Autowired
 	private AdministratorService adminService;
 	
+	@Autowired
+	private AllUsersService allService;
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(ModelMap map) {
-	
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		CurrentUser user = (CurrentUser) auth.getPrincipal();
+	public String home(ModelMap map, Principal principal) {
+		
+		User user = allService.findUserByEmail(principal.getName());
 		map.put("logged", user);
-		if(user.getUser().getRole().equals(Role.FAN_ZONE)) {
-			Administrator admin = (Administrator) user.getUser();
-			map.put("admin", admin);
-			System.out.println(admin.isFirstLogin());
+		
+		if(user.getRole().equals(Role.FAN_ZONE)) {
 			
-			if(admin.isFirstLogin()) {
+			Administrator admin = (Administrator) user;
 	
+			if(admin.isFirstLogin()) {
+				
+				map.put("admin", admin);
+				System.out.println(admin.isFirstLogin());
+				
 				return "fzFirstLogin";
 			}
 			else {
+				map.put("admin", admin);
 				return "fanzone";
 			}
 		}
-		
 		
 		return "fanzone";
 		
@@ -83,26 +90,25 @@ public class FanZoneController {
 	//ne bi smelo da se desi da moze da ide na edit profile pre ovoga?
 	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
 	@RequestMapping(value = "/profile/{id}/editpassword", method = RequestMethod.PUT)
-	public String putEditPassword(@ModelAttribute("admin") Administrator admin, @PathVariable Long id, ModelMap map) {
+	public String putEditPassword(@ModelAttribute("admin") Administrator admin, @PathVariable Long id, ModelMap map, Principal principal) {
 	
 		Administrator administrator = adminService.findOne(id);
 		if(!administrator.getPassword().equals(admin.getPassword())) {
-			System.out.println("Morate promeniti lozinku!");
-	
+			
 			administrator.setPassword(admin.getPassword());
 			administrator.setFirstLogin(false);
 			adminService.save(administrator);
 		
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			CurrentUser user = (CurrentUser) auth.getPrincipal();
-			map.put("logged", user);
+			//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			//CurrentUser user = (CurrentUser) auth.getPrincipal();
+			map.put("logged", administrator);
 		}
 		else {
 			System.out.println("Morate promeniti lozinku!");
 			return "fzFirstLogin";
 		}
 		
-		return "fanzone";
+		return "redirect:/fanzone/home";
 	}
 	
 	//=======================================================================================

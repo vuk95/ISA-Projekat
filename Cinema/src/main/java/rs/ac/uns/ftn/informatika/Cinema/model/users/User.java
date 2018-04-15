@@ -140,4 +140,8 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	public String getUloga() {
+		return role.toString();
+	}
 }
