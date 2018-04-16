@@ -49,6 +49,9 @@ public class RegularUser extends User{
 	@OneToMany
 	private Set<Reservation> reservations;
 	
+	@OneToMany
+	private Set<Ticket> tickets;
+	
 	public RegularUser() {
 		
 	}

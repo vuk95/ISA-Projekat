@@ -94,6 +94,8 @@ public class Projections {
 	@Column(name = "Prosecna_ocena")
 	private double avgraiting;
 	
+	@OneToMany
+	private Set<Ticket> tickets;
 	
 	public Projections() {
 		
@@ -236,5 +238,16 @@ public class Projections {
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+
+
+	public Set<Ticket> getTickets() {
+		return tickets;
+	}
+
+
+	public void setTickets(Set<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+	
 	
 }

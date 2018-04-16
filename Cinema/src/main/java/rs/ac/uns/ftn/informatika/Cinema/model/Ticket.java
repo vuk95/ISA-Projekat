@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 
 @Entity(name = "Karta")
 public class Ticket {
@@ -20,6 +23,12 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
+	@ManyToOne
+	private Projections projekcija;
+	
+	@ManyToOne
+	private RegularUser user;
+	
 	@Column(name = "Datum")
 	private Date date;
 	
@@ -27,7 +36,7 @@ public class Ticket {
 	private Time time;
 	
 	@Column(name = "Sediste")
-	private int seat;
+	private String seat;
 	
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
@@ -48,19 +57,27 @@ public class Ticket {
 		
 	}
 	
-	public Ticket(Date date,Time time,int seat,int hall,double price,int discount) {
-		
-		this.date = date;
-		this.time = time;
-		this.seat = seat;
-		this.hall = hall;
-		this.price = price;
-		this.discount = discount;
-	}
-
 	//Geteri i Seteri
+	
+
 	public Date getDate() {
 		return date;
+	}
+
+	public Projections getProjekcija() {
+		return projekcija;
+	}
+
+	public void setProjekcija(Projections projekcija) {
+		this.projekcija = projekcija;
+	}
+
+	public RegularUser getUser() {
+		return user;
+	}
+
+	public void setUser(RegularUser user) {
+		this.user = user;
 	}
 
 	public void setDate(Date date) {
@@ -75,12 +92,29 @@ public class Ticket {
 		this.time = time;
 	}
 
-	public int getSeat() {
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public String getSeat() {
 		return seat;
 	}
 
-	public void setSeat(int seat) {
+	public void setSeat(String seat) {
 		this.seat = seat;
+	}
+
+	public SeatType getSeatType() {
+		return seatType;
+	}
+
+	public void setSeatType(SeatType seatType) {
+		this.seatType = seatType;
 	}
 
 	public int getHall() {
