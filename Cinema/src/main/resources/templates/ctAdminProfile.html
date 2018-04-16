@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Korisnicki profil</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="#">Pocetna</a></li>
+				<li><a href="#">Pozorista</a></li>
+				<li><a href="#">Bioskopi</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><span class="glyphicon glyphicon-user"></span></li>
+				<li><a th:href="@{'/profile/' + ${user.id}}" th:text="${user.name}"></a></li>
+				<li></li>
+				<li><a href="/logout">Odjava</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	
+	<div class="container">
+		<!-- Deo sa podacima korisnika -->
+		<div class="col-md-6">
+			<h4 th:text="${welcomeMessage}"></h4>
+			
+			<table class="table table-hover">
+				<tr>
+					<td><strong>Email:</strong></td>
+					<td th:text="${user.email}"></td>
+				</tr>
+				<tr>
+					<td><strong>Ime:</strong></td>
+					<td th:text="${user.name}"></td>
+				</tr>
+				<tr>
+					<td><strong>Prezime:</strong></td>
+					<td th:text="${user.lastname}"></td>
+				</tr>
+				<tr>
+					<td><strong>Grad:</strong></td>
+					<td th:text="${user.city}"></td>
+				</tr>
+				<tr>
+					<td><strong>Telefon:</strong></td>
+					<td th:text="${user.phone}"></td>
+				</tr>
+			</table>
+			<p>Ukoliko zelite da ih promenite kliknite <a th:href="@{'/profile/' + ${user.id} + '/edit'}">ovde.</a></p>	
+		</div>
+		
+		
+	</div>
+
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
+</body>
+</html>

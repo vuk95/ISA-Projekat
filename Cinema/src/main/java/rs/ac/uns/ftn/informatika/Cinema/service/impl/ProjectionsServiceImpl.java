@@ -61,6 +61,10 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		p.setDuration(form.getDuration());
 		p.setDirector(form.getDirector());
 		p.setDescription(form.getDescription());
+		p.setPrice(form.getPrice());
+		p.setAvgraiting(form.getAvgraiting());
+		p.setActors(form.getActors());
+		p.setPicture(form.getPicture());
 		
 		return prepository.save(p);
 	}
@@ -75,6 +79,10 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		form.setDuration(p.getDuration());
 		form.setDirector(p.getDirector());
 		form.setDescription(p.getDescription());
+		form.setPrice(p.getPrice());
+		form.setAvgraiting(p.getAvgraiting());
+		form.setActors(p.getActors());
+		form.setPicture(p.getPicture());
 		
 		return form;
 	}

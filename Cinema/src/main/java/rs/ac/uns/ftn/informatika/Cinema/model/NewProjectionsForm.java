@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -25,6 +26,13 @@ public class NewProjectionsForm {
 	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String description;
 	
+	private double price;
+
+	private double avgraiting;
+	
+	private String actors;
+	
+	private Byte[] picture;
 	
 	public NewProjectionsForm() {
 		
@@ -81,7 +89,44 @@ public class NewProjectionsForm {
 	}
 	
 	
-	
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+	public double getAvgraiting() {
+		return avgraiting;
+	}
+
+
+	public void setAvgraiting(double avgraiting) {
+		this.avgraiting = avgraiting;
+	}
+
+
+	public String getActors() {
+		return actors;
+	}
+
+
+	public void setActors(String actors) {
+		this.actors = actors;
+	}
+
+
+	public Byte[] getPicture() {
+		return picture;
+	}
+
+
+	public void setPicture(Byte[] picture) {
+		this.picture = picture;
+	}
 	
 	
 	
