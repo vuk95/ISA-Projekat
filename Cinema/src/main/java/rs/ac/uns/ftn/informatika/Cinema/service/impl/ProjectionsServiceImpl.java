@@ -67,6 +67,7 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		p.setPicture(form.getPicture());
 		p.setDate(form.getDate());
 		p.setTime(form.getTime());
+		p.setHall(form.getHall());
 		
 		return prepository.save(p);
 	}
@@ -87,6 +88,7 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		form.setPicture(p.getPicture());
 		form.setDate(p.getDate());
 		form.setTime(p.getTime());
+		form.setHall(p.getHall());
 		
 		return form;
 	}

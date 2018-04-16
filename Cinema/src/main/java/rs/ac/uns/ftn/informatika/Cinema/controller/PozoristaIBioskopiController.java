@@ -258,7 +258,7 @@ public class PozoristaIBioskopiController {
 		currentMovie.setActors(projekcija.getActors());
 		currentMovie.setDate(projekcija.getDate());
 		currentMovie.setTime(projekcija.getTime());
-		
+		currentMovie.setHall(projekcija.getHall());
 		
 		//currentMovie.setHall(projekcija.getHall());
 	
@@ -293,7 +293,7 @@ public class PozoristaIBioskopiController {
 		currentPerformance.setActors(predstava.getActors());
 		currentPerformance.setDate(predstava.getDate());
 		currentPerformance.setTime(predstava.getTime());
-		
+		currentPerformance.setHall(predstava.getHall());
 		
 		//currentPerformance.setHall(predstava.getHall());
 		
