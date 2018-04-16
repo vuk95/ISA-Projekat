@@ -28,6 +28,7 @@
   				<th>Slika</th>
   				<th>Datum</th>
   				<th>Vreme</th>
+  				<th>Sala</th>
 			</tr>
 			
 			<tr th:each="projekcija, iterStat: ${bioskop.projections}">
@@ -43,6 +44,7 @@
 				<td><img th:src="@{'/bioskop/' + ${projekcija.Id} + '/bioskopimage'}" width="30" height="30"></td>
 				<td th:text="${projekcija.date}"></td>
 				<td th:text="${projekcija.time}"></td>
+				<td th:text="${projekcija.hall.id}"></td>
 				<td><a th:href="${'/cinematheatre/updateProjekcije/' + projekcija.Id}">Izmeni</a></td>
 				<td><a th:href="${'/cinematheatre/deleteProjekcije/' + projekcija.Id}">Obrisi</a></td>	
 			</tr>

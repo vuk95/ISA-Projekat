@@ -40,6 +40,8 @@ public class NewProjectionsForm {
 	
 	private Time time;
 	
+	private Hall hall;
+	
 	public NewProjectionsForm() {
 		
 	}
@@ -152,6 +154,16 @@ public class NewProjectionsForm {
 
 	public void setTime(Time time) {
 		this.time = time;
+	}
+
+
+	public Hall getHall() {
+		return hall;
+	}
+
+
+	public void setHall(Hall hall) {
+		this.hall = hall;
 	}
 	
 	
