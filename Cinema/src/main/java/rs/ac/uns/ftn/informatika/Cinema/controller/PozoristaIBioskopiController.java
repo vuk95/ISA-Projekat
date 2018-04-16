@@ -26,6 +26,7 @@ import rs.ac.uns.ftn.informatika.Cinema.model.users.User;
 import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
 import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
+import rs.ac.uns.ftn.informatika.Cinema.service.HallService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 
 @Controller
@@ -43,6 +44,9 @@ public class PozoristaIBioskopiController {
 	
 	@Autowired
 	private AdministratorService adminService;
+	
+	@Autowired
+	private HallService hservice;
 	
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -252,8 +256,10 @@ public class PozoristaIBioskopiController {
 		currentMovie.setAvgraiting(projekcija.getAvgraiting());
 		currentMovie.setPrice(projekcija.getPrice());
 		currentMovie.setActors(projekcija.getActors());
+		currentMovie.setDate(projekcija.getDate());
+		currentMovie.setTime(projekcija.getTime());
+		currentMovie.setHall(projekcija.getHall());
 		
-		//currentMovie.setDate(projekcija.getDate());
 		//currentMovie.setHall(projekcija.getHall());
 	
 		
@@ -285,8 +291,10 @@ public class PozoristaIBioskopiController {
 		currentPerformance.setAvgraiting(predstava.getAvgraiting());
 		currentPerformance.setPrice(predstava.getPrice());
 		currentPerformance.setActors(predstava.getActors());
+		currentPerformance.setDate(predstava.getDate());
+		currentPerformance.setTime(predstava.getTime());
+		currentPerformance.setHall(predstava.getHall());
 		
-		//currentPerformance.setDate(predstava.getDate());
 		//currentPerformance.setHall(predstava.getHall());
 		
 		pservice.save(currentPerformance);

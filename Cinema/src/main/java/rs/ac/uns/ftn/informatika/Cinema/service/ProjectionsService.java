@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.Cinema.service;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
+import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
 
 public interface ProjectionsService {
 
@@ -17,6 +18,10 @@ public interface ProjectionsService {
 	
 	public NewProjectionsForm seForm(Projections p);
 	
-	public String[] getSeatConfiguration(Long id);
+	public String[] getSeatConfiguration(Projections projection);
+	
+	public void addReservation(Projections projection, Reservation reservation);
+	
+	public String[] getReservedSeats(Projections projection);
 	
 }

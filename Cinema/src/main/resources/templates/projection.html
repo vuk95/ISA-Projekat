@@ -83,6 +83,8 @@
 					<br>
 					<div id="legend">
 					</div>
+					<div id="success">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -124,7 +126,7 @@
 				click: function () {
 					if (this.status() == 'available') {
 						//let's create a new <li> which we'll add to the cart items
-						$('<li>'+this.data().category+' Sediste # '+this.settings.label+': <b>$'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+						$('<li>Sediste # '+this.settings.label+': <b>$'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[otkazi]</a></li>')
 							.attr('id', 'cart-item-'+this.settings.id)
 							.data('seatId', this.settings.id)
 							.appendTo($cart);
@@ -169,7 +171,9 @@
 			$('#checkout').click(function(e){
 				e.preventDefault();
 				var reservation = {
-						seats : sc.find('selected').seatIds
+						seats : sc.find('selected').seatIds,
+						projectionId : [[${projection.id}]],
+						userId : [[${user.id}]]
 				}				
 				
 				str = JSON.stringify(reservation);
@@ -180,17 +184,18 @@
 					url: "/api/seats/reservation",
 					data: JSON.stringify(reservation),
 					contentType:"application/json; charset=utf-8",
-					dataType:"json",
+					dataType:"JSON",
 					success: function() {
-						str = JSON.stringify(reservation);
-						console.log('SUCESS - Selektovana mesta: ' + reservation);
+						console.log('success');
+					},
+					error: function(ts) {
+						location.href = location.href;						
 					}
-					
 				});
 			});
 			
-			//let's pretend some seats have already been booked
-			sc.get(['1_2', '4_1', '4_5']).status('unavailable');
+			//postavi na unavailable mesta koja su rezervisana
+			sc.get([[${reservedSeats}]]).status('unavailable');
 		
 		});
 

@@ -55,6 +55,21 @@
 				</tr>
 				
 				<tr>
+					<td>Datum:</td>
+					<td><input type = "text" th:field="*{date}"></td>
+				</tr>
+				
+				<tr>
+					<td>Vreme:</td>
+					<td><input type = "text" th:field="*{time}"></td>
+				</tr>
+				
+				<tr>
+					<td>Sala:</td>
+					<td><input type = "text" th:field="*{hall}"></td>
+				</tr>
+							
+				<tr>
 				<td><a th:href="@{'/bioskop/'  + ${projekcija.id} + '/image'}" role="button">Change Image</a></td>
 				<td><img th:src="@{'/bioskop/' + ${projekcija.id} + '/bioskopimage'}" width="360" height="240"></td>
 				</tr>

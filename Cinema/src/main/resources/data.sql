@@ -124,20 +124,20 @@ INSERT INTO hall(ime,broj_redova,broj_sedista) values ('Mala sala',9,6);
 --==============================================================================================================================
 --Projekcije(filmovi/predstave)
 
-INSERT INTO projekcije(glumci,prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,price,cinema_theatre_id,hall_id) values
-('Christian Bale, Tom Hardy, Anne Hathaway','4.8','2018-02-03 17:30','Poslednji deo Marvelove trilogije o Betmenu','Kristofer Nolan','164','Akcija,Triler','The Dark Knight Rises','350','1','1');
+INSERT INTO projekcije(glumci,prosecna_ocena,datum,opis,reditelj,trajanje,zanr,naziv,price,vreme,cinema_theatre_id,hall_id) values
+('Christian Bale, Tom Hardy, Anne Hathaway','4.8','2018-02-03','Poslednji deo Marvelove trilogije o Betmenu','Kristofer Nolan','164','Akcija,Triler','The Dark Knight Rises','350','17:30','1','1');
 
-INSERT INTO projekcije(glumci,prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,price,cinema_theatre_id,hall_id) values
-('Christian Bale, Heath Ledger, Aaron Eckhart','5','2018-03-05','Drugi deo Marvelove trilogije o Betmenu','Kristofer Nolan','152','Akcija,Avanturisticki','The Dark Knight','350','1','2');
+INSERT INTO projekcije(glumci,prosecna_ocena,datum,opis,reditelj,trajanje,zanr,naziv,price,vreme,cinema_theatre_id,hall_id) values
+('Christian Bale, Heath Ledger, Aaron Eckhart','5','2018-03-05','Drugi deo Marvelove trilogije o Betmenu','Kristofer Nolan','152','Akcija,Avanturisticki','The Dark Knight','350','17:30','1','2');
 
-INSERT INTO projekcije(glumci,prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,price,cinema_theatre_id,hall_id) values
-('Christian Bale, Michael Caine, Ken Watanabe','4.1','2018-01-11','Prvi deo Marvelove trilogije o Betmenu','Kristofer Nolan','140','Akcija,Avanturisticki,Triler','Batman Begins','350','4','1');
+INSERT INTO projekcije(glumci,prosecna_ocena,datum,opis,reditelj,trajanje,zanr,naziv,price,vreme,cinema_theatre_id,hall_id) values
+('Christian Bale, Michael Caine, Ken Watanabe','4.1','2018-01-11','Prvi deo Marvelove trilogije o Betmenu','Kristofer Nolan','140','Akcija,Avanturisticki,Triler','Batman Begins','350','17:30','4','1');
 
-INSERT INTO projekcije(glumci,prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,price,cinema_theatre_id,hall_id) values
-('Zoran Radmilovic,Mira Banjac,Milutin Butkovic','3.7','2018-04-01','Jedna od najboljih srpskih predstava','Dusan Kovacevic','165','Komedija,Drama','Radovan III','350','9','3');
+INSERT INTO projekcije(glumci,prosecna_ocena,datum,opis,reditelj,trajanje,zanr,naziv,price,vreme,cinema_theatre_id,hall_id) values
+('Zoran Radmilovic,Mira Banjac,Milutin Butkovic','3.7','2018-04-01','Jedna od najboljih srpskih predstava','Dusan Kovacevic','165','Komedija,Drama','Radovan III','350','17:30','9','3');
 
-INSERT INTO projekcije(glumci,prosecna_ocena,date,opis,reditelj,trajanje,zanr,naziv,price,cinema_theatre_id,hall_id) values
-('Jelena Antonijevic,Strahinja Bojovic,Danica Grubacki','4.3','2018-02-10','Pretstava uradjena po motivima istoimenog dela Iva Andrica','Kokan Mladenovic','155','Drama','Na Drini Cuprija','350','14','2');
+INSERT INTO projekcije(glumci,prosecna_ocena,datum,opis,reditelj,trajanje,zanr,naziv,price,vreme,cinema_theatre_id,hall_id) values
+('Jelena Antonijevic,Strahinja Bojovic,Danica Grubacki','4.3','2018-02-10','Pretstava uradjena po motivima istoimenog dela Iva Andrica','Kokan Mladenovic','155','Drama','Na Drini Cuprija','350','17:30','14','2');
 
 --================================================================================================================================
 --Bioskop_Pozoriste_projekcije

@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.ftn.informatika.Cinema.model.Hall;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
+import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
 import rs.ac.uns.ftn.informatika.Cinema.repository.ProjectionsRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 
@@ -65,6 +67,9 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		p.setAvgraiting(form.getAvgraiting());
 		p.setActors(form.getActors());
 		p.setPicture(form.getPicture());
+		p.setDate(form.getDate());
+		p.setTime(form.getTime());
+		p.setHall(form.getHall());
 		
 		return prepository.save(p);
 	}
@@ -83,13 +88,15 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		form.setAvgraiting(p.getAvgraiting());
 		form.setActors(p.getActors());
 		form.setPicture(p.getPicture());
+		form.setDate(p.getDate());
+		form.setTime(p.getTime());
+		form.setHall(p.getHall());
 		
 		return form;
 	}
 
 	@Override
-	public String[] getSeatConfiguration(Long id) {
-		Projections projection = prepository.findOne(id);
+	public String[] getSeatConfiguration(Projections projection) {
 		Hall hall = projection.getHall();
 		StringBuilder sb = new StringBuilder();
 		ArrayList<String> lista = new ArrayList<String>();
@@ -103,6 +110,26 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		}
 		
 		return lista.toArray(new String[lista.size()]);
+	}
+
+	@Override
+	public void addReservation(Projections projection, Reservation reservation) {
+		projection.getReservations().add(reservation);
+		prepository.save(projection);
+		
+	}
+
+	@Override
+	public String[] getReservedSeats(Projections projection) {
+		List<Reservation> reservations = new ArrayList<Reservation>(projection.getReservations());
+		List<String> seats = new ArrayList<String>();
+		for(int i = 0; i < reservations.size(); i++) {
+			for(int j = 0; j < reservations.get(i).getSeats().size(); j++) {	
+				seats.add(reservations.get(i).getSeats().get(j).toString());
+			}
+		}
+		
+		return seats.toArray(new String[seats.size()]);
 	}
 
 }

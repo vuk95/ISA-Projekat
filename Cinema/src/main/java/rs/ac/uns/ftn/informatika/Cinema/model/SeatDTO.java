@@ -7,6 +7,10 @@ public class SeatDTO {
 
 	private List<String> seats = new ArrayList<String>();
 	
+	private Long projectionId;
+	
+	private Long userId;
+	
 	public SeatDTO() {
 		
 	}
@@ -17,6 +21,22 @@ public class SeatDTO {
 
 	public void setSeats(List<String> seats) {
 		this.seats = seats;
+	}
+
+	public Long getProjectionId() {
+		return projectionId;
+	}
+
+	public void setProjectionId(Long projectionId) {
+		this.projectionId = projectionId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	
 }

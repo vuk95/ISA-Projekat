@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,8 +44,6 @@ public class Projections {
 	@NotEmpty(message = "Polje ne sme biti prazno !")
 	private String genre;
 	
-	
-	
 	@Column(name = "Trajanje", nullable = false)
 	@NotNull(message = "Morate uneti trajanje projekcije!")
 	@Min(value=30, message = "Trajanje projekcije ne sme biti manje od 30 minuta!")
@@ -80,8 +79,11 @@ public class Projections {
 	@JoinColumn
 	private Hall hall;
 	
-	@Column
-	private Date date;
+	@Column(name = "Datum")
+	private java.sql.Date date;
+	
+	@Column(name = "Vreme")
+	private Time time;
 	
 	@Column
 	private double price;
@@ -198,13 +200,25 @@ public class Projections {
 		this.cinemaTheatre = cinemaTheatre;
 	}
 	
-	public Date getDate() {
+	public java.sql.Date getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+
+	public void setDate(java.sql.Date date) {
 		this.date = date;
 	}
+
+	
+	public Time getTime() {
+		return time;
+	}
+
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+
 
 	public double getPrice() {
 		return price;
