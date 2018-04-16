@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<h1>Svi korisnicki oglasi</h1>
-		<a th:href = "@{/fanzone/getOglasi/addOglas}">Novi oglas</a>
+		<!-- <a th:href = "@{/fanzone/getOglasi/addOglas}">Novi oglas</a>-->
 		<a th:href = "@{/fanzone/getOglasi/mojiOglasi}">Moji oglasi</a>
 		
 		<table border = "1">
@@ -22,7 +22,7 @@
 				<td th:text="${oglas.opis}"></td>
 				<td th:text="${oglas.datum}"></td>
 				<td>
-					<a th:href = "${'/fanzone/getOglasi/ponude/' + oglas.id}">Ponude</a>
+					<div th:if = "${oglas.user} != ${user}"><a th:href = "${'/fanzone/getOglasi/ponude/' + oglas.id}">Ponude</a></div>
 				</td>
 			</tr>
 		</table>

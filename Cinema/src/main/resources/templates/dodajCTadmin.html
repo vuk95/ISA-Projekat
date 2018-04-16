@@ -1,9 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Dodaj admina pozorista i bioskopa</title>
+		<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
 	</head>
 	<body>
 		<h1>Dodaj admina pozorista i bioskopa</h1>
+		
+		<div th:if = "${erroradmin}" class="alert alert-danger" th:text = "${erroradmin}"></div>
+		
 		<form th:action="@{/systemAdmin/admini/addCTadmin}" th:object="${admin}" method ="post">
 			<table>
 				
@@ -43,6 +47,7 @@
 				</tr>
 			</table>
 		</form>
-		
+		<script src="/scripts/jquery-3.2.1.min.js"></script>
+		<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 	</body>
 </html>

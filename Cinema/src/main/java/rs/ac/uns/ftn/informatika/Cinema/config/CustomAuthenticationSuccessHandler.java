@@ -69,7 +69,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		} else if(systemAdmin) {
 			return "/systemAdmin";			//promeni
 		} else if(fanzoneAdmin) {
-			return "/fanzoneAdmin"; 		//promeni
+			return "/fanzone/home"; 		//promeni
 		} else if(cinematheatreAdmin) {
 			return "/cinematheatreAdmin"; 	//promeni
 		} else {

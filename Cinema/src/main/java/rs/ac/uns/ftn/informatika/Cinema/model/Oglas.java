@@ -43,6 +43,10 @@ public class Oglas {
 				inverseJoinColumns = @JoinColumn(name = "ponuda_id", referencedColumnName = "ponuda_id"))
 	private List<Ponuda> ponudeZaOglas = new ArrayList<Ponuda>();
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	private RegularUser user;
+	
 	public List<Ponuda> getPonudeZaOglas() {
 		return ponudeZaOglas;
 	}
@@ -79,6 +83,12 @@ public class Oglas {
 	}
 	public void setDatum(String datum) {
 		this.datum = datum;
+	}
+	public RegularUser getUser() {
+		return user;
+	}
+	public void setUser(RegularUser user) {
+		this.user = user;
 	}
 	public Oglas(String naziv, String opis, String datum) {
 		super();

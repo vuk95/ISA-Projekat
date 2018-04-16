@@ -162,9 +162,12 @@ public class FanZoneController {
 	}
 	//obican
 	@RequestMapping(value = "/getOglasi", method = RequestMethod.GET)
-	public String oglasi(ModelMap map) {
+	public String oglasi(ModelMap map, Principal principal) {
+		
+		RegularUser user = userServis.findByEmail(principal.getName());
 		
 		map.put("oglasi", oglServis.findAll());
+		map.put("user", user);
 		return "oglas";
 		
 	}
@@ -333,12 +336,15 @@ public class FanZoneController {
 		if(!result.hasErrors()) {
 		
 			oglas = oglServis.createNewOglas(o);
+			
 		}
 			RegularUser user = userServis.findByEmail(principal.getName());
 			RegularUser reg = userServis.addMojOglas(oglas, user.getId());
 			userServis.save(reg);
-		
-		return "redirect:../getOglasi";
+			oglas.setUser(user);
+			oglServis.save(oglas);
+			
+		return "redirect:../getOglasi/mojiOglasi";
 	
 	}
 	

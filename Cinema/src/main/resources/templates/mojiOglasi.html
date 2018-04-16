@@ -4,21 +4,24 @@
 	</head>
 	<body>
 		<h3>Moji oglasi</h3>
+		<a th:href = "@{/fanzone/getOglasi/addOglas}">Novi oglas</a>
 		<table border = "1">
 			<tr>
 				<th>Id</th>
 				<th>Naziv</th>
 				<th>Datum</th>
 				<th>Opis</th>
+				<th>Odobren</th>
 				<th>Opcije</th>
 			</tr>
-			<tr th:each="oglas, iterStat: ${user.mojiOglasi}"  th:if="${oglas.odobren} == true">
+			<tr th:each="oglas, iterStat: ${user.mojiOglasi}">
 				<td th:text="${oglas.id}"></td>
 				<td th:text="${oglas.naziv}"></td>
 				<td th:text="${oglas.datum}"></td>
 				<td th:text="${oglas.opis}"></td>
+				<td th:text="${oglas.odobren}"></td>
 				<td>
-					<a th:href = "${'/fanzone/getOglasi/ponudeprim/' + oglas.id}">Ponude</a>
+					<div th:if = "${oglas.odobren} == true"><a th:href = "${'/fanzone/getOglasi/ponudeprim/' + oglas.id}">Ponude</a></div>
 				</td>
 			</tr>
 		

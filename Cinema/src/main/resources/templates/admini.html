@@ -53,7 +53,32 @@
 				<td th:text="${administrator.password}"></td>
 			</tr>
 		</table>
-		
+		<div th:if = "${admin.isPredefinisani()}">
+		<h4>Administratori Sistema</h4>
+		<a th:href="@{/systemAdmin/admini/addSystem}">Dodaj novog admina sistema</a>
+		<table border = "1">
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Uloga</th>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Grad</th>
+				<th>Telefon</th>
+				<th>Password</th>
+			</tr>
+			<tr th:each="administrator, iterStat: ${administratori}" th:if="${administrator.role == T(rs.ac.uns.ftn.informatika.Cinema.model.users.Role).SYSTEM}">
+				<td th:text="${administrator.id}"></td>
+				<td th:text="${administrator.email}"></td>
+				<td th:text="${administrator.role}"></td>
+				<td th:text="${administrator.name}"></td>
+				<td th:text="${administrator.lastname}"></td>
+				<td th:text="${administrator.city}"></td>
+				<td th:text="${administrator.phone}"></td>
+				<td th:text="${administrator.password}"></td>
+			</tr>
+		</table>
+		</div>
 		
 	</body>
 </html>

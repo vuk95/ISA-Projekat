@@ -1,9 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Dodaj admina systema</title>
+		<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
 	</head>
 	<body>
 		<h1>Dodaj admina systema</h1>
+		
+		<div th:if = "${erroradmin}" class="alert alert-danger" th:text = "${erroradmin}"></div>
+		<div th:if = "${error}" class="alert alert-danger" th:text = "${error}"></div>
+		
 		<form th:action="@{/systemAdmin/admini/addSystem}" th:object="${admin}" method ="post">
 			<table>
 				
@@ -43,6 +48,7 @@
 				</tr>
 			</table>
 		</form>
-		
+			<script src="/scripts/jquery-3.2.1.min.js"></script>
+			<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 	</body>
 </html>

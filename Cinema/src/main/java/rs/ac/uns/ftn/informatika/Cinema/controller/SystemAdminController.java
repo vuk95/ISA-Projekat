@@ -86,6 +86,10 @@ public class SystemAdminController {
 		}
 		else {
 			administrator = adminService.createNewAdminCT(admin);
+			if(administrator == null) {
+				map.put("erroradmin", "Vec postoji korisnik sa zadatim emailom!");
+				return "dodajCTadmin";
+			}
 		}
 	
 		return "redirect:/systemAdmin/admini";
@@ -93,9 +97,13 @@ public class SystemAdminController {
 	}
 	
 	@RequestMapping(value = "systemAdmin/admini", method = RequestMethod.GET)
-	public String addAdmini(ModelMap map) {
+	public String addAdmini(ModelMap map, Principal principal) {
+		
+		Administrator admin = (Administrator) userService.findUserByEmail(principal.getName());
 		
 		map.put("administratori", adminService.findAll());
+		map.put("admin", admin);
+		
 		return "admini";
 		
 	}
@@ -118,6 +126,10 @@ public class SystemAdminController {
 		}
 		else {
 			administrator = adminService.createNewAdminFZ(admin);
+			if(administrator == null) {
+				map.put("erroradmin", "Vec postoji korisnik sa zadatim emailom!");
+				return "dodajFZadmin";
+			}
 		}
 	
 		return "redirect:/systemAdmin/admini";
@@ -145,9 +157,15 @@ public class SystemAdminController {
 		else {
 			if(a.getRole().equals(Role.SYSTEM) && a.isPredefinisani()) {
 			administrator = adminService.createNewAdminSystem(admin);
+				if(administrator == null) {
+					map.put("erroradmin", "Vec postoji korisnik sa zadatim emailom!");
+					return "dodajSystem";
+				}
 			}
 			else {
+				map.put("error", "Nemate pravo na ovu akciju!");
 				System.out.println("Ne mozete dodavati druge administratore sistema!");
+				return "dodajSystem";
 			}
 		}
 	
