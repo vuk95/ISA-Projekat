@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	</head>
+	<body>
+		<h1 th:text = "${user.name}"></h1>
+		<table border = "1">
+				<tr>
+					<td><strong>Email:</strong></td>
+					<td th:text="${user.email}"></td>
+				</tr>
+				<tr>
+					<td><strong>Password:</strong></td>
+					<td th:text="${user.password}"></td>
+				</tr>
+				<tr>
+					<td><strong>Uloga:</strong></td>
+					<td th:text="${user.role}"></td>
+				</tr>
+				<tr>
+					<td><strong>Ime:</strong></td>
+					<td th:text="${user.name}"></td>
+				</tr>
+				<tr>
+					<td><strong>Prezime:</strong></td>
+					<td th:text="${user.lastname}"></td>
+				</tr>
+				<tr>
+					<td><strong>Grad:</strong></td>
+					<td th:text="${user.city}"></td>
+				</tr>
+				<tr>
+					<td><strong>Telefon:</strong></td>
+					<td th:text="${user.phone}"></td>
+				</tr>
+			</table>
+			<a th:href="@{'/cinematheatre/profile/' + ${user.id} + '/edit'}">Izmeni podatke</a>
+	</body>
+</html>

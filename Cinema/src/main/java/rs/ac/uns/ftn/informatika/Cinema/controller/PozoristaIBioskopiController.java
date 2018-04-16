@@ -1,10 +1,13 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.FZAdminForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
+import rs.ac.uns.ftn.informatika.Cinema.model.users.User;
+import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
+import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 
@@ -28,7 +37,93 @@ public class PozoristaIBioskopiController {
 	
 	@Autowired
 	private ProjectionsService pservice;
+	
+	@Autowired
+	private AllUsersService allService;
+	
+	@Autowired
+	private AdministratorService adminService;
+	
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(ModelMap map, Principal principal) {
 		
+		User user = allService.findUserByEmail(principal.getName());
+		
+		
+		if(user.getRole().equals(Role.CINEMA_THEATRE)) {
+			
+			Administrator admin = (Administrator) user;
+	
+			if(admin.isFirstLogin()) {
+				
+				map.put("admin", admin);
+				System.out.println(admin.isFirstLogin());
+				
+				return "cinemaFirstLogin";
+			}
+			else {
+				map.put("admin", admin);
+				//ovde ce posle ici pravi homepage ali nmg da prebacim zbog toga sto nije u templates
+				return "pozorista";
+			}
+		}
+		
+		return "pozorista";
+		
+	}
+	
+		@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+		@RequestMapping(value = "/profile/{id}/editpass", method = RequestMethod.PUT)
+		public String putEditPassword(@ModelAttribute("admin") Administrator admin, @PathVariable Long id, ModelMap map, Principal principal) {
+		
+			Administrator administrator = adminService.findOne(id);
+			if(!administrator.getPassword().equals(admin.getPassword())) {
+				
+				administrator.setPassword(admin.getPassword());
+				administrator.setFirstLogin(false);
+				adminService.save(administrator);
+			
+				//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+				//CurrentUser user = (CurrentUser) auth.getPrincipal();
+				map.put("admin", administrator);
+			}
+			else {
+				System.out.println("Morate promeniti lozinku!");
+				return "cinemaFirstLogin";
+			}
+			
+			return "redirect:/cinematheatre/getTheatre";
+		}
+	
+		@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+		@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+		public String showProfile(@PathVariable Long id, ModelMap map) {
+			
+			Administrator admin = adminService.findOne(id);
+			if(admin.getRole().equals(Role.CINEMA_THEATRE)) {
+			map.put("user", admin);
+			}
+			return "ctprofile";
+		}
+		@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+		@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.GET)
+		public String editProfile(@PathVariable Long id, ModelMap map) {
+			
+			Administrator admin = adminService.findOne(id);
+			FZAdminForm user = new FZAdminForm(admin);
+			map.put("user", user);
+			return "cteditprofile";
+		}
+		
+		@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
+		@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.PUT)
+		public String putEditProfile(@ModelAttribute("user") FZAdminForm form, @PathVariable Long id) {
+			
+			adminService.updateFZAdminProfile(form);
+			return "redirect:/cinematheatre/profile/" + id;
+		}	
+	
 	//Puni model pronadjenim pozoristima
 	@RequestMapping(value ="/getTheatre" , method = RequestMethod.GET )
 	public String pozorista(ModelMap map) {
