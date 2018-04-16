@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Ticket</title>
 <link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrapLogin.min.css"/>
@@ -44,24 +44,40 @@
               <div class="panel-body ">
                   <table class="table">
                       <tr>
-                        <th class="cinema">NAME OF CINEMA</th>
+                        <td th:text="${bioskop.name}" class="cinema" ></td>
+                        <td th:text="${bioskop.address}" class="cinema" ></td>
                       </tr>
-                    <tbody>
+                    <tbody th:each="karta, iterStat: ${karte}">
                       <tr class="projection">
-                        <td>PROJECTION NAME</td>
+                        <td th:text="${karta.projekcija.name}"></td>
                       </tr>
                       <tr>
                         <td>HALL</td>
                         <td>SEAT</td>
                         <td>PRICE</td>
                       </tr>
+					<tr>
+                        <td th:text="${karta.projekcija.hall.name}"></td>
+                        <td th:text="${karta.seat}"></td>
+                        <td th:text="${karta.projekcija.price}"></td>
+                      </tr>
+					                      
                       <tr>
                         <td>DISCOUNT</td>
                         <td>DATE</td>
                         <td>TIME</td>
                       </tr>
+                      <tr>
+                        <td th:text="${karta.discount}"></td>
+                        <td th:text="${karta.projekcija.date}"></td>
+                        <td th:text="${karta.projekcija.time}"></td>
+                      </tr>
+                       
                     </tbody>
-                  </table>    	
+                  </table>  
+                  
+                  		 
+                    	
               </div>
             </div>
     	</div>

@@ -26,8 +26,9 @@ import rs.ac.uns.ftn.informatika.Cinema.model.users.User;
 import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
 import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
-import rs.ac.uns.ftn.informatika.Cinema.service.HallService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
+import rs.ac.uns.ftn.informatika.Cinema.service.TicketService;
+
 
 @Controller
 @RequestMapping(value = "/cinematheatre")
@@ -43,10 +44,13 @@ public class PozoristaIBioskopiController {
 	private AllUsersService allService;
 	
 	@Autowired
-	private AdministratorService adminService;
+	private TicketService tservice;
 	
 	@Autowired
-	private HallService hservice;
+	private AdministratorService adminService;
+	
+	//@Autowired
+	//private HallService hservice;
 	
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -174,6 +178,7 @@ public class PozoristaIBioskopiController {
 		
 		CinemaTheatre currentCinema = service.findOne(bioskop.getId());
 		
+		
 		currentCinema.setName(bioskop.getName());
 		currentCinema.setAddress(bioskop.getAddress());
 		currentCinema.setDescription(bioskop.getDescription());
@@ -233,6 +238,7 @@ public class PozoristaIBioskopiController {
 	@RequestMapping(value = "/updatePredstave/{id}")
 	public String editPredstave(@PathVariable("id") Long id,ModelMap map) {
 		
+		//map.put("bioskop",service.findOne(id));
 		map.put("predstava",pservice.findOne(id));
 		
 		return "izmeniPredstave";
@@ -435,5 +441,22 @@ public class PozoristaIBioskopiController {
 		return "oceneProjekcije";
 	}
 	
+	@RequestMapping(value = "getCinema/{id}/tickets")
+	public String cinemaDiscountTickets(@PathVariable("id") Long id, ModelMap map) {
+		
+		map.put("bioskop",service.findOne(id));
+		map.put("karte",tservice.findOne(id));
+		
+		return "ticket";
+	} 
 	
+	
+	@RequestMapping(value = "getTheatre/{id}/tickets")
+	public String theatreDiscountTicket(@PathVariable("id") Long id,ModelMap map) {
+		
+		map.put("pozoriste",service.findOne(id));
+		//map.put("karta",tservice.findAll());
+
+		return "ticketPozoriste";
+	}
 }

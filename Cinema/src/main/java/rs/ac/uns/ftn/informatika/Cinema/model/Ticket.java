@@ -29,24 +29,12 @@ public class Ticket {
 	@ManyToOne
 	private RegularUser user;
 	
-	@Column(name = "Datum")
-	private Date date;
-	
-	@Column(name = "Vreme")
-	private Time time;
-	
 	@Column(name = "Sediste")
 	private String seat;
 	
 	@Column(nullable = false)
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private SeatType seatType;
-	
-	@Column(name = "Sala")
-	private int hall;
-	
-	@Column(name = "Cena")
-	private double price;
 	
 	@Column(name = "Popust")
 	private int discount;
@@ -59,11 +47,6 @@ public class Ticket {
 	
 	//Geteri i Seteri
 	
-
-	public Date getDate() {
-		return date;
-	}
-
 	public Projections getProjekcija() {
 		return projekcija;
 	}
@@ -79,19 +62,6 @@ public class Ticket {
 	public void setUser(RegularUser user) {
 		this.user = user;
 	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Time getTime() {
-		return time;
-	}
-
-	public void setTime(Time time) {
-		this.time = time;
-	}
-
 
 	public Long getId() {
 		return Id;
@@ -117,21 +87,6 @@ public class Ticket {
 		this.seatType = seatType;
 	}
 
-	public int getHall() {
-		return hall;
-	}
-
-	public void setHall(int hall) {
-		this.hall = hall;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
 
 	public int getDiscount() {
 		return discount;
