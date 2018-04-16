@@ -65,6 +65,8 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		p.setAvgraiting(form.getAvgraiting());
 		p.setActors(form.getActors());
 		p.setPicture(form.getPicture());
+		p.setDate(form.getDate());
+		p.setTime(form.getTime());
 		
 		return prepository.save(p);
 	}
@@ -83,6 +85,8 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		form.setAvgraiting(p.getAvgraiting());
 		form.setActors(p.getActors());
 		form.setPicture(p.getPicture());
+		form.setDate(p.getDate());
+		form.setTime(p.getTime());
 		
 		return form;
 	}

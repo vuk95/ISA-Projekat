@@ -26,6 +26,8 @@
   				<th>Ocena</th>
   				<th>Glumci</th>
   				<th>Slika</th>
+  				<th>Datum</th>
+  				<th>Vreme</th>
 			</tr>
 			
 			<tr th:each="predstava, iterStat: ${pozoriste.projections}">
@@ -39,7 +41,8 @@
 				<td th:text="${predstava.avgraiting}"></td>
 				<td th:text="${predstava.actors}"></td>
 				<td><img th:src="@{'/pozoriste/' + ${predstava.Id} + '/pozoristeimage'}" width="30" height="30"></td>
-				
+				<td th:text="${predstava.date}"></td>
+				<td th:text="${predstava.time}"></td>
 				<td><a th:href="${'/cinematheatre/updatePredstave/' + predstava.Id}">Izmeni</a></td>
 				<td><a th:href="${'/cinematheatre/deletePredstave/' + predstava.Id}">Obrisi</a></td>				
 			</tr>

@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
 
+import java.sql.Time;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,10 @@ public class NewProjectionsForm {
 	private String actors;
 	
 	private Byte[] picture;
+	
+	private java.sql.Date date;
+	
+	private Time time;
 	
 	public NewProjectionsForm() {
 		
@@ -126,6 +132,26 @@ public class NewProjectionsForm {
 
 	public void setPicture(Byte[] picture) {
 		this.picture = picture;
+	}
+
+
+	public java.sql.Date getDate() {
+		return date;
+	}
+
+
+	public void setDate(java.sql.Date date) {
+		this.date = date;
+	}
+
+
+	public Time getTime() {
+		return time;
+	}
+
+
+	public void setTime(Time time) {
+		this.time = time;
 	}
 	
 	
