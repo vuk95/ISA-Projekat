@@ -39,6 +39,23 @@
 	</style>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="/">Pocetna</a></li>
+				<li><a href="/cinematheatre/getTheatre">Pozorista</a></li>
+				<li><a href="/cinematheatre/getCinema">Bioskopi</a></li>
+				<li><a th:href="@{/fanzone/home}">Fanzona</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><span class="glyphicon glyphicon-user"></span></li>
+				<li><a th:href="@{'/profile/' + ${user.id}}" th:text="${user.name}"></a></li>
+				<li></li>
+				<li><a href="/logout">Odjava</a></li>
+			</ul>
+		</div>
+	</nav>
+	
 	<div class="container">
 		<div th:if="${error}" class="alert alert-danger" th:text=${error}></div>
 		
@@ -82,8 +99,6 @@
 					<br>
 					<br>
 					<div id="legend">
-					</div>
-					<div id="success">
 					</div>
 				</div>
 			</div>
@@ -181,16 +196,17 @@
 				
 				$.ajax({
 					type: "POST",
-					url: "/api/seats/reservation",
+					url: "/api/seats/makereservation",
 					data: JSON.stringify(reservation),
 					contentType:"application/json; charset=utf-8",
 					dataType:"JSON",
-					success: function() {
-						console.log('success');
-					},
-					error: function(ts) {
-						location.href = location.href;						
-					}
+					success: function(res) {
+						if(res.send) {
+							location.href = location.href;
+						} else {
+							console.log('ERROR');
+						}
+					}						
 				});
 			});
 			
