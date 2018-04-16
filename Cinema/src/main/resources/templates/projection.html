@@ -83,6 +83,8 @@
 					<br>
 					<div id="legend">
 					</div>
+					<div id="success">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -169,7 +171,9 @@
 			$('#checkout').click(function(e){
 				e.preventDefault();
 				var reservation = {
-						seats : sc.find('selected').seatIds
+						seats : sc.find('selected').seatIds,
+						projectionId : [[${projection.id}]],
+						userId : [[${user.id}]]
 				}				
 				
 				str = JSON.stringify(reservation);
@@ -180,17 +184,16 @@
 					url: "/api/seats/reservation",
 					data: JSON.stringify(reservation),
 					contentType:"application/json; charset=utf-8",
-					dataType:"json",
-					success: function() {
-						str = JSON.stringify(reservation);
-						console.log('SUCESS - Selektovana mesta: ' + reservation);
+					dataType:"JSON",
+					success: function(data) {
+						alert(data);
 					}
 					
 				});
 			});
 			
-			//let's pretend some seats have already been booked
-			sc.get(['1_2', '4_1', '4_5']).status('unavailable');
+			//postavi na unavailable mesta koja su rezervisana
+			sc.get([[${reservedSeats}]]).status('unavailable');
 		
 		});
 
