@@ -131,6 +131,8 @@ public class ProjectionImageController {
 		    }
 	 
 	 
+		 
+		 //Upload slike za Add operaciju.
 		/* @GetMapping("/getPredstave/{id}/addPredstaveImage")
 		    public String showUploadAddTheatreForm(@PathVariable Long id, ModelMap map){
 
