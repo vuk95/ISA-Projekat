@@ -2,8 +2,10 @@ package rs.ac.uns.ftn.informatika.Cinema.service;
 
 import java.util.List;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
+import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
@@ -40,4 +42,8 @@ public interface RegularUserService {
 		public boolean daoPonudu(Oglas o, RegularUser user);
 		
 		public boolean nemozePonuditi(Oglas o, RegularUser user);
+		
+		public void addVisitedCinemaTheatre(CinemaTheatre ct, Long userId);
+		
+		public void addReservation(Reservation reservation, Long userId);
 }

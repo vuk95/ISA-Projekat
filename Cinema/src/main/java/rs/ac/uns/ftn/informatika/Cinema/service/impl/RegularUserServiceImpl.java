@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ponuda;
+import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
 import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewUserForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.ProfileForm;
@@ -155,6 +157,20 @@ public class RegularUserServiceImpl implements RegularUserService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void addVisitedCinemaTheatre(CinemaTheatre ct, Long userId) {
+		RegularUser user = regUserRepository.findOne(userId);
+		user.getVisitedCinemaTheatre().add(ct);
+		regUserRepository.save(user);
+	}
+
+	@Override
+	public void addReservation(Reservation reservation, Long userId) {
+		RegularUser user = regUserRepository.findOne(userId);
+		user.getReservations().add(reservation);
+		regUserRepository.save(user);
 	}
 		
 

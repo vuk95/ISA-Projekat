@@ -126,7 +126,7 @@
 				click: function () {
 					if (this.status() == 'available') {
 						//let's create a new <li> which we'll add to the cart items
-						$('<li>'+this.data().category+' Sediste # '+this.settings.label+': <b>$'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+						$('<li>Sediste # '+this.settings.label+': <b>$'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[otkazi]</a></li>')
 							.attr('id', 'cart-item-'+this.settings.id)
 							.data('seatId', this.settings.id)
 							.appendTo($cart);
@@ -185,10 +185,12 @@
 					data: JSON.stringify(reservation),
 					contentType:"application/json; charset=utf-8",
 					dataType:"JSON",
-					success: function(data) {
-						alert(data);
+					success: function() {
+						console.log('success');
+					},
+					error: function(ts) {
+						location.href = location.href;						
 					}
-					
 				});
 			});
 			

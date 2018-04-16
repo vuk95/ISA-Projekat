@@ -63,7 +63,23 @@
 	<div class="container">	
 		<!-- Deo za rezervacije -->
 		<div class="col-md-6">
-			<h3>Deo za rezervaciju mesta i karata</h3>
+			<h3>Vasa rezervisana mesta:</h3>
+			
+			<table class="table table-hover">
+				<tr>
+					<th>Naziv filma/predstave</th>
+					<th>Datum</th>
+					<th>Vreme</th>
+					<th></th>
+				</tr>
+				<tr th:each="reservation : ${user.reservations}">
+					<td th:text="${reservation.projection.name}"></td>
+					<td th:text="${reservation.projection.date}"></td>
+					<td th:text="${reservation.projection.time}"></td>
+					<td><a href="#">[otkazi]</a></td>		
+				</tr>
+			</table>
+			
 		</div>
 		
 		<!-- Deo za prijatelje -->
@@ -74,6 +90,6 @@
 	</div>
 
 	<script src="/scripts/jquery-3.2.1.min.js"></script>
-	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
+	<script src="/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
