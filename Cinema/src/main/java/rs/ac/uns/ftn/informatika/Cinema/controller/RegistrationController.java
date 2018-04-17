@@ -61,7 +61,6 @@ public class RegistrationController {
 			try {
 				String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getLocalPort();
 				emailService.sendRegistrationMail(registered, url);
-				System.out.println("Mejl je poslat!");
 				modelAndView.addObject("confirmationMessage", "E-mail za aktivaciju naloga je poslat na: " + registered.getEmail());
 				modelAndView.setViewName("registration");
 			} catch(Exception e) {

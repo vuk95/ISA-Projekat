@@ -20,6 +20,7 @@ import rs.ac.uns.ftn.informatika.Cinema.model.SeatDTO;
 import rs.ac.uns.ftn.informatika.Cinema.model.SeatsResponse;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
+import rs.ac.uns.ftn.informatika.Cinema.service.EmailService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ReservationService;
@@ -38,6 +39,9 @@ public class SeatReservationController {
 	
 	@Autowired
 	private ReservationService reservationService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@PreAuthorize("hasAuthority('REGULAR')")
 	@RequestMapping(value = "/cinematheatre/getPredstave/{ctId}/{pId}", method = RequestMethod.GET)
@@ -83,15 +87,22 @@ public class SeatReservationController {
 	@RequestMapping(value = "/api/seats/makereservation", method = RequestMethod.POST,
 					produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public SeatsResponse makeSeatReservation(@RequestBody SeatDTO seats) {
+	public SeatsResponse makeSeatReservation(@RequestBody SeatDTO seats, Principal principal) {
 		SeatsResponse response = new SeatsResponse();
 		Reservation reservation = reservationService.createNewReservation(seats);
+		RegularUser user = regularUserService.findByEmail(principal.getName());
 		projectionsService.addReservation(reservation.getProjection(), reservation);
 		regularUserService.addVisitedCinemaTheatre(reservation.getProjection().getCinemaTheatre(), seats.getUserId());
 		regularUserService.addReservation(reservation, seats.getUserId());
 		
 		response.setSend(true);
 		response.setMessage("Uspesno ste rezervisali mesta!");
+		
+		try {
+			emailService.sendReservationMail(user, reservation.getProjection());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return response;
 	}
