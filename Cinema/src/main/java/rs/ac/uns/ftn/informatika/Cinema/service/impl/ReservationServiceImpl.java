@@ -39,5 +39,33 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationRepository.save(reservation);
 	}
 
+	@Override
+	public Reservation delete(Long id) {
+		Reservation reservation = reservationRepository.findOne(id);
+		
+		if(reservation == null) {
+			throw new IllegalArgumentException("Tried to delete"
+					+ "non-existant reservation");
+		} else {
+			reservationRepository.delete(reservation);
+		}
+		
+		return reservation;
+	}
+
+	@Override
+	public Reservation logicalDelete(Long id) {
+		Reservation reservation = reservationRepository.findOne(id);
+		
+		if(reservation == null) {
+			throw new IllegalArgumentException("Tried to logical delete"
+					+ "non-existant reservation");
+		} else {
+			reservation.setDeleted(true);
+			reservationRepository.save(reservation);
+		}
+		
+		return reservation;
+	}
 	
 }

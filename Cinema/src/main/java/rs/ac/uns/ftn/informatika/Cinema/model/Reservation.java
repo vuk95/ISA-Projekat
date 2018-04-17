@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.Cinema.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,9 @@ public class Reservation {
 	
 	@ManyToOne
 	private RegularUser user;
+	
+	@Column
+	private boolean deleted;
 	
 	@ElementCollection
 	private List<String> seats = new ArrayList<String>();
@@ -62,6 +66,14 @@ public class Reservation {
 
 	public void setSeats(List<String> seats) {
 		this.seats = seats;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 }

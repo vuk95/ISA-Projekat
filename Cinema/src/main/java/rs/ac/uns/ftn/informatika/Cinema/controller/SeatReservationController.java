@@ -1,11 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,10 +8,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
@@ -99,6 +94,14 @@ public class SeatReservationController {
 		response.setMessage("Uspesno ste rezervisali mesta!");
 		
 		return response;
+	}
+	
+	@PreAuthorize("hasAuthority('REGULAR')")
+	@RequestMapping(value = "/api/seats/deletereservation", method = RequestMethod.DELETE)
+	public String cancelReservation(@RequestParam("reservationId") Long reservationId) {
+		reservationService.logicalDelete(reservationId);
+		
+		return "redirect:/homepage";
 	}
 	
 }
