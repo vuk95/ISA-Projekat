@@ -441,11 +441,11 @@ public class PozoristaIBioskopiController {
 		return "oceneProjekcije";
 	}
 	
-	@RequestMapping(value = "getCinema/{id}/tickets")
+	@RequestMapping(value = "getCinema/{id}/tickets",method = RequestMethod.GET)
 	public String cinemaDiscountTickets(@PathVariable("id") Long id, ModelMap map) {
-		
+			
 		map.put("bioskop",service.findOne(id));
-		map.put("karte",tservice.findOne(id));
+		map.put("karte",tservice.findTickets(id));
 		
 		return "ticket";
 	} 
@@ -455,7 +455,7 @@ public class PozoristaIBioskopiController {
 	public String theatreDiscountTicket(@PathVariable("id") Long id,ModelMap map) {
 		
 		map.put("pozoriste",service.findOne(id));
-		//map.put("karta",tservice.findAll());
+		map.put("karte",tservice.findTickets(id));
 
 		return "ticketPozoriste";
 	}

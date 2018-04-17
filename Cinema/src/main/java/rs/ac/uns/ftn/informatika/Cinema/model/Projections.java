@@ -4,6 +4,7 @@ package rs.ac.uns.ftn.informatika.Cinema.model;
 import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -95,7 +96,7 @@ public class Projections {
 	private double avgraiting;
 	
 	@OneToMany
-	private Set<Ticket> tickets;
+	private List<Ticket> tickets;
 	
 	public Projections() {
 		
@@ -240,12 +241,12 @@ public class Projections {
 	}
 
 
-	public Set<Ticket> getTickets() {
+	public List<Ticket> getTickets() {
 		return tickets;
 	}
 
 
-	public void setTickets(Set<Ticket> tickets) {
+	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 	

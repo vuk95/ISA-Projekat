@@ -165,3 +165,20 @@ INSERT INTO karta(popust,sediste,seat_type,projekcija_id,user_user_id) values
 
 INSERT INTO karta(popust,sediste,seat_type,projekcija_id,user_user_id) values
 ('70','29','VIP','2','1');
+
+INSERT INTO karta(popust,sediste,seat_type,projekcija_id,user_user_id) values
+('75','3','BALCONY','3','1');
+
+INSERT INTO karta(popust,sediste,seat_type,projekcija_id,user_user_id) values
+('75','2','BALCONY','4','1');
+
+INSERT INTO karta(popust,sediste,seat_type,projekcija_id,user_user_id) values
+('75','17','VIP','5','1');
+
+--=============================================================================
+
+INSERT INTO projekcije_tickets(projekcije_id,tickets_id) values (1,1);
+INSERT INTO projekcije_tickets(projekcije_id,tickets_id) values (2,2);
+INSERT INTO projekcije_tickets(projekcije_id,tickets_id) values (3,3);
+INSERT INTO projekcije_tickets(projekcije_id,tickets_id) values (4,4);
+INSERT INTO projekcije_tickets(projekcije_id,tickets_id) values (5,5);
