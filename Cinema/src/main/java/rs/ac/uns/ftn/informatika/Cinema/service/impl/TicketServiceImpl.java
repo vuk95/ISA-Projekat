@@ -33,7 +33,11 @@ public class TicketServiceImpl implements TicketService {
 		return repository.findAll();
 	}
 
-		
+	@Override
+	public void save(Ticket t) {
+		repository.save(t);
+	}
+
 	
 	@Override
 	public Iterable<Ticket> findTickets(Long id) {
@@ -53,4 +57,5 @@ public class TicketServiceImpl implements TicketService {
 			return karte;
 	}
 
+	
 }
