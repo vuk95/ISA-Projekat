@@ -40,18 +40,17 @@ public class TicketServiceImpl implements TicketService {
 		
 	CinemaTheatre ct = ctrepository.findOne(id);
 		
+	List<Ticket> karte = new ArrayList<Ticket>();
+	
 	for(int i=0;i<ct.getProjections().size();i++) {
+	
 		for(int j=0;j<ct.getProjections().get(i).getTickets().size();j++) {
-				
-			List<Ticket> karte = new ArrayList<Ticket>();
 				
 			karte.add(ct.getProjections().get(i).getTickets().get(j));
 			
-				return karte;
-			
 			}
 	}
-		return null;
+			return karte;
 	}
 
 }
