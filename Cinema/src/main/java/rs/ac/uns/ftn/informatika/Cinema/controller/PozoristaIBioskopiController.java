@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.FZAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
@@ -266,22 +267,15 @@ public class PozoristaIBioskopiController {
 		currentMovie.setTime(projekcija.getTime());
 		currentMovie.setHall(projekcija.getHall());
 		
-		//currentMovie.setHall(projekcija.getHall());
-	
-		
 		pservice.save(currentMovie);
 		
-		String referer = request.getHeader("Referer");
-		
-		return "redirect:"+ referer;
-		//ovde bi trebalo da se namesti da gadja:
-		//return "redirect:../cinematheatre/updateProjekcije/{id}"
-		
+		return "redirect:/cinematheatre/getProjekcije/" + currentMovie.getCinemaTheatre().getId();
+				
 	}
 	
 	
 	@RequestMapping(value = "/updatePredstave" , method = RequestMethod.POST)
-	public String editPredstave(@Valid @ModelAttribute("predstava") Projections predstava,BindingResult result,ModelMap map,HttpServletRequest request) {
+	public String editPredstave(@Valid @ModelAttribute("predstava") Projections predstava,BindingResult result,ModelMap map) {
 		
 		if(result.hasErrors()) {
 			return "izmeniPredstave";
@@ -301,15 +295,9 @@ public class PozoristaIBioskopiController {
 		currentPerformance.setTime(predstava.getTime());
 		currentPerformance.setHall(predstava.getHall());
 		
-		//currentPerformance.setHall(predstava.getHall());
-		
 		pservice.save(currentPerformance);
 		
-		String referer = request.getHeader("Referer");
-		
-		return "redirect:"+ referer;
-		//ovde bi trebalo da se namesti da gadja:
-		//return "redirect:../cinematheatre/updatePredstave/{id}"
+		return "redirect:/cinematheatre/getPredstave/" + currentPerformance.getCinemaTheatre().getId();
 		
 	}
 
@@ -443,4 +431,39 @@ public class PozoristaIBioskopiController {
 
 		return "ticketPozoriste";
 	}
+	
+ 	@RequestMapping("/cinemaTicketsReserve/{id}")
+	public String reserveCinemaTickets(@PathVariable("id") Long id,ModelMap map) {
+		
+		Ticket karta = tservice.findOne(id);
+		
+		if(karta.isRezervisana()==false) {
+			karta.setRezervisana(true);
+			tservice.save(karta);
+		
+			map.put("karta", karta);
+		
+		}
+		
+		return "redirect:/cinematheatre/getCinema/" +  karta.getProjekcija().getCinemaTheatre().getId()  + "/tickets";
+	}
+	
+ 	@RequestMapping("/theatreTicketsReserve/{id}")
+ 	public String reserveTheatreTickets(@PathVariable("id") Long id,ModelMap map) {
+ 		
+ 		Ticket karta = tservice.findOne(id);
+		
+		if(karta.isRezervisana()==false) {
+			karta.setRezervisana(true);
+			tservice.save(karta);
+		
+			map.put("karta", karta);
+		
+		}
+		
+		return "redirect:/cinematheatre/getTheatre/" + karta.getProjekcija().getCinemaTheatre().getId() + "/tickets";
+ 	
+ 	}
+ 	
+	
 }

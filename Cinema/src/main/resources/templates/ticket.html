@@ -71,6 +71,10 @@
                         <td th:text="${karta.discount}"></td>
                         <td th:text="${karta.projekcija.date}"></td>
                         <td th:text="${karta.projekcija.time}"></td>
+                        <td>
+					<div th:if="${karta.rezervisana} == false"><a th:href="${'/cinematheatre/cinemaTicketsReserve/' + karta.id}">Rezervisi</a></div>
+					<div th:if="${karta.rezervisana} == true"><p>Rezervisano</p></div>
+					   </td>
                       </tr>
                        
                     </tbody>

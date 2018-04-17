@@ -1,8 +1,5 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
-import java.sql.Date;
-import java.sql.Time;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,6 +35,9 @@ public class Ticket {
 	
 	@Column(name = "Popust")
 	private int discount;
+	
+	@Column
+	private boolean rezervisana;
 	
 	//Konstruktori
 	
@@ -94,6 +94,14 @@ public class Ticket {
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+
+	public boolean isRezervisana() {
+		return rezervisana;
+	}
+
+	public void setRezervisana(boolean rezervisana) {
+		this.rezervisana = rezervisana;
 	}
 	
 	
