@@ -389,6 +389,29 @@ public class FanZoneController {
 		return "redirect:/fanzone/getOglasiAdmin";
 	}
 	
+	@RequestMapping(value = "getOglasiAdmin/odbaci/{id}", method = RequestMethod.GET)
+	public String odbaci(@PathVariable("id") Long id, ModelMap map) {
+		
+		Oglas zaOdbacivanje = oglServis.find(id);
+		RegularUser user = zaOdbacivanje.getUser();
+		
+		
+		//System.out.println(user.getId());
+		
+		if(!zaOdbacivanje.isOdobren()) {
+		RegularUser reg = userServis.deleteMojOglas(zaOdbacivanje, user.getId());
+		//System.out.println(user.getMojiRekviziti().size());
+		//System.out.println(user.getMojiOglasi().size());
+		oglServis.delete(zaOdbacivanje);
+		userServis.save(reg);
+		}
+		else {
+			System.out.println("Ne mozete odbaciti vec odobren oglas!");
+		}
+		
+		return "redirect:/fanzone/getOglasiAdmin";
+	}
+	
 	//obican
 	@RequestMapping(value = "getRekvizitiObican/myReservations")
 	public String mojeRezervacije(Principal principal, ModelMap map) {

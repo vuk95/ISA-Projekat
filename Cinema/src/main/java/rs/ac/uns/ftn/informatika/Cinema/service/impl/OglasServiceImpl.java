@@ -39,6 +39,12 @@ public class OglasServiceImpl implements OglasService{
 	}
 	
 	@Override
+	public void delete(Oglas oglas) {
+		// TODO Auto-generated method stub
+		repository.delete(oglas);
+	}
+	
+	@Override
 	public Oglas addPonuda(Ponuda p, Long id) {
 		// TODO Auto-generated method stub
 		Oglas oglas = repository.findOne(id);

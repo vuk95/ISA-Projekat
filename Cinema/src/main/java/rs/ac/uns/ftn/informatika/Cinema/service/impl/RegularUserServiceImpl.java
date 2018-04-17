@@ -131,8 +131,24 @@ public class RegularUserServiceImpl implements RegularUserService {
 	@Override
 	public RegularUser addMojOglas(Oglas o, Long id) {
 		// TODO Auto-generated method stub
+		
 		RegularUser regUser = regUserRepository.findOne(id);
 		regUser.getMojiOglasi().add(o);
+		regUserRepository.save(regUser);
+		return regUser;
+	}
+	
+	@Override
+	public RegularUser deleteMojOglas(Oglas o, Long id) {
+		// TODO Auto-generated method stub
+		RegularUser regUser = regUserRepository.findOne(id);
+		for(int i = 0; i < regUser.getMojiOglasi().size(); i++) {
+			if(o.getId().equals(regUser.getMojiOglasi().get(i).getId())) {
+				regUser.getMojiOglasi().get(i).setUser(null);
+				regUser.getMojiOglasi().remove(i);
+			}
+		}
+		
 		regUserRepository.save(regUser);
 		return regUser;
 	}

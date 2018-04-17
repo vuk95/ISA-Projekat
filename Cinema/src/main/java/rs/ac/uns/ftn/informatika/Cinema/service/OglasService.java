@@ -11,5 +11,6 @@ public interface OglasService {
 	public void save(Oglas oglas);
 	public Oglas addPonuda(Ponuda p, Long id);
 	public Oglas createNewOglas(NewOglasForm oglasForm);
+	public void delete(Oglas oglas);
 	
 }

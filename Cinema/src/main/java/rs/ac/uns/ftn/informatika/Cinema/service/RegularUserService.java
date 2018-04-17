@@ -46,4 +46,6 @@ public interface RegularUserService {
 		public void addVisitedCinemaTheatre(CinemaTheatre ct, Long userId);
 		
 		public void addReservation(Reservation reservation, Long userId);
+
+		RegularUser deleteMojOglas(Oglas o, Long id);
 }
