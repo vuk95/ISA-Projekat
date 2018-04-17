@@ -1,5 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,17 +52,25 @@ public class OglasServiceImpl implements OglasService{
 		// TODO Auto-generated method stub
 		Oglas oglas = repository.findOne(id);
 		oglas.getPonudeZaOglas().add(p);
-		repository.save(oglas);
-		return oglas;
+		return repository.save(oglas);
 	}
 	
 	@Override
 	public Oglas createNewOglas(NewOglasForm oglasForm) {
 		// TODO Auto-generated method stub
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
 		Oglas oglas = new Oglas();
 		oglas.setNaziv(oglasForm.getNaziv());
 		oglas.setOpis(oglasForm.getOpis());
-		oglas.setDatum(oglasForm.getDatum());
+		try {
+			oglas.setDatum(formatter.parse(oglasForm.getDatum()));
+			System.out.println(oglas.getDatum());
+            System.out.println(formatter.format(oglas.getDatum()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return repository.save(oglas);
 	}

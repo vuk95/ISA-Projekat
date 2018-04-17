@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,8 +31,8 @@ public class Oglas {
 	@Column(name="Opis", columnDefinition="VARCHAR(60)")
 	private String opis;
 	//posle ispraviti da ovo bude date
-	@Column(name="Datum", columnDefinition="VARCHAR(40)")
-	private String datum;
+	@Column(name="Datum")
+	private Date datum;
 	//slika
 	
 	@Column
@@ -78,19 +79,26 @@ public class Oglas {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public String getDatum() {
+	/*public String getDatum() {
 		return datum;
 	}
 	public void setDatum(String datum) {
 		this.datum = datum;
-	}
+	}*/
+	
 	public RegularUser getUser() {
 		return user;
+	}
+	public Date getDatum() {
+		return datum;
+	}
+	public void setDatum(Date datum) {
+		this.datum = datum;
 	}
 	public void setUser(RegularUser user) {
 		this.user = user;
 	}
-	public Oglas(String naziv, String opis, String datum) {
+	public Oglas(String naziv, String opis, Date datum) {
 		super();
 		this.naziv = naziv;
 		this.opis = opis;

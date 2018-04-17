@@ -340,8 +340,9 @@ public class FanZoneController {
 		}
 			RegularUser user = userServis.findByEmail(principal.getName());
 			RegularUser reg = userServis.addMojOglas(oglas, user.getId());
-			userServis.save(reg);
 			oglas.setUser(user);
+			userServis.save(reg);
+			
 			oglServis.save(oglas);
 			
 		return "redirect:../getOglasi/mojiOglasi";

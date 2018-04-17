@@ -39,22 +39,23 @@ public class TestData {
 		r2.setOpis("Opis2");
 		service.save(r2);
 		
+		//IMA NEKI ERROR KADA OVO OBRISEM NE RADI KAKO TREBA BACA EXCEPTION NA DRUGU PONUDU!!!
 		Oglas o = new Oglas();
 		o.setNaziv("Naziv");
 		o.setOpis("Opis");
-		o.setDatum("datum");
+		//o.setDatum("datum");
 		oglService.save(o);
 		
 		Oglas o1 = new Oglas();
 		o1.setNaziv("Naziv2");
 		o1.setOpis("Opis2");
-		o1.setDatum("datum2");
+		//o1.setDatum("datum2");
 		oglService.save(o1);
 		
 		Oglas o2 = new Oglas();
 		o2.setNaziv("Naziv3");
 		o2.setOpis("Opis3");
-		o2.setDatum("datum3");
+		//o2.setDatum("datum3");
 		oglService.save(o2);
 				
 	}
