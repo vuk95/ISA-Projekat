@@ -21,4 +21,5 @@ public interface CinemaTheatreService {
 	
 	public Projections findMyProjectionById(Long ctId, Long pId);
 	
+	public CinemaTheatre deleteProjection(Projections p,Long id);
 }

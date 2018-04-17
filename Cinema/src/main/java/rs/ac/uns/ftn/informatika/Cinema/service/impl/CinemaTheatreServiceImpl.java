@@ -76,6 +76,24 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 		return projection;
 	}
 
+	@Override
+	public CinemaTheatre deleteProjection(Projections p, Long id) {
+		
+		CinemaTheatre ct = ctrepository.findOne(id);
+		
+		for(int i=0;i<ct.getProjections().size();i++) {
+			if(p.getId().equals(ct.getProjections().get(i).getId())) {
+				ct.getProjections().get(i).setCinemaTheatre(null);
+				ct.getProjections().remove(i);
+				
+			}
+			
+		}
+		
+		ctrepository.save(ct);
+		return ct;
+	}
+
 	
 
 }

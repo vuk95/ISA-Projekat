@@ -21,6 +21,7 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 	@Autowired
 	ProjectionsRepository prepository;
 	
+	
 	@Override
 	public Projections findOne(Long id) {
 		return prepository.findOne(id);
@@ -131,5 +132,12 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		
 		return seats.toArray(new String[seats.size()]);
 	}
+
+	@Override
+	public void delete(Projections p) {
+		prepository.delete(p);
+	}
+
+	
 
 }

@@ -24,4 +24,7 @@ public interface ProjectionsService {
 	
 	public String[] getReservedSeats(Projections projection);
 	
+	public void delete(Projections p);
+	
+	
 }
