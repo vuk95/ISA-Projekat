@@ -47,8 +47,6 @@ public class SeatReservationController {
 	@Autowired
 	private EmailService emailService;
 	
-	@Autowired
-	private TicketService service;
 	
 	@PreAuthorize("hasAuthority('REGULAR')")
 	@RequestMapping(value = "/cinematheatre/getPredstave/{ctId}/{pId}", method = RequestMethod.GET)
@@ -57,8 +55,13 @@ public class SeatReservationController {
 		Projections projection = cinemaTheatreService.findMyProjectionById(ctId, pId);
 		RegularUser user = regularUserService.findByEmail(principal.getName());
 		
-		List<Ticket> ticket = (List<Ticket>) service.findTickets(ctId);
+		if(projection == null) {
+			modelAndView.addObject("error", "Doslo je do greske!");
+		}
+		
+		List<Ticket> ticket = projection.getTickets();
 		List<String> seats = new ArrayList<String>();
+		
 		
 		for(int i=0;i<ticket.size();i++) {
 			
@@ -71,12 +74,7 @@ public class SeatReservationController {
 			}
 			
 		}
-		
-		
-		if(projection == null) {
-			modelAndView.addObject("error", "Doslo je do greske!");
-		}
-		
+						
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("seatConfig", projectionsService.getSeatConfiguration(projection));
 		modelAndView.addObject("reservedSeats", projectionsService.getReservedSeats(projection));
@@ -94,7 +92,11 @@ public class SeatReservationController {
 		Projections projection = cinemaTheatreService.findMyProjectionById(ctId, pId);
 		RegularUser user = regularUserService.findByEmail(principal.getName());
 		
-		List<Ticket> ticket = (List<Ticket>) service.findTickets(ctId);
+		if(projection == null) {
+			modelAndView.addObject("error", "Doslo je do greske!");
+		}
+		
+		List<Ticket> ticket = projection.getTickets();
 		List<String> seats = new ArrayList<String>();
 		
 		for(int i=0;i<ticket.size();i++) {
@@ -109,10 +111,6 @@ public class SeatReservationController {
 			
 		}
 		
-		
-		if(projection == null) {
-			modelAndView.addObject("error", "Doslo je do greske!");
-		}
 		
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("seatConfig", projectionsService.getSeatConfiguration(projection));
