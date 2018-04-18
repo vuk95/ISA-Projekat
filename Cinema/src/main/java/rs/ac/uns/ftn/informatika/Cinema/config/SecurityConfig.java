@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/fanzone/getRekviziti/**").hasAuthority("FAN_ZONE")
 			.antMatchers("/fanzone/getRekvizitiObican/**").hasAuthority("REGULAR")
 			.antMatchers("/fzrekvizit/**").hasAuthority("FAN_ZONE")
+			.antMatchers("/fzoglas/**").hasAuthority("REGULAR")
 			.antMatchers("/fanzone/getOglasi/**").hasAuthority("REGULAR")
 			.antMatchers("/fanzone/getOglasiAdmin/**").hasAuthority("FAN_ZONE")
 			.antMatchers("/systemAdmin/**").hasAuthority("SYSTEM")

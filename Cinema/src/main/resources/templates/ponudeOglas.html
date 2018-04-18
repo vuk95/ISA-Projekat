@@ -6,6 +6,7 @@
 		<div th:if = "${error}" th:text = "${error}"></div>
 		<h1>Ponude za:</h1>
 		<p th:text = "${oglas.naziv}"></p>
+		<p><img th:src="@{'/oglas/' + ${oglas.id} + '/oglasimage'}" width="100" height="100"></p>
 		<div th:if = "${ok}"><a th:href="@{'/fanzone/getOglasi/offer/' + ${oglas.id}}">Daj ponudu</a></div>
 		<a th:href="@{'/fanzone/getOglasi/obavestenja/' + ${oglas.id}}">Obavestenja o oglasu</a>
 		<table border = "1">

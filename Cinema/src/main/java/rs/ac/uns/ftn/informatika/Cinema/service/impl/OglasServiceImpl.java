@@ -61,6 +61,7 @@ public class OglasServiceImpl implements OglasService{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Oglas oglas = new Oglas();
+		System.out.println(oglas.getId());
 		oglas.setNaziv(oglasForm.getNaziv());
 		oglas.setOpis(oglasForm.getOpis());
 		try {

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -34,6 +35,9 @@ public class Oglas {
 	@Column(name="Datum")
 	private Date datum;
 	//slika
+	@Lob
+	@Column(name="Slika")
+	private Byte[] slika;
 	
 	@Column
 	private boolean odobren = false;
@@ -108,6 +112,13 @@ public class Oglas {
 	public void setProdat(boolean prodat) {
 		this.prodat = prodat;
 	}
+	public Byte[] getSlika() {
+		return slika;
+	}
+	public void setSlika(Byte[] slika) {
+		this.slika = slika;
+	}
+	
 	public Oglas(String naziv, String opis, Date datum) {
 		super();
 		this.naziv = naziv;

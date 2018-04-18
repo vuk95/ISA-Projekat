@@ -10,6 +10,7 @@
 		<table border = "1">
 			<tr>
 				<th>Id</th>
+				<th>Slika</th>
 				<th>Naziv</th>
 				<th>Opis</th>
 				<th>Datum isteka</th>
@@ -18,6 +19,7 @@
 			<tr th:each="oglas, iterStat: ${oglasi}"  th:if="${oglas.odobren} == true">
 				
 				<td th:text="${oglas.id}"></td>
+				<td><img th:src="@{'/oglas/' + ${oglas.id} + '/oglasimage'}" width="30" height="30"></td>
 				<td th:text="${oglas.naziv}"></td>
 				<td th:text="${oglas.opis}"></td>
 				<td th:text="${oglas.datum}"></td>

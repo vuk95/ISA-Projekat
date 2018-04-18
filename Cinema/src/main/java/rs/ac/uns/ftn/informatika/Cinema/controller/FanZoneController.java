@@ -350,6 +350,14 @@ public class FanZoneController {
 	
 	}
 	
+	
+		@RequestMapping(value = "getOglasi/show/{id}", method = RequestMethod.GET)
+	    public String showOglasById(@PathVariable Long id, ModelMap map){
+			
+	    	map.put("oglas",oglServis.find(id));
+	        return "showOglas";
+		}
+	
 	//obican
 	//ZASTITI DA ADMIN NE MOZE OVDE DA UDJE ZAPRAVO SVI LINKOVI UNUTAR ONOGA STO JE ZABRANJENO
 	//SU DOZVOLJENI TO ISPRAVITI

@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Show Oglas</title>
+	</head>
+	<body>
+		<h1 th:text="${oglas.naziv +' - ' + oglas.opis}"></h1>
+		
+		<a th:href="@{'/fzoglas/' + ${oglas.id} + '/image'}" role="button">Change Image</a>
+		
+		<img th:src="@{'/oglas/' + ${oglas.id} + '/oglasimage'}" width="360" height="240">
+	</body>
+</html>
