@@ -38,6 +38,10 @@ public class Oglas {
 	@Column
 	private boolean odobren = false;
 	
+	@Column
+	private boolean prodat = false;
+	
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "ponudeZaOglas",
 				joinColumns = @JoinColumn(name = "oglas_id", referencedColumnName = "oglas_id"),
@@ -97,6 +101,12 @@ public class Oglas {
 	}
 	public void setUser(RegularUser user) {
 		this.user = user;
+	}
+	public boolean isProdat() {
+		return prodat;
+	}
+	public void setProdat(boolean prodat) {
+		this.prodat = prodat;
 	}
 	public Oglas(String naziv, String opis, Date datum) {
 		super();

@@ -1,7 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
 import java.security.Principal;
-
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -440,7 +441,18 @@ public class FanZoneController {
 		
 		Oglas oglas = oglServis.find(id);
 		
-		map.put("oglas", oglas);
+		Date sad = new Date();
+		
+		if(oglas.getDatum().compareTo(sad) < 0) {
+			System.out.println("Istekao oglas");
+			map.put("error", "Prikupljanje ponuda za ovaj oglas je isteklo");
+			map.put("oglas", oglas);
+		}
+		else {
+			System.out.println("Nije istekao");
+			map.put("oglas", oglas);
+			map.put("ok", true);
+		}
 		
 		return "ponudeOglas";
 	}
@@ -462,8 +474,12 @@ public class FanZoneController {
 			return "dajPonudu";
 		}
 		
+		Oglas oglas = oglServis.find(id);
+		Date sad = new Date();
+		
 		RegularUser user = userServis.findByEmail(principal.getName());
 		
+		if(!(oglas.getDatum().compareTo(sad) < 0)) {
 		if(!userServis.nemozePonuditi(oglServis.find(id), user)) {
 			if(!userServis.daoPonudu(oglServis.find(id), user)) {
 				ponuda.setUser(user);
@@ -480,7 +496,10 @@ public class FanZoneController {
 		else {
 			System.out.println("Ne mozete dati ponudu na svoj oglas");
 		}
-		
+		}
+		else {
+			System.out.println("Oglas je istekao!");
+		}
 		return "redirect:/fanzone/getOglasi/ponude/" + id;
 	
 	}
@@ -501,6 +520,8 @@ public class FanZoneController {
 		@RequestMapping(value = "getOglasi/updateoffer/{id}", method = RequestMethod.POST)
 		public String editoffer(@PathVariable("id") Long id,@Valid @ModelAttribute("ponuda") Ponuda ponuda,BindingResult result, Principal principal, ModelMap map) {
 			
+			Date sad = new Date();
+			
 			if(result.hasErrors()) {
 				map.put("ponuda", ponudaServis.find(id));
 				return "izmeniPonudu";
@@ -515,6 +536,9 @@ public class FanZoneController {
 			
 			else if(!p.getUser().getId().equals(user.getId())) {
 				System.out.println("Ne mozete menjati tudju ponudu!");
+			}
+			else if(p.getOglas().getDatum().compareTo(sad) < 0) {
+				System.out.println("Ne mozete menjati ponudu oglasa koji je istekao");
 			}
 			else {
 			p.setIznos(ponuda.getIznos());
@@ -538,9 +562,12 @@ public class FanZoneController {
 			if(user.getMojiOglasi().get(i).equals(oglas)){
 				map.put("oglas", oglas);
 			}
+			else {
+				map.put("info", "Niste vlasnik ovog oglasa!");
+			}
 		}
 		
-		map.put("info", "Niste vlasnik ovog oglasa!");
+		
 		
 		return "primljene";
 	}
@@ -551,22 +578,29 @@ public class FanZoneController {
 		
 		RegularUser user = userServis.findByEmail(principal.getName());
 		
+		Date sad = new Date();
+		
 		Ponuda ponuda = ponudaServis.find(id);
 		Oglas o = ponuda.getOglas();
+		
+	if(!(o.getDatum().compareTo(sad) < 0)) {
+		
 		for(int j = 0; j < user.getMojiOglasi().size(); j++) {
 			if(user.getMojiOglasi().get(j).equals(o)) {
 		
-		for(int i = 0; i < o.getPonudeZaOglas().size(); i++) {
-			if(o.getPonudeZaOglas().get(i).getId().equals(id)) {
-				if(!ponuda.isPrihvacena()) {
-				ponuda.setPrihvacena(true);
-				ponudaServis.save(ponuda);
+				for(int i = 0; i < o.getPonudeZaOglas().size(); i++) {
+					if(o.getPonudeZaOglas().get(i).getId().equals(id)) {
+						if(!ponuda.isPrihvacena() && !o.isProdat()) {
+							ponuda.setPrihvacena(true);
+							o.setProdat(true);
+							ponudaServis.save(ponuda);
+							return "redirect:/fanzone/getOglasi/mojiOglasi";
 				}
 			}
-			else {
-				o.getPonudeZaOglas().get(i).setPrihvacena(false);
-				ponudaServis.save(o.getPonudeZaOglas().get(i));
-			}
+			/*else {
+				//o.getPonudeZaOglas().get(i).setPrihvacena(false);
+				//ponudaServis.save(o.getPonudeZaOglas().get(i));
+			}*/
 			//o.getPonudeZaOglas().get(i).setPrihvacena(false);
 			//ponudaServis.save(o.getPonudeZaOglas().get(i));
 			}
@@ -575,6 +609,10 @@ public class FanZoneController {
 				System.out.println("Nemate prava da prihvatate ponude za tudj oglas!");
 			}
 		}
+	}
+	else {
+		System.out.println("Oglas je istekao");
+	}
 		
 		return "redirect:/fanzone/getOglasi/mojiOglasi";
 	}
