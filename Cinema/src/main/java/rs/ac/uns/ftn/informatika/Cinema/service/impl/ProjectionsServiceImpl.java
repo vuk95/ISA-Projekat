@@ -125,8 +125,10 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		List<Reservation> reservations = new ArrayList<Reservation>(projection.getReservations());
 		List<String> seats = new ArrayList<String>();
 		for(int i = 0; i < reservations.size(); i++) {
-			for(int j = 0; j < reservations.get(i).getSeats().size(); j++) {	
-				seats.add(reservations.get(i).getSeats().get(j).toString());
+			if(!reservations.get(i).isDeleted()) {
+				for(int j = 0; j < reservations.get(i).getSeats().size(); j++) {	
+					seats.add(reservations.get(i).getSeats().get(j).toString());
+				}
 			}
 		}
 		

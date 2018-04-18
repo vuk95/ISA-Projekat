@@ -161,19 +161,19 @@ INSERT INTO bioskop_pozoriste_projections(bioskop_pozoriste_id,projections_id) v
 --Karta
 
 INSERT INTO karta(popust,rezervisana,sediste,seat_type,projekcija_id,user_user_id) values
-('30',false,'36','SEAT','1','1');
+('30',false,'3_12','SEAT','1','1');
 
 INSERT INTO karta(popust,rezervisana,sediste,seat_type,projekcija_id,user_user_id) values
-('70',false,'29','VIP','2','1');
+('70',false,'3_5','VIP','2','1');
 
 INSERT INTO karta(popust,rezervisana,sediste,seat_type,projekcija_id,user_user_id) values
-('75',false,'3','BALCONY','3','1');
+('75',false,'1_3','BALCONY','3','1');
 
 INSERT INTO karta(popust,rezervisana,sediste,seat_type,projekcija_id,user_user_id) values
-('75',false,'2','BALCONY','4','1');
+('75',false,'1_2','BALCONY','4','1');
 
 INSERT INTO karta(popust,rezervisana,sediste,seat_type,projekcija_id,user_user_id) values
-('75',false,'17','VIP','5','1');
+('75',false,'2_5','VIP','5','1');
 
 --=============================================================================
 
