@@ -16,6 +16,8 @@ public interface TicketService {
 	public Ticket createNewDiscountTicket(NewTicketForm form);
 	
 	public NewTicketForm setForm(Ticket t);
+	
+	public void delete(Ticket t);
 
 
 }

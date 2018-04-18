@@ -77,6 +77,7 @@
 					<div th:if="${karta.rezervisana} == false"><a th:href="${'/cinematheatre/cinemaTicketsReserve/' + karta.id}">Rezervisi</a></div>
 					<div th:if="${karta.rezervisana} == true"><p>Rezervisano</p></div>
 					   </td>
+					   <td><a th:href="${'/cinematheatre/deleteCinemaTicket/' + karta.Id}">Obrisi</a></td>	
                       </tr>
                     </tbody>
                   </table>  

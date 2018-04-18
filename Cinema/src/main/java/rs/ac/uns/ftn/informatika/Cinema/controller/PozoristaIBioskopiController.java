@@ -304,7 +304,7 @@ public class PozoristaIBioskopiController {
 
 
 	@RequestMapping(value = "/deleteProjekcije/{id}" , method = RequestMethod.GET)
-	public String delete(@PathVariable("id") Long id) {
+	public String deleteMovie(@PathVariable("id") Long id) {
 		
 		Projections p = pservice.findOne(id);
 		
@@ -312,10 +312,23 @@ public class PozoristaIBioskopiController {
 		//pservice.delete(p);
 		service.save(ct);
 			
-		return "redirect:/cinematheatre/getProjekcije/" + id; 
+		return "redirect:/cinematheatre/getProjekcije/" + ct.getId(); 
 		
 	}
 
+	@RequestMapping(value = "/deletePredstave/{id}" , method = RequestMethod.GET)
+	public String deletePerformance(@PathVariable("id") Long id) {
+		
+		Projections p = pservice.findOne(id);
+		
+		CinemaTheatre ct = service.deleteProjection(p,p.getCinemaTheatre().getId());
+		//pservice.delete(p);
+		service.save(ct);
+			
+		return "redirect:/cinematheatre/getPredstave/" + ct.getId(); 
+		
+	}
+	
 	
 	
 	@RequestMapping(value = "/getProjekcije/{id}/addProjekcije" , method = RequestMethod.GET)
@@ -519,5 +532,34 @@ public class PozoristaIBioskopiController {
  		
 		return "redirect:/cinematheatre/getTheatre/" + id + "/tickets";
 	}
+ 	
+ 	@RequestMapping(value = "/deleteCinemaTicket/{id}" ,  method = RequestMethod.GET)
+ 	public String deleteDiscountCinemaTicket(@PathVariable("id") Long id,ModelMap map) {
+ 		
+ 		Ticket t = tservice.findOne(id);
+ 		
+ 		Projections p = pservice.deleteTicket(t, t.getProjekcija().getId());
+ 		pservice.save(p);
+ 		
+ 		tservice.delete(t);
+ 		
+ 		
+ 		return "redirect:/cinematheatre/getCinema/" + p.getCinemaTheatre().getId() + "/tickets";
+ 	}
+ 	
+ 	
+ 	@RequestMapping(value = "/deleteTheatreTicket/{id}" ,  method = RequestMethod.GET)
+ 	public String deleteDiscountThetatreTicket(@PathVariable("id") Long id,ModelMap map) {
+ 		
+ 		Ticket t = tservice.findOne(id);
+ 		
+ 		Projections p = pservice.deleteTicket(t, t.getProjekcija().getId());
+ 		pservice.save(p);
+ 		
+ 		tservice.delete(t);
+ 		
+ 		
+ 		return "redirect:/cinematheatre/getTheatre/" + p.getCinemaTheatre().getId() + "/tickets";
+ 	}
  	
 }

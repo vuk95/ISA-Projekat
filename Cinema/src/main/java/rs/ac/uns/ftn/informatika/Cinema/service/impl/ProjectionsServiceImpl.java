@@ -153,6 +153,25 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		return p;
 	}
 
+	@Override
+	public Projections deleteTicket(Ticket t, Long id) {
+		
+		Projections p = prepository.findOne(id);
+		
+		for(int i=0;i<p.getTickets().size();i++) {
+		
+			if(t.getId().equals(p.getTickets().get(i).getId())) {
+				p.getTickets().get(i).setProjekcija(null);
+				p.getTickets().remove(i);
+				
+			}
+			
+		}
+		
+		prepository.save(p);
+		return p;
+	}
+
 
 
 }

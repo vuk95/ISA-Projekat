@@ -29,6 +29,8 @@ public interface ProjectionsService {
 	
 	public Projections addTicket(Ticket t,Long id);
 	
+	public Projections deleteTicket(Ticket t,Long id);
+	
 
 	
 }

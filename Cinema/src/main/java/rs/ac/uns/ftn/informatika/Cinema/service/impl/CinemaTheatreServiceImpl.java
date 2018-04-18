@@ -84,6 +84,7 @@ public class CinemaTheatreServiceImpl implements CinemaTheatreService {
 		for(int i=0;i<ct.getProjections().size();i++) {
 			if(p.getId().equals(ct.getProjections().get(i).getId())) {
 				ct.getProjections().get(i).setCinemaTheatre(null);
+				ct.getProjections().get(i).setTickets(null);
 				ct.getProjections().remove(i);
 				
 			}
