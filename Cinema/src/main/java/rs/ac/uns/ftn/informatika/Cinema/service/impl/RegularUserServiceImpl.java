@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -187,6 +189,25 @@ public class RegularUserServiceImpl implements RegularUserService {
 		RegularUser user = regUserRepository.findOne(userId);
 		user.getReservations().add(reservation);
 		regUserRepository.save(user);
+	}
+
+	@Override
+	public Set<RegularUser> findFutureFriends(String name, String lastname) {
+		//TODO: treba dodati da se prikazuju samo oni korisnici koji vec nisu prijatelji
+		
+		Set<RegularUser> users = new HashSet<RegularUser>();
+		
+		if(name.equals("") && lastname.equals("")) {
+			//do nothing
+		} else if(name.equals("")) {
+			users = regUserRepository.findByLastname(lastname);
+		} else if(lastname.equals("")) {
+			users = regUserRepository.findByName(name);
+		} else {
+			users = regUserRepository.findByNameAndLastname(name, lastname);
+		}
+		
+		return users;
 	}
 		
 
