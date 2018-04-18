@@ -94,6 +94,22 @@ public class SeatReservationController {
 		Projections projection = cinemaTheatreService.findMyProjectionById(ctId, pId);
 		RegularUser user = regularUserService.findByEmail(principal.getName());
 		
+		List<Ticket> ticket = (List<Ticket>) service.findTickets(ctId);
+		List<String> seats = new ArrayList<String>();
+		
+		for(int i=0;i<ticket.size();i++) {
+			
+			seats.add(ticket.get(i).getSeat());
+			
+			
+			for(int j=0;j<seats.size();j++) {
+			
+				System.out.println("Seats:" + seats); //test da li ispisuje dobro mesto
+			}
+			
+		}
+		
+		
 		if(projection == null) {
 			modelAndView.addObject("error", "Doslo je do greske!");
 		}
@@ -103,6 +119,7 @@ public class SeatReservationController {
 		modelAndView.addObject("reservedSeats", projectionsService.getReservedSeats(projection));
 		modelAndView.addObject("projection", projection);
 		modelAndView.setViewName("projection");
+		modelAndView.addObject("discountSeats",seats.toArray());
 		
 		return modelAndView;
 	}
