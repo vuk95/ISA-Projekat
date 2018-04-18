@@ -625,11 +625,16 @@ public class FanZoneController {
 			if(o.getPonudeZaOglas().get(i).getUser().equals(user)) {
 				map.put("oglas", o);
 				map.put("ponuda", o.getPonudeZaOglas().get(i));
+				if(o.isProdat()) {
 				if(o.getPonudeZaOglas().get(i).isPrihvacena()) {
 				map.put("rez", " je prihvacena");
 				}
 				else {
 				map.put("rez", " nije prihvacena");
+				}
+				}
+				else {
+					map.put("info", "Oglas jos uvek nije prodat");
 				}
 			}
 		}

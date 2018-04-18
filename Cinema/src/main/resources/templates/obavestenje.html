@@ -4,10 +4,14 @@
 	</head>
 	<body>
 		<h1>Obavestenja</h1>
+		<div th:if = "${rez}">
 		<h3>Vasa ponuda </h3>
 		<h3 th:text = "${ponuda.iznos}"></h3>
 		<h3>za</h3>		
 		<h3 th:text = "${oglas.naziv}"></h3>
 		<h3 th:text = "${rez}"></h3>
+		</div>
+		<div th:if = "${info}" th:text = "${info}">
+		</div>
 	</body>
 </html>
