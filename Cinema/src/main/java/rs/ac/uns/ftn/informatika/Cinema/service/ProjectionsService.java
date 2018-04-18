@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.Cinema.service;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 
 public interface ProjectionsService {
 
@@ -26,5 +27,8 @@ public interface ProjectionsService {
 	
 	public void delete(Projections p);
 	
+	public Projections addTicket(Ticket t,Long id);
+	
+
 	
 }

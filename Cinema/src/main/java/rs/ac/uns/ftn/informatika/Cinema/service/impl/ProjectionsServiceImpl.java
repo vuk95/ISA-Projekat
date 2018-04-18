@@ -11,6 +11,7 @@ import rs.ac.uns.ftn.informatika.Cinema.model.Hall;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.repository.ProjectionsRepository;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 
@@ -140,6 +141,18 @@ public class ProjectionsServiceImpl implements ProjectionsService {
 		prepository.delete(p);
 	}
 
-	
+	@Override
+	public Projections addTicket(Ticket t, Long id) {
+		
+		Projections p = prepository.findOne(id);
+		
+		p.getTickets().add(t);
+		t.setProjekcija(p);
+		prepository.save(p);
+		
+		return p;
+	}
+
+
 
 }

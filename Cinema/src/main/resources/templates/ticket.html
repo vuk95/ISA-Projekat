@@ -42,6 +42,8 @@
                 <h3 class="panel-title text-center">Ticket</h3>
               </div>
               <div class="panel-body ">
+              <a th:href="@{'/cinematheatre/getCinema/'  + ${bioskop.Id} + '/addCinemaTickets'}">Dodaj novu kartu</a>
+              
                   <table class="table">
                       <tr>
                         <td th:text="${bioskop.name}" class="cinema" ></td>
@@ -76,7 +78,6 @@
 					<div th:if="${karta.rezervisana} == true"><p>Rezervisano</p></div>
 					   </td>
                       </tr>
-                       
                     </tbody>
                   </table>  
                   

@@ -3,9 +3,7 @@ package rs.ac.uns.ftn.informatika.Cinema.model;
 
 public class NewTicketForm {
 
-	private Projections projection;
-	
-	private Hall hall;
+	private Projections projekcija;
 	
 	private String seat;
 	
@@ -13,7 +11,7 @@ public class NewTicketForm {
 	
 	private int discount;
 	
-	
+	private boolean rezervisana;
 	
 	public NewTicketForm() {
 		
@@ -21,28 +19,15 @@ public class NewTicketForm {
 	}
 
 
-	public Projections getProjection() {
-		return projection;
+	
+	public Projections getProjekcija() {
+		return projekcija;
 	}
 
 
-
-	public void setProjection(Projections projection) {
-		this.projection = projection;
+	public void setProjekcija(Projections projekcija) {
+		this.projekcija = projekcija;
 	}
-
-
-
-	public Hall getHall() {
-		return hall;
-	}
-
-
-
-	public void setHall(Hall hall) {
-		this.hall = hall;
-	}
-
 
 
 	public String getSeat() {
@@ -77,6 +62,18 @@ public class NewTicketForm {
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+
+
+
+	public boolean isRezervisana() {
+		return rezervisana;
+	}
+
+
+
+	public void setRezervisana(boolean rezervisana) {
+		this.rezervisana = rezervisana;
 	}
 	
 	

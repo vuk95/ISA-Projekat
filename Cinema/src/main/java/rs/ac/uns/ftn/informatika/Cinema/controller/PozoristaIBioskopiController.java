@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.NewProjectionsForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.NewTicketForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
@@ -465,5 +466,30 @@ public class PozoristaIBioskopiController {
  	
  	}
  	
-	
+ 	@RequestMapping(value = "/getCinema/{id}/addCinemaTickets" ,method = RequestMethod.GET)
+ 	public String addCinemaTicket(@PathVariable("id") Long id ,ModelMap map) {
+ 		
+ 		map.put("bioskop",service.findOne(id));
+ 		map.put("karta",new Ticket());
+ 		
+ 		return "dodajKartuNaPopustu";
+ 	}
+ 	
+ 	@RequestMapping(value = "/getCinema/{id}/addCinemaTickets" , method = RequestMethod.POST)
+	public String addCinemaTicket(@PathVariable("id") Long id,@ModelAttribute("karta") NewTicketForm cinemaTicket,ModelMap map) {
+		
+ 		Ticket karta = new Ticket();
+ 		
+ 		karta  = tservice.createNewDiscountTicket(cinemaTicket);
+ 		
+ 		map.put("projekcija",pservice.findOne(karta.getProjekcija().getId()));
+ 		map.put("bioskop",service.findOne(id));
+ 		
+ 		Projections p = pservice.addTicket(karta,karta.getProjekcija().getId());
+ 		pservice.save(p);
+ 		
+ 		tservice.save(karta);
+ 		
+		return "redirect:/cinematheatre/getCinema/" + id + "/tickets";
+	}
 }

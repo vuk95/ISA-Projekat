@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
+import rs.ac.uns.ftn.informatika.Cinema.model.NewTicketForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.repository.CinemaTheatreRepository;
 import rs.ac.uns.ftn.informatika.Cinema.repository.TicketRepository;
@@ -55,6 +56,33 @@ public class TicketServiceImpl implements TicketService {
 			}
 	}
 			return karte;
+	}
+
+	@Override
+	public Ticket createNewDiscountTicket(NewTicketForm form) {
+		
+		Ticket t = new Ticket();
+		t.setDiscount(form.getDiscount());
+		t.setSeat(form.getSeat());
+		t.setSeatType(form.getSeatType());
+		t.setProjekcija(form.getProjekcija());
+		t.setRezervisana(false);
+		
+		return repository.save(t);
+	}
+
+	@Override
+	public NewTicketForm setForm(Ticket t) {
+		
+		NewTicketForm form = new NewTicketForm();
+		
+		form.setDiscount(t.getDiscount());
+		form.setSeat(t.getSeat());
+		form.setSeatType(t.getSeatType());
+		form.setProjekcija(t.getProjekcija());
+		form.setRezervisana(false);
+		
+		return form;
 	}
 
 	

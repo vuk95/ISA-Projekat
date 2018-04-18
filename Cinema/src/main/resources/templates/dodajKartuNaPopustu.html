@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Dodaj novu kartu</title>
+	</head>
+	<body>
+		<h3>Dodaj Kartu za brzu rezervaciju:</h3>
+		<form th:action="@{'/cinematheatre/getCinema/'+${bioskop.id}+'/addCinemaTickets'}" th:object="${karta}" method ="post">
+			<table>
+				<tr>
+					<td>Projekcija:</td>
+					<td><select  th:field="*{projekcija.id}">
+					<option th:each="projection : ${bioskop.projections}" 
+                        th:value="${projection.id}" th:text="${projection.name}"></option> 
+				</select>
+				</td>					
+
+				</tr>
+								
+				<tr>
+					<td>Sediste:</td>
+					<td><input type = "text" th:field="*{seat}"></td>
+					<td>forma:[red_mesto]</td>
+				</tr>
+				
+				<tr>
+					<td>Tip sedista:</td>
+					<td><select  th:field="*{seatType}">
+						<option th:each="tip : ${T(rs.ac.uns.ftn.informatika.Cinema.model.SeatType).values()}"
+							th:value = "${tip}"
+							th:text = "${tip}"
+						>
+						</option>
+					</select>
+				  </td>
+					
+				</tr>
+				
+				<tr>
+					<td>Popust:</td>
+					<td><input type = "text" th:field="*{discount}"></td>
+				</tr>
+				
+				
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
