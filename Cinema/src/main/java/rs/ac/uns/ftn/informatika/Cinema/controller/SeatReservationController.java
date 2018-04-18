@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.informatika.Cinema.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,12 +20,14 @@ import rs.ac.uns.ftn.informatika.Cinema.model.Projections;
 import rs.ac.uns.ftn.informatika.Cinema.model.Reservation;
 import rs.ac.uns.ftn.informatika.Cinema.model.SeatDTO;
 import rs.ac.uns.ftn.informatika.Cinema.model.SeatsResponse;
+import rs.ac.uns.ftn.informatika.Cinema.model.Ticket;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.RegularUser;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
 import rs.ac.uns.ftn.informatika.Cinema.service.EmailService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ReservationService;
+import rs.ac.uns.ftn.informatika.Cinema.service.TicketService;
 
 @Controller
 public class SeatReservationController {
@@ -43,12 +47,31 @@ public class SeatReservationController {
 	@Autowired
 	private EmailService emailService;
 	
+	@Autowired
+	private TicketService service;
+	
 	@PreAuthorize("hasAuthority('REGULAR')")
 	@RequestMapping(value = "/cinematheatre/getPredstave/{ctId}/{pId}", method = RequestMethod.GET)
 	public ModelAndView showPerformance(@PathVariable("ctId") Long ctId, @PathVariable("pId") Long pId, Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
 		Projections projection = cinemaTheatreService.findMyProjectionById(ctId, pId);
 		RegularUser user = regularUserService.findByEmail(principal.getName());
+		
+		List<Ticket> ticket = (List<Ticket>) service.findTickets(ctId);
+		List<String> seats = new ArrayList<String>();
+		
+		for(int i=0;i<ticket.size();i++) {
+			
+			seats.add(ticket.get(i).getSeat());
+			
+			
+			for(int j=0;j<seats.size();j++) {
+			
+				System.out.println("Seats:" + seats); //test da li ispisuje dobro mesto
+			}
+			
+		}
+		
 		
 		if(projection == null) {
 			modelAndView.addObject("error", "Doslo je do greske!");
@@ -59,6 +82,7 @@ public class SeatReservationController {
 		modelAndView.addObject("reservedSeats", projectionsService.getReservedSeats(projection));
 		modelAndView.addObject("projection", projection);
 		modelAndView.setViewName("projection");
+		modelAndView.addObject("discountSeats",seats.toArray());
 		
 		return modelAndView;
 	}

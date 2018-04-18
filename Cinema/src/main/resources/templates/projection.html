@@ -210,9 +210,9 @@
 				});
 			});
 			
-			//postavi na unavailable mesta koja su rezervisana
+			//postavi na unavailable mesta koja su rezervisana i koja su na popustu
 			sc.get([[${reservedSeats}]]).status('unavailable');
-		
+			sc.get([[${discountSeats}]]).status('unavailable');
 		});
 
 		function recalculateTotal(sc) {
