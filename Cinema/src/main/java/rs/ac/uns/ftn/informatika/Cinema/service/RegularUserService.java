@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.Cinema.service;
 
 import java.util.List;
+import java.util.Set;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
 import rs.ac.uns.ftn.informatika.Cinema.model.Oglas;
@@ -48,4 +49,6 @@ public interface RegularUserService {
 		public void addReservation(Reservation reservation, Long userId);
 
 		RegularUser deleteMojOglas(Oglas o, Long id);
+		
+		public Set<RegularUser> findFutureFriends(String name, String lastname);
 }

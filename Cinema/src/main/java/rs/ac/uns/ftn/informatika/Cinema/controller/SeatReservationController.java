@@ -27,7 +27,6 @@ import rs.ac.uns.ftn.informatika.Cinema.service.EmailService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ProjectionsService;
 import rs.ac.uns.ftn.informatika.Cinema.service.RegularUserService;
 import rs.ac.uns.ftn.informatika.Cinema.service.ReservationService;
-import rs.ac.uns.ftn.informatika.Cinema.service.TicketService;
 
 @Controller
 public class SeatReservationController {

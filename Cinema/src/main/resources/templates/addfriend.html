@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dodavanje prijatelja</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="/">Pocetna</a></li>
+				<li><a href="/cinematheatre/getTheatre">Pozorista</a></li>
+				<li><a href="/cinematheatre/getCinema">Bioskopi</a></li>
+				<li><a th:href="@{/fanzone/home}">Fanzona</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><span class="glyphicon glyphicon-user"></span></li>
+				<li><a th:href="@{'/profile/' + ${user.id}}" th:text="${user.name}"></a></li>
+				<li></li>
+				<li><a href="/logout">Odjava</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<div th:if="${param.added}">
+			<div class="alert alert-success">
+				<h5>Jos je samo potrebno da vas prijatelj prihvati zahtev za prijateljstvo!</h5>
+			</div>
+		</div>
+		
+		<h3>Nadjite buduceg prijatelja</h3>
+		
+		<form class="form-inline" th:action="@{/addfriend}" method="POST">
+			<input type="text" id="name" name="name"  th:placeholder="Ime" class="form-control"/>
+			<input type="text" id="lastname" name="lastname"  th:placeholder="Prezime" class="form-control"/>
+			<input type="submit" value="Nadji" class="btn btn-primary"/>
+		</form>
+		<br>
+		
+		<div class="col-md-8">
+			<table class="table table-hover">
+				<tr th:each="friend : ${futureFriends}">
+					<form action="/api/addfriend" method="POST">
+						<input type="hidden" name="senderId" th:value="${user.Id}">
+						<input type="hidden" name="receiverId" th:value="${friend.Id}">
+						<td th:text="${friend.name}"></td>
+						<td th:text="${friend.lastname}"></td>
+						<td><button type="submit" class="btn btn-light btn-sm">+</button></td>
+					</form>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
