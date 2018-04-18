@@ -492,4 +492,32 @@ public class PozoristaIBioskopiController {
  		
 		return "redirect:/cinematheatre/getCinema/" + id + "/tickets";
 	}
+ 	
+ 	@RequestMapping(value = "/getTheatre/{id}/addTheatreTickets" ,method = RequestMethod.GET)
+ 	public String adTheatreTicket(@PathVariable("id") Long id ,ModelMap map) {
+ 		
+ 		map.put("pozoriste",service.findOne(id));
+ 		map.put("karta",new Ticket());
+ 		
+ 		return "dodajPozorisneKartePopust";
+ 	}
+ 	
+ 	@RequestMapping(value = "/getTheatre/{id}/addTheatreTickets" , method = RequestMethod.POST)
+	public String addTheatreTicket(@PathVariable("id") Long id,@ModelAttribute("karta") NewTicketForm cinemaTicket,ModelMap map) {
+		
+ 		Ticket karta = new Ticket();
+ 		
+ 		karta  = tservice.createNewDiscountTicket(cinemaTicket);
+ 		
+ 		map.put("projekcija",pservice.findOne(karta.getProjekcija().getId()));
+ 		map.put("pozoriste",service.findOne(id));
+ 		
+ 		Projections p = pservice.addTicket(karta,karta.getProjekcija().getId());
+ 		pservice.save(p);
+ 		
+ 		tservice.save(karta);
+ 		
+		return "redirect:/cinematheatre/getTheatre/" + id + "/tickets";
+	}
+ 	
 }
