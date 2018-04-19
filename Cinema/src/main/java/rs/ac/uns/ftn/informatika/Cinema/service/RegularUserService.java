@@ -51,4 +51,6 @@ public interface RegularUserService {
 		RegularUser deleteMojOglas(Oglas o, Long id);
 		
 		public Set<RegularUser> findFutureFriends(String name, String lastname);
+		
+		public Set<Reservation> getMyReservations(RegularUser user);
 }

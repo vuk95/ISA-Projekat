@@ -43,7 +43,7 @@
 		<div class="col-md-8">
 			<table class="table table-hover">
 				<tr th:each="friend : ${futureFriends}">
-					<form action="/api/addfriend" method="POST">
+					<form th:action="@{'/api/friendrequest/' + ${friend.id}}">
 						<input type="hidden" name="senderId" th:value="${user.Id}">
 						<input type="hidden" name="receiverId" th:value="${friend.Id}">
 						<td th:text="${friend.name}"></td>

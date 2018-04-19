@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.Cinema.service.impl;
 
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -208,6 +209,18 @@ public class RegularUserServiceImpl implements RegularUserService {
 		}
 		
 		return users;
+	}
+
+	@Override
+	public Set<Reservation> getMyReservations(RegularUser user) {
+		Set<Reservation> reservations = null;
+//		for(Reservation res : user.getReservations()) {
+//			LocalTime localTime = res.getProjection().getTime().toLocalTime();
+//			if(localTime.minusMinutes(30) < )
+		
+		
+		
+		return reservations;
 	}
 		
 

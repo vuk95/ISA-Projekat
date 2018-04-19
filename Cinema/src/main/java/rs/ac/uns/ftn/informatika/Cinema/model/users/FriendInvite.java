@@ -23,6 +23,9 @@ public class FriendInvite {
 	@Column
 	private boolean accepted;
 	
+	@Column 
+	private boolean seen;
+	
 	public FriendInvite() {
 		
 	}
@@ -57,6 +60,14 @@ public class FriendInvite {
 
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
+	}
+
+	public boolean isSeen() {
+		return seen;
+	}
+
+	public void setSeen(boolean seen) {
+		this.seen = seen;
 	}
 	
 }
