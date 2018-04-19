@@ -1,0 +1,22 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Naslovna skala</title>
+	</head>
+	<body>
+		<h3>Skala</h3>
+		<a th:href="@{/systemAdmin/postaviSkalu}">Postavi skalu</a>
+		<table border = "1">
+			<tr>
+				<th>Zlatni korisnik-potrebni bodovi</th>
+				<th>Srebrni korisnik-potrebni bodovi</th>
+				<th>Bronzani korisnik-potrebni bodovi</th>
+			</tr>
+			<!--  <tr>
+				<td th:text="${skala.zlatni}"></td>
+				<td th:text="${skala.srebrni}"></td>
+				<td th:text="${skala.bronzani}"></td>
+			</tr>-->
+		</table>
+	</body>
+</html>

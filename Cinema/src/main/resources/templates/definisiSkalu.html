@@ -1,0 +1,34 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Definisi skalu</title>
+	</head>
+	<body>
+		<h3>Definisi skalu:</h3>
+		<form th:action="@{/systemAdmin/postaviSkalu}" th:object="${skala}" method ="post">
+			<table>
+				
+				<tr>
+					<td>Bronzani bodovi:</td>
+					<td><input type = "text" th:field="*{bronzani}"></td>
+					<td th:if="${#fields.hasErrors('bronzani')}" th:errors="*{bronzani}">B Error</td>
+				</tr>
+				<tr>
+					<td>Srebrni bodovi:</td>
+					<td><input type = "text" th:field="*{srebrni}"></td>
+					 <td th:if="${#fields.hasErrors('srebrni')}" th:errors="*{srebrni}">S Error</td>
+				</tr>
+				<tr>
+					<td>Zlatni bodovi:</td>
+					<td><input type = "text" th:field="*{zlatni}"></td>
+					<td th:if="${#fields.hasErrors('zlatni')}" th:errors="*{zlatni}">Z Error</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+		
+	</body>
+</html>

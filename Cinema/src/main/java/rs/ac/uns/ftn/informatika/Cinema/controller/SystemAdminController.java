@@ -9,10 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import rs.ac.uns.ftn.informatika.Cinema.model.CinemaTheatre;
+import rs.ac.uns.ftn.informatika.Cinema.model.NewRekvizitForm;
+import rs.ac.uns.ftn.informatika.Cinema.model.Skala;
+import rs.ac.uns.ftn.informatika.Cinema.model.ZvanicniRekvizit;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Administrator;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.NewAdminForm;
 import rs.ac.uns.ftn.informatika.Cinema.model.users.Role;
@@ -20,6 +24,7 @@ import rs.ac.uns.ftn.informatika.Cinema.model.users.User;
 import rs.ac.uns.ftn.informatika.Cinema.service.AdministratorService;
 import rs.ac.uns.ftn.informatika.Cinema.service.AllUsersService;
 import rs.ac.uns.ftn.informatika.Cinema.service.CinemaTheatreService;
+import rs.ac.uns.ftn.informatika.Cinema.service.SkalaService;
 
 @Controller
 public class SystemAdminController {
@@ -33,6 +38,8 @@ public class SystemAdminController {
 	@Autowired
 	private AdministratorService adminService;
 	
+	@Autowired
+	private SkalaService skalaService;
 	
 	@RequestMapping(value = "systemAdmin", method = RequestMethod.GET)
 	public String home(Principal principal, ModelMap map) {
@@ -44,6 +51,7 @@ public class SystemAdminController {
 		}
 		
 		map.put("bioskopipozorista", cinemaService.findAll());
+		map.put("skala", skalaService.findOne(new Long(1)));
 		
 		return "systemAdminPage";
 	}
@@ -170,6 +178,50 @@ public class SystemAdminController {
 		}
 	
 		return "redirect:/systemAdmin/admini";
+	}
+	
+	@RequestMapping(value = "systemAdmin/postaviSkalu", method = RequestMethod.GET)
+	public String postaviSkalu(ModelMap map) {
+		
+		Skala skala = new Skala();
+		
+		map.put("skala", skala);
+		
+		return "definisiSkalu";
+		
+	}
+	
+	@RequestMapping(value = "systemAdmin/prikaziSkalu", method = RequestMethod.GET)
+	public String prikaziSkalu(ModelMap map) {
+		
+		Skala skala = skalaService.findOne(new Long(1));
+		
+		map.put("skala", skala);
+		
+		return "prikaziSkalu";
+		
+	}
+	
+	@RequestMapping(value = "systemAdmin/postaviSkalu", method = RequestMethod.POST)
+	public String postaviSkalu(@Valid @ModelAttribute("skala") Skala newSkala, BindingResult bindingResult, ModelMap map) {
+		
+		Skala skala = new Skala();
+		
+		if(bindingResult.hasErrors()) {
+			return "definisiSkalu";
+		}
+		
+			
+		skala.setId(new Long(1));
+		skala.setBronzani(newSkala.getBronzani());
+		skala.setSrebrni(newSkala.getSrebrni());
+		skala.setZlatni(newSkala.getZlatni());
+		skalaService.save(skala);
+			
+		
+		
+		return "redirect:../systemAdmin/prikaziSkalu";
+	
 	}
 
 }
