@@ -134,6 +134,7 @@ public class PozoristaIBioskopiController {
 			return "redirect:/cinematheatre/profile/" + id;
 		}	
 	
+		
 	//Puni model pronadjenim pozoristima
 	@RequestMapping(value ="/getTheatre" , method = RequestMethod.GET )
 	public String pozorista(ModelMap map) {
@@ -152,8 +153,25 @@ public class PozoristaIBioskopiController {
 		return "bioskopi";
 	}
 	
-	
+	//stranica koju mogu da vide svi sem admina bioskopa/pozorista
+	@RequestMapping(value = "/getBioskopi" , method = RequestMethod.GET)
+	public String cinemas(ModelMap map) {
 		
+		map.put("bioskopi",service.findCinemas());
+		
+	    return "bioskopiOstali";
+	}
+	
+	//stranica koju mogu da vide svi sem admina bioskopa/pozorista
+		@RequestMapping(value = "/getPozorista" , method = RequestMethod.GET)
+		public String theatres(ModelMap map) {
+			
+			map.put("pozorista",service.findTheatres());
+			
+		    return "pozoristaOstali";
+		}
+	
+	
 	@RequestMapping(value = "/updateTheatre/{id}" , method = RequestMethod.GET)
 	public String editTheatre(@PathVariable("id") Long id, ModelMap map) {
 		
@@ -426,6 +444,13 @@ public class PozoristaIBioskopiController {
 		
 		return "oceneProjekcije";
 	}
+	
+ 	@RequestMapping(value = "/cinemaVisitGraphic")
+	public String cinemaGraphic() {
+				
+		return "cinemaGraphic";
+	}
+
 	
 	@RequestMapping(value = "getCinema/{id}/tickets",method = RequestMethod.GET)
 	public String cinemaDiscountTickets(@PathVariable("id") Long id, ModelMap map) {
