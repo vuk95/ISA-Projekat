@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Blokiraj mesto</title>
+	</head>
+	<body>
+	<h3>Dodaj zauzeto mesto:</h3>
+		<form th:action="@{'/cinematheatre/forProjectionAddUnavailableSeat/'+${projekcija.id}}" th:object="${projekcija}" method ="post">
+			<table>
+				<tr>
+					<td>Mesto:</td>
+					<td><input type = "text" th:field="*{seat}"></td>
+				</tr>
+				
+				<tr>
+					<td>Tip:</td>
+					<td><input type = "text" th:field="*{type}"></td>
+				</tr>
+				
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type = "submit" value="Save">
+					</td>
+				</tr>
+		</table>
+		
+		</form>
+	</body>
+</html>
