@@ -12,11 +12,12 @@
 				<th>Srebrni korisnik-potrebni bodovi</th>
 				<th>Bronzani korisnik-potrebni bodovi</th>
 			</tr>
-			<!--  <tr>
-				<td th:text="${skala.zlatni}"></td>
-				<td th:text="${skala.srebrni}"></td>
-				<td th:text="${skala.bronzani}"></td>
-			</tr>-->
+			<tr th:if = "${skala}">
+				<td  th:text="${skala.zlatni}"></td>
+				<td  th:text="${skala.srebrni}"></td>
+				<td  th:text="${skala.bronzani}"></td>
+			</tr>
+			
 		</table>
 	</body>
 </html>
