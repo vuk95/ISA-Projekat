@@ -75,4 +75,20 @@ public class FriendController {
 		return modelAndView;
 	}
 	
+	@PreAuthorize("hasAuthority('REGULAR')")
+	@RequestMapping(value = "/api/acceptrequest", method = RequestMethod.POST)
+	public String acceptRequest(@RequestParam Long requestId) {
+		friendInviteService.acceptRequest(requestId);
+		
+		return "redirect:/homepage";
+	}
+	
+	@PreAuthorize("hasAuthority('REGULAR')")
+	@RequestMapping(value = "/api/declinerequest", method = RequestMethod.POST)
+	public String declineRequest(@RequestParam Long requestId) {
+		friendInviteService.declineRequest(requestId);
+		
+		return "redirect:/homepage";
+	}
+	
 }

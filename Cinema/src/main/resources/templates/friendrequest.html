@@ -40,7 +40,7 @@
 				<tr th:each="request : ${requests}">
 					<td th:text="${request.sender.name}"></td>
 					<td th:text="${request.sender.lastname}"></td>
-					<form action="/api/confirmrequest" method="POST">
+					<form action="/api/acceptrequest" method="POST">
 						<td><input type="hidden" name="requestId" th:value="${request.Id}"></td>
 						<td><input type="submit" value="[prihvati]"></td>
 					</form>

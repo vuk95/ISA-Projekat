@@ -13,4 +13,6 @@ public interface FriendInviteRepository extends JpaRepository<FriendInvite, Long
 
 	public Set<FriendInvite> findByReceiver(RegularUser receiver);
 	
+	public Set<FriendInvite> findBySender(RegularUser sender);
+	
 }

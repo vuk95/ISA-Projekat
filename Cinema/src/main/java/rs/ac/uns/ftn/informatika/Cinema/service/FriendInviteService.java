@@ -11,4 +11,12 @@ public interface FriendInviteService {
 	
 	public Set<FriendInvite> getMyUnseenRequests(RegularUser receiver);
 	
+	public FriendInvite acceptRequest(Long requestId);
+	
+	public FriendInvite declineRequest(Long requestId);
+	
+	public Set<RegularUser> findMyFriends(RegularUser user);
+	
+	public Set<FriendInvite> findMyFriendInvites(RegularUser user);
+	
 }

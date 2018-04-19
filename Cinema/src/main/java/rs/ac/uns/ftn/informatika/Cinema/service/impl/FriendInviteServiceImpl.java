@@ -47,5 +47,65 @@ public class FriendInviteServiceImpl implements FriendInviteService {
 		
 		return unseenrequests;
 	}
+
+	@Override
+	public FriendInvite acceptRequest(Long requestId) {
+		FriendInvite request = friendInviteRepository.findOne(requestId);
+		request.setAccepted(true);
+		request.setSeen(true);
+		
+		return friendInviteRepository.save(request);
+	}
+
+	@Override
+	public FriendInvite declineRequest(Long requestId) {
+		FriendInvite request = friendInviteRepository.findOne(requestId);
+		request.setAccepted(false);
+		request.setSeen(true);
+		
+		return friendInviteRepository.save(request);
+	}
+
+	@Override
+	public Set<RegularUser> findMyFriends(RegularUser user) {
+		Set<RegularUser> friends = new HashSet<RegularUser>();
+		Set<FriendInvite> userIsSender = friendInviteRepository.findBySender(user);
+		Set<FriendInvite> userIsReceiver = friendInviteRepository.findByReceiver(user);
+		
+		for(FriendInvite friend : userIsSender) {
+			if(friend.isAccepted()) {
+				friends.add(friend.getReceiver());
+			}
+		}
+		
+		for(FriendInvite friend : userIsReceiver) {
+			if(friend.isAccepted()) {
+				friends.add(friend.getSender());
+			}
+		}
+		
+		return friends;
+	}
+
+	@Override
+	public Set<FriendInvite> findMyFriendInvites(RegularUser user) {
+		Set<FriendInvite> friendInvites = new HashSet<FriendInvite>();
+		Set<FriendInvite> userIsSender = friendInviteRepository.findBySender(user);
+		Set<FriendInvite> userIsReceiver = friendInviteRepository.findByReceiver(user);
+		
+		for(FriendInvite invite : userIsSender) {
+			if(invite.isAccepted()) {
+				friendInvites.add(invite);
+			}
+		}
+		
+		for(FriendInvite invite : userIsReceiver) {
+			if(invite.isAccepted()) {
+				friendInvites.add(invite);
+			}
+		}
+		
+		return friendInvites;
+	}
 	
 }
