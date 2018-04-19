@@ -1,10 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>
-		Prvi put ulogovan administrator fan zone
-		</title>
+		<title>Prvi put ulogovan administrator fan zone</title>
+		<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
 	</head>
 	<body>
+		
+		<div th:if = "${info}" class="alert alert-danger" th:text = "${info}"></div>
+		
 		<h1 th:text = "'Hello: ' + ${admin.name}"></h1>
 		<h1 th:text = "'Ovo je Vasa stara lozinka:' + ${admin.password}"></h1>
 		<h1>Molimo Vas izmenite Vasu lozinku!</h1>
@@ -23,5 +25,7 @@
 				</tr>
 			</table>
 		</form>
+		<script src="/scripts/jquery-3.2.1.min.js"></script>
+		<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 	</body>
 </html>

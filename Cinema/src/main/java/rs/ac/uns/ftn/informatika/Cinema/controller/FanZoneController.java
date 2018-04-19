@@ -106,6 +106,7 @@ public class FanZoneController {
 		}
 		else {
 			System.out.println("Morate promeniti lozinku!");
+			map.put("info", "Morate promeniti lozinku!");
 			return "fzFirstLogin";
 		}
 		
