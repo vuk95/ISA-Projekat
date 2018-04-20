@@ -86,8 +86,7 @@ public class FanZoneController {
 		return "fanzone";
 		
 	}
-	
-	//OTPRILIKE RADI IMA NEKIH NEDOSTATAKA
+
 	//ne bi smelo da se desi da moze da ide na edit profile pre ovoga?
 	@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
 	@RequestMapping(value = "/profile/{id}/editpassword", method = RequestMethod.PUT)
@@ -255,42 +254,6 @@ public class FanZoneController {
 	
 	}
 	
-	/*STARO
-	//fz admin
-	@RequestMapping(value = "getRekviziti/update/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") Long id, ModelMap map) {
-		if(!servis.find(id).isRezervisan()) {
-		map.put("rekvizit", servis.find(id));
-		
-		return "izmeniRekvizit";
-		}
-		
-		return "greskaIzmena";
-		
-	
-	}
-	//fz admin
-	//TREBA URADITI DA SE SALJE DTO ZBOG VALIDACIJE
-	@RequestMapping(value = "getRekviziti/update", method = RequestMethod.POST)
-	public String edit(@Valid @ModelAttribute("rekvizit") ZvanicniRekvizit rekvizit, BindingResult bindingResult , ModelMap map) {
-		
-		if(bindingResult.hasErrors()) {
-			return "izmeniRekvizit";
-		}
-		
-		
-		ZvanicniRekvizit trenutniRekvizit = servis.find(rekvizit.getId());
-		trenutniRekvizit.setSlika(rekvizit.getSlika());
-		trenutniRekvizit.setIme(rekvizit.getIme());
-		trenutniRekvizit.setCena(rekvizit.getCena());
-		trenutniRekvizit.setOpis(rekvizit.getOpis());
-		
-		servis.save(trenutniRekvizit);
-		
-		return "redirect:../getRekviziti";
-	
-	}
-	*/
 	//obican
 	//OVA METODA BI SE MOGLA REFAKTORISATI
 	@RequestMapping(value = "getRekvizitiObican/reserve/{id}", method = RequestMethod.GET)
@@ -351,41 +314,13 @@ public class FanZoneController {
 	
 	}
 	
-	
-		@RequestMapping(value = "getOglasi/show/{id}", method = RequestMethod.GET)
-	    public String showOglasById(@PathVariable Long id, ModelMap map){
+	@RequestMapping(value = "getOglasi/show/{id}", method = RequestMethod.GET)
+	public String showOglasById(@PathVariable Long id, ModelMap map){
 			
-	    	map.put("oglas",oglServis.find(id));
-	        return "showOglas";
-		}
-	
-	//obican
-	//ZASTITI DA ADMIN NE MOZE OVDE DA UDJE ZAPRAVO SVI LINKOVI UNUTAR ONOGA STO JE ZABRANJENO
-	//SU DOZVOLJENI TO ISPRAVITI
-	/*
-	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.GET)
-	public String addOglas(ModelMap map) {
-		
-		
-		map.put("oglas", new Oglas());
-		return "dodajOglas";
-	
+		 map.put("oglas",oglServis.find(id));
+	     return "showOglas";
 	}
-	//obican
-	//TREBA URADITI DA SE SALJE DTO ZBOG VALIDACIJE
-	//TREBA URADITI UPLOAD SLIKE
-	@RequestMapping(value = "getOglasi/addOglas", method = RequestMethod.POST)
-	public String addOglas(@ModelAttribute("oglas") Oglas oglas, Principal principal, ModelMap map) {
-			
-		oglServis.save(oglas);
-		RegularUser user = userServis.findByEmail(principal.getName());
-		RegularUser reg = userServis.addMojOglas(oglas, user.getId());
-		userServis.save(reg);
 		
-		return "redirect:../getOglasi";
-	
-	}
-	*/
 	//admin fz
 	@RequestMapping(value = "getOglasiAdmin/approve/{id}", method = RequestMethod.GET)
 	public String odobri(@PathVariable("id") Long id, ModelMap map) {
@@ -575,13 +510,10 @@ public class FanZoneController {
 				map.put("info", "Niste vlasnik ovog oglasa!");
 			}
 		}
-		
-		
-		
+				
 		return "primljene";
 	}
 	//obican
-	//OVAKVE STVARI BI TREBALO ZASTITI DA MOZE SAMO TAJ REGULAR USER CIJA JE PONUDA DA PRIHVATI
 	@RequestMapping(value = "getOglasi/accept/{id}", method = RequestMethod.GET)
 	public String accept(@PathVariable("id") Long id, ModelMap map, Principal principal) {
 		
@@ -606,12 +538,6 @@ public class FanZoneController {
 							return "redirect:/fanzone/getOglasi/mojiOglasi";
 				}
 			}
-			/*else {
-				//o.getPonudeZaOglas().get(i).setPrihvacena(false);
-				//ponudaServis.save(o.getPonudeZaOglas().get(i));
-			}*/
-			//o.getPonudeZaOglas().get(i).setPrihvacena(false);
-			//ponudaServis.save(o.getPonudeZaOglas().get(i));
 			}
 			}
 			else {
