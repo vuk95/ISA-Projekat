@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Pozorista prihod</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+	<body>
+	
+<div class="w3-content w3-container w3-padding-64" id="cinemas">
+<h3 class="w3-center">THEATRES INCOME</h3>
+  <p class="w3-center"><em>Here you can find out income for all avaliable theatres</em></p>
+  <table style="width:100%">
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Income</th>
+
+				</tr>
+  		   
+			<tr th:each="pozoriste, iterStat: ${pozorista}">
+				<td th:text="${pozoriste.name}"> </td>
+				<td th:text="${pozoriste.address}"></td>
+				<td>350</td>
+			</tr>
+			
+		</table>
+
+  <p class="w3-large w3-center w3-padding-16">Most visited theatres:</p>
+  <p><span class="glyphicon glyphicon-picture"></span>  Srpsko narodno pozorište,Novi Sad</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:80%">80%</div>
+  </div>
+  <p><span class="glyphicon glyphicon-facetime-video"></span> Beogradsko dramsko pozorište,Beograd</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:75%">75%</div>
+  </div>
+  <p><span class="glyphicon glyphicon-camera"></span> Atelje 212,Beograd</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:65%">65%</div>
+  </div>
+</div>
+
+<div class="w3-row w3-center w3-dark-grey w3-padding-16">
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">14+</span><br>
+    Partners
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">65+</span><br>
+    Successful performances
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">89+</span><br>
+    Happy Clients
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">150+</span><br>
+    Meetings
+  </div>
+</div>
+		
+</body>
+</html>

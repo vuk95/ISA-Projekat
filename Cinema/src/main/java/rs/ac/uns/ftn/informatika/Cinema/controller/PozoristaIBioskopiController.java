@@ -471,6 +471,20 @@ public class PozoristaIBioskopiController {
 		return "cinemaGraphic";
 	}
 
+ 	@RequestMapping(value = "/getReports/cinemaIncome")
+	public String cinemaIncome(ModelMap map) {
+				
+ 		map.put("bioskopi", service.findCinemas());
+		return "prihodBioskopi";
+	}
+ 	
+ 	@RequestMapping(value = "/getReports/theatreIncome")
+	public String theatreIncome(ModelMap map) {
+		
+ 		map.put("pozorista", service.findTheatres());
+		return "prihodPozorista";
+	}
+ 	
 	
 	@RequestMapping(value = "getCinema/{id}/tickets",method = RequestMethod.GET)
 	public String cinemaDiscountTickets(@PathVariable("id") Long id, ModelMap map) {
@@ -606,5 +620,5 @@ public class PozoristaIBioskopiController {
  		
  		return "redirect:/cinematheatre/getTheatre/" + p.getCinemaTheatre().getId() + "/tickets";
  	}
- 	//proba
+ 	
 }
