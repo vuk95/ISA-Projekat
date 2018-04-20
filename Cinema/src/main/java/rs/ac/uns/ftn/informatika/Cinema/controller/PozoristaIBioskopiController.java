@@ -75,11 +75,11 @@ public class PozoristaIBioskopiController {
 			else {
 				map.put("admin", admin);
 				//ovde ce posle ici pravi homepage ali nmg da prebacim zbog toga sto nije u templates
-				return "pozorista";
+				return "homePageCTAdmin";
 			}
 		}
 		
-		return "pozorista";
+		return "homePageCTAdmin";
 		
 	}
 	
@@ -103,7 +103,7 @@ public class PozoristaIBioskopiController {
 				return "cinemaFirstLogin";
 			}
 			
-			return "redirect:/cinematheatre/getTheatre";
+			return "redirect:/cinematheatre/home";
 		}
 	
 		@PreAuthorize("@currentUserServiceImpl.canAccess(principal, #id)")
@@ -235,7 +235,17 @@ public class PozoristaIBioskopiController {
 				
 		return "projekcije";
 	}
-	
+
+	//Prikazuje filmske projekcije za dati bioskop
+			@RequestMapping(value = "/getProjection/{id}" , method = RequestMethod.GET)
+			public String projection(@PathVariable("id") Long id,ModelMap map) {
+				
+				map.put("bioskop",service.findOne(id));
+						
+				return "projekcijeOstali";
+		}
+
+
 	//Prikazuje predstave za dato pozoriste
 	@RequestMapping(value = "/getPredstave/{id}" , method = RequestMethod.GET)
 	public String predstave(@PathVariable("id") Long id,ModelMap map) {
@@ -245,6 +255,16 @@ public class PozoristaIBioskopiController {
 		return "predstave";
 	}
 	
+	//Prikazuje predstave za dato pozoriste
+			@RequestMapping(value = "/getPerformance/{id}" , method = RequestMethod.GET)
+			public String performance(@PathVariable("id") Long id,ModelMap map) {
+				
+				map.put("pozoriste",service.findOne(id));
+			
+				return "predstaveOstali";
+			}
+		
+
 	
 	@RequestMapping(value = "/updateProjekcije/{id}")
 	public String editProjekcije(@PathVariable("id") Long id,ModelMap map) {
@@ -421,7 +441,7 @@ public class PozoristaIBioskopiController {
 		return "reports";
 	}
 	
-	@RequestMapping(value = "/raitingCinemas")
+	@RequestMapping(value = "/getReports/raitingCinemas")
 	public String raitingsOfCinemas(ModelMap map) {
 		
 		map.put("bioskopi",service.findCinemas());
@@ -429,7 +449,7 @@ public class PozoristaIBioskopiController {
 		return "oceneBioskopi";
 	}
 	
-	@RequestMapping(value = "/raitingTheatres")
+	@RequestMapping(value = "/getReports/raitingTheatres")
 	public String raitingsOfTheatres(ModelMap map) {
 		
 		map.put("pozorista",service.findTheatres());
@@ -437,7 +457,7 @@ public class PozoristaIBioskopiController {
 		return "ocenePozorista";
 	}
 	
-	@RequestMapping(value = "/raitingProjections")
+	@RequestMapping(value = "/getReports/raitingProjections")
 	public String raitingsOfMovies(ModelMap map) {
 		
 		map.put("projekcije",pservice.findAll());
@@ -445,7 +465,7 @@ public class PozoristaIBioskopiController {
 		return "oceneProjekcije";
 	}
 	
- 	@RequestMapping(value = "/cinemaVisitGraphic")
+ 	@RequestMapping(value = "/getReports/cinemaVisitGraphic")
 	public String cinemaGraphic() {
 				
 		return "cinemaGraphic";

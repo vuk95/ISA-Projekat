@@ -6,9 +6,6 @@
 	<title>Korisnicki profil</title>
 	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
 	
-	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js"></script>
-	<script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/1.0.3/sockjs.min.js"></script>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<style>
 		table {
 			border-collapse:separate;
@@ -26,12 +23,7 @@
 				<li><a th:href="@{/fanzone/home}">Fanzona</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<button class="btn btn-sm btn-outline-secondary" type="button">
-						<a id="notification" href="/friendrequest" style="color:inherit">Zahtevi</a>				
-					</button>
-				</li>
-				<li><h1> </h1></li>
+				<li><span class="glyphicon glyphicon-user"></span></li>
 				<li><a th:href="@{'/profile/' + ${user.id}}" th:text="${user.name}"></a></li>
 				<li></li>
 				<li><a href="/logout">Odjava</a></li>
@@ -72,19 +64,6 @@
 	</div>
 	
 	<script src="/scripts/jquery-3.2.1.min.js"></script>
-	<script src="/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-	<script	th:inline="javascript">
-		/*<![CDATA[*/
-		$(document).ready(function() {
-			var socket = new SockJS('/nekiEndpoint');
-			var stompClient = Stomp.over(socket);
-			stompClient.connect({}, function(frame) {
-				stompClient.subscribe("/topic/[[${user.id}]]", function(data) {
-					$("#notification").text("Novi zahtev")
-				});
-			});
-		});
-		/*]]>*/
-	</script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
 </body>
 </html>
