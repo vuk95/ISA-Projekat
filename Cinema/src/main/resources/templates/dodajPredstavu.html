@@ -52,12 +52,13 @@
 				
 				<tr>
 					<td>Datum:</td>
-					<td><input type = "text" th:field="*{date}"></td>
+					<td><input type="date" id="dateTime" th:field="*{date}"></td>
 				</tr>
 				
 				<tr>
 					<td>Vreme:</td>
 					<td><input type = "text" th:field="*{time}"></td>
+					<td>form:[hh:mm:ss]</td>
 				</tr>
 				
 				<tr>
@@ -78,4 +79,13 @@
 			</table>
 		</form>
 	</body>
+	<script>
+		var dateTime = document.getElementById("dateTime").value;
+
+
+
+		var today = new Date().toISOString().split('T')[0];
+
+		document.getElementById("dateTime").setAttribute('min', today);
+		</script>
 </html>
