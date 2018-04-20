@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Pozorisne Predstave</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		</head>
+	<body>
+	
+	<div class="w3-content w3-container w3-padding-64" id="cinemas">
+  	<h3 class="w3-center">Performances</h3>
+  	<p class="w3-center"><em>All available performances for this theatre</em></p>
+  		 <table style="width:100%">	
+		
+			<tr>
+				<th>Naziv</th>
+				<th>Zanr</th>
+				<th>Trajanje</th>
+				<th>Reditelj</th>
+  				<th>Opis</th>
+  				<th>Cena</th>
+  				<th>Ocena</th>
+  				<th>Glumci</th>
+  				<th>Slika</th>
+  				<th>Datum</th>
+  				<th>Vreme</th>
+  				<th>Sala</th>
+			</tr>
+			
+			<tr th:each="predstava, iterStat: ${pozoriste.projections}">
+				
+				<td><a th:href="@{'/cinematheatre/getPredstave/' + ${pozoriste.Id} + '/' + ${predstava.Id}}" th:text="${predstava.name}"></a></td>
+				<td th:text="${predstava.genre}"></td>
+				<td th:text="${predstava.duration}"></td>
+				<td th:text="${predstava.director}"></td>
+				<td th:text="${predstava.description}"></td>
+				<td th:text="${predstava.price}"></td>
+				<td th:text="${predstava.avgraiting}"></td>
+				<td th:text="${predstava.actors}"></td>
+				<td><img th:src="@{'/pozoriste/' + ${predstava.Id} + '/pozoristeimage'}" width="30" height="30"></td>
+				<td th:text="${predstava.date}"></td>
+				<td th:text="${predstava.time}"></td>
+				<td th:text="${predstava.hall.id}"></td>				
+			</tr>
+			
+			
+			
+			</table>
+			
+	 </div>	
+	</body>
+</html>
+			

@@ -55,11 +55,13 @@
                       <tr>
                         <td>HALL</td>
                         <td>SEAT</td>
+                        <td>SEAT TYPE</td>
                         <td>PRICE</td>
                       </tr>
 					<tr>
                         <td th:text="${karta.projekcija.hall.name}"></td>
                         <td th:text="${karta.seat}"></td>
+                         <td th:text="${karta.seatType}"></td>
                         <td th:text="${karta.projekcija.price}"></td>
                       </tr>
 					                      
@@ -76,7 +78,9 @@
 					<div th:if="${karta.rezervisana} == false"><a th:href="${'/cinematheatre/theatreTicketsReserve/' + karta.id}">Rezervisi</a></div>
 					<div th:if="${karta.rezervisana} == true"><p>Rezervisano</p></div>
 					   </td>
-					   <td><a th:href="${'/cinematheatre/deleteTheatreTicket/' + karta.Id}">Obrisi</a></td>
+					   <td>
+					   <div th:if="${karta.rezervisana} == false"><a th:href="${'/cinematheatre/deleteTheatreTicket/' + karta.Id}">Obrisi</a></div>
+					   </td>
                       </tr>
                        
                     </tbody>

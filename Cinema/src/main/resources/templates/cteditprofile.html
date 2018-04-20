@@ -1,36 +1,69 @@
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>	
-	</head>
-	<body>
-		<h1>Izmeni podatke</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Korisnicki profil</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+	
+	<style>
+		table {
+			border-collapse:separate;
+    		border-spacing:0 8px;
+		}	
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="/cinematheatre/home">Pocetna</a></li>
+				<li><a href="/cinematheatre/getTheatre">Pozorista</a></li>
+				<li><a href="/cinematheatre/getCinema">Bioskopi</a></li>
+				<li><a th:href="@{/fanzone/home}">Fanzona</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><span class="glyphicon glyphicon-user"></span></li>
+				<li><a th:href="@{'/cinematheatre/profile/' + ${user.id}}" th:text="${user.name}"></a></li>
+				<li></li>
+				<li><a href="/logout">Odjava</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	
+	<div class="container">
+		<div th:if="${successMessage}" class="alert alert-success" th:text=${successMessage}></div>
+		
 		<form th:action="@{'/cinematheatre/profile/' + ${user.id} + '/edit'}" th:object="${user}" th:method="PUT">
-			<table>
+			<table width="100%">
 				<tr>
 					<td><strong>Email: </strong></td>
-					<td><input type="text" th:field="*{email}" readonly /></td>
-				</tr>
-				<tr>
-					<td><strong>Password: </strong></td>
-					<td><input type="text" th:field="*{password}" required/></td>
+					<td><input type="text" th:field="*{email}" readonly class="form-control input-lg"/></td>
 				</tr>
 				<tr>
 					<td><strong>Ime: </strong></td>
-					<td><input type="text"  th:field="*{name}" required/></td>
+					<td><input type="text"  th:field="*{name}" class="form-control input-lg" required="true"/></td>
 				</tr>
 				<tr>
 					<td><strong>Prezime: </strong></td>
-					<td><input type="text" th:field="*{lastname}" required/></td>
+					<td><input type="text" th:field="*{lastname}" class="form-control input-lg" required="true"/></td>
 				</tr>
 				<tr>
 					<td><strong>Grad: </strong></td>
-					<td><input type="text" th:field="*{city}" required/></td>
+					<td><input type="text" th:field="*{city}" class="form-control input-lg" required="true"/></td>
 				</tr>
 				<tr>
 					<td><strong>Telefon: </strong></td>
-					<td><input type="text" th:field="*{phone}" required/></td>
+					<td><input type="text" th:field="*{phone}" class="form-control input-lg" required="true"/></td>
 				</tr>
 			</table>
-			<input type="submit" value="Izmeni"/>
+			<input type="submit" value="Izmeni" class="btn btn-lg btn-primary btn-block"/>
 		</form>
-	</body>
+		<h5 align="center">Za povratak na svoj profil kliknite <a th:href="@{'/cinematheatre/profile/' + ${user.id}}">ovde.</a></h5>
+	</div>
+	
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/bootstrap.min.js"></script>
+</body>
 </html>

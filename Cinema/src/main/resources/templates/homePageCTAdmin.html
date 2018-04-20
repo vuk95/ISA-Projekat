@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+	
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/sockjs/1.0.3/sockjs.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="/cinematheatre/home">Pocetna</a></li>
+				<li><a href="/cinematheatre/getTheatre">Pozorista</a></li>
+				<li><a href="/cinematheatre/getCinema">Bioskopi</a></li>
+				<li><a th:href="@{/fanzone/home}">Fanzona</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<button class="btn btn-sm btn-outline-secondary" type="button">
+						<a id="notification" href="/friendrequest" style="color:inherit">Zahtevi</a>				
+					</button>
+				</li>
+				<li><h1> </h1></li>
+				<li><a th:href="@{'/cinematheatre/profile/' + ${admin.id}}" th:text="${admin.name}"></a></li>
+				<li></li>
+				<li><a href="/logout">Odjava</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<!-- Deo za bioskope -->
+		<div class="col-md-6">
+			<h3>Bioskopi koje ste posecivali: </h3>
+			
+			<table class="table table-hover">
+				<tr>
+					<th>Naziv</th>
+					<th>Adresa</th>
+				</tr>
+				
+			</table>
+		</div>
+		
+		<!-- Deo za pozorista -->
+		<div class="col-md-6">
+			<h3>Pozorista koje ste posecivali:</h3>
+			
+			<table class="table table-hover">
+				<tr>
+					<th>Naziv</th>
+					<th>Adresa</th>
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+	<div class="container">	
+		<!-- Deo za rezervacije -->
+		<div class="col-md-6">
+			<h3>Vasa rezervisana mesta:</h3>
+			
+			<table class="table table-hover">
+				<tr>
+					<th>Naziv filma/predstave</th>
+					<th>Datum</th>
+					<th>Vreme</th>
+					<th></th>
+				</tr>
+				
+			</table>
+			
+		</div>
+		
+		<!-- Deo za prijatelje -->
+		<div class="col-md-6">
+			<h3>Deo za prijatelje</h3>
+		</div>
+	
+	</div>
+
+	<script src="/scripts/jquery-3.2.1.min.js"></script>
+	<script src="/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script	th:inline="javascript">
+		/*<![CDATA[*/
+		$(document).ready(function() {
+			var socket = new SockJS('/nekiEndpoint');
+			var stompClient = Stomp.over(socket);
+			stompClient.connect({}, function(frame) {
+				stompClient.subscribe("/topic/[[${admin.id}]]", function(data) {
+					$("#notification").text("Novi zahtev")
+				});
+			});
+		});
+		/*]]>*/
+	</script>
+</body>
+</html>
