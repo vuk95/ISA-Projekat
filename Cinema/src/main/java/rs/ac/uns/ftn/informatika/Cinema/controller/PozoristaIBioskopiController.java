@@ -606,5 +606,5 @@ public class PozoristaIBioskopiController {
  		
  		return "redirect:/cinematheatre/getTheatre/" + p.getCinemaTheatre().getId() + "/tickets";
  	}
- 	
+ 	//proba
 }
