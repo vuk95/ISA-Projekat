@@ -48,7 +48,12 @@
 				<li><a th:href="@{/fanzone/home}">Fanzona</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><span class="glyphicon glyphicon-user"></span></li>
+				<li>
+					<button class="btn btn-sm btn-outline-secondary" type="button">
+						<a id="notification" href="/friendrequest" style="color:inherit">Zahtevi</a>				
+					</button>
+				</li>
+				<li><h1> </h1></li>
 				<li><a th:href="@{'/profile/' + ${user.id}}" th:text="${user.name}"></a></li>
 				<li></li>
 				<li><a href="/logout">Odjava</a></li>

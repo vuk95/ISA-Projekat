@@ -95,5 +95,13 @@ public class RegularUser extends User{
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+
+	public Set<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(Set<Ticket> tickets) {
+		this.tickets = tickets;
+	}
 	
 }
